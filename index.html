@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>getTheBook</title>
+  <meta name="author" content="Missy Maloney">
+  <meta name="description" content="Get the Book">
+  <meta name="keywords" content="books, Thinkful">
+
+  <!-- Responsive viewport tag, tells small screens that it's responsive-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Normalize.css, a cross-browser reset file-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  
+  <!-- Google Font-->
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <!-- Fontawesome icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  
+  <!-- Stylesheets-->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+  <div id="wrapper">
+
+    <header>
+      <div class="header_content">
+          <div class="row">
+                <h1 class="title">Get the book</h1>
+                <form class="js-search-form">
+                    Check by Author, Title or Subjectc:<br>
+                    <input type="text" class="js-queryByTitle" placeholder="Book Title..">
+                    <button class="button hover-color" type="submit"><h3>Search</h3></button>
+                  </form>
+                  <h2 class="example_search">See an example
+                    <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
+          </div>
+    </div>
+    </header>
+
+    <main role="main">
+      <div class="row"></div>  
+      <div class="row"></div>  
+      <div class="row">
+        <div class="col-12">
+          <div class="content">
+            <div class="boxshadow">
+              <h2 class="boxtitle overviewtitle">
+                <span class="title_style">
+                  <i class="fas fa-certificate"></i>
+                  Overview:  GoogleBooks
+                </span>
+              </h2>
+              <div class="js-resultsOverview">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+            <div class="content">
+                <div class="boxshadow">
+                    <h2 class="boxtitle libraryTitle">
+                      <span class="title_style">
+                        <i class="fas fa-handshake" ></i>
+                        Library Availability: OverDrive
+                      </span>
+                    </h2>
+                    <div class="results js-library">
+                      <p>* total copies</p>
+                      <p>* copies available</p>
+                      <p>* formats available</p>
+                      <p>* average starts given</p>
+                      <p>* out of how many reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="boxshadow">
+                    <h2 class="boxtitle purchaseTitle">
+                      <span class="title_style">
+                          <i class="fas fa-shopping-bag"></i>
+                        Purchase: Google Books
+                      </span>
+                    </h2>
+                    <div class="results js-purchase">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="content">
+                <div class="boxshadow">
+                    <h2 class="boxtitle goodreadstitle">
+                      <span class="title_style">
+                          <i class="fas fa-star"></i>
+                        Reviews of possible book (Goodreads) API
+                      </span>
+                    </h2>
+                    <div class="results goodreads">
+                        <p>Rating short desc</p>
+                        <p>author</p>
+                        <p>number of stars</p>
+                        <p>longer desc</p>
+                        <p>more link</p>
+                        <p>other reviews</p>
+                    </div>
+            </div>
+          </div>
+        </div>  
+    </main>
+
+    <footer>
+      <div class="row">
+      </div>
+    </footer>
+     
+  </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="index.js"></script>      
+</body>
+</html>

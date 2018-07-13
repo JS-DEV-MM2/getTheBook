@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+  }
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background-color:#F1C0B1;
+  color: #0B4863;
+
+}
+
+form {
+  margin: auto;
+}
+
+.fa-kiwi-bird:before {
+  content: "\f535";
+}
+
+.boxshadow {
+  box-shadow: 1px 1px 5px #777777;
+  background-color: #F2EEED;
+  border-style: outset;
+
+}
+
+.js-search-form {
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.col-6 {
+  display:none;
+}
+
+.overviewdetail {
+  float: left;
+}
+
+.title_style {
+  text-decoration: none;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  padding: 5px 20px;
+  background-color:white;
+  box-shadow: 0 0 15px #eaeaea;
+  display: block;
+
+}   
+
+
+.results {
+  padding-left: 1em;
+  padding-right: 111px;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+@media only screen and (min-width: 769px){
+ 
+  .boxshadow {
+    margin-bottom: 10px;
+  }
+}
+  
