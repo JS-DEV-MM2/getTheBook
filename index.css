@@ -16,9 +16,13 @@ form {
 .fa-kiwi-bird:before {
   content: "\f535";
 }
+.content {
+  padding: 5px;
+}
+
 
 .boxshadow {
-  box-shadow: 1px 1px 5px #777777;
+  /* box-shadow: 1px 1px 5px #777777; */
   background-color: #F2EEED;
   border-style: outset;
 
@@ -31,6 +35,7 @@ form {
 
 .col-6 {
   display:none;
+  
 }
 
 .overviewdetail {
@@ -42,18 +47,15 @@ form {
   border-bottom: 1px solid #efefef;
   border-top: 1px solid #efefef;
   padding: 5px 20px;
-  background-color:white;
-  box-shadow: 0 0 15px #eaeaea;
+  /*background-color:white;
+  //box-shadow: 0 0 15px #eaeaea; */
   display: block;
 
 }   
 
 
 .results {
-  padding-left: 1em;
-  padding-right: 111px;
-  padding-bottom: 1em;
-  padding-top: 1em;
+  padding: 20px;
 }
 
 @media only screen and (min-width: 769px){

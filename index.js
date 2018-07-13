@@ -43,7 +43,7 @@ function renderGoogleBooksAPIData(data) {
   $.each(data, function(index, item) {
     indexNum +=1;
     dataId=`${item.id}`;
-    $(`.js-resultsOverview`).append(`
+    $(`.js-Overview`).append(`
       <div class='dataItem'>
            <H3><div class="js-title">${item.volumeInfo.title}</div></h3>
            <div class="js-itemId" data-bookId="${dataId}">${dataId}</div>
@@ -60,7 +60,7 @@ function renderGoogleBooksAPIData(data) {
 function renderSelectedBookAPIData(book) {
   console.log(book);
   $('.dataItem').remove();
-    $(`.js-resultsOverview`).append(`
+    $(`.js-Overview`).append(`
       <div class='dataItem'>
            <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
            <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
@@ -68,40 +68,53 @@ function renderSelectedBookAPIData(book) {
            <div class="js-authors">${book.volumeInfo.authors}</div>
            <div class="js-categories">${book.volumeInfo.categories}</div>
            <div class="js-average-rating">Average Rating of ${book.volumeInfo.averageRating} out of ${book.volumeInfo.ratingsCount} ratings.</div>
-           <hr>
+           
       </div>
       `
     ); 
 
     $('.purchaseDataItem').remove();
-    if (forSale = 'NOT_FOR_SALE') {
-      forSale=`${book.saleInfo.saleability}`;
-      console.log('is this book for sale' + forSale);
+    var forSale=`${book.saleInfo.saleability}`;
+    var isElectronic = `${book.saleInfo.isEbook}`;
+    console.log('This book is for sale ' + forSale + ' also, this book is electronic ' + isElectronic );
+
+    if (isElectronic === `true`) {
+      console.log('did book make it to here');
+        if (forSale == 'FREE') {
+          $(`.js-purchase`).append(`
+                <div class='purchaseDataItem'>
+                    <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
+                    <div class="js-salePrice">The price is 0!  Yeah!</div>
+                    <div class="js-linkToBuy"><a href=${book.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
+                 
+                </div>
+                `
+          ); 
+        } else if (forSale === 'FOR_SALE') {
+          $(`.js-purchase`).append(`
+            <div class='purchaseDataItem'>
+                <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
+                <div class="js-salePrice">The price is: ${book.saleInfo.retailPrice.amount}</div>
+                <div class="js-linkToBuy"><a href=${book.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
+                
+            </div>
+            `
+          ); 
+        } else {
+          `<div class='purchaseDataItem'>
+                    <div class="js-linkToBuy">There is some other status that I haven't considered.</div>
+                  
+                </div>`
+
+        }
+    } else {
       $(`.js-purchase`).append(`
       <div class='purchaseDataItem'>
            <H3><div class="notForSale">This book is not for sale through Google Play.</div></h3>
       </div>
       `
       );
-    } else {
-      isElectronic=`${book.saleInfo.isEbook}`;
-      console.log('does this book come in an electronic version ' + isElectronic);
-      salePrice=`${book.saleInfo.retailPrice.amount}`;
-      console.log('the sale price is ' + salePrice);
-      clickToBuy= `${book.saleInfo.buyLink}`;
-      console.log('click this link to purchase from Google Play' + clickToBuy);
-
-
-      $(`.js-purchase`).append(`
-        <div class='purchaseDataItem'>
-            <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
-            <div class="js-isElectronic">${book.saleInfo.isEbook}</div>
-            <div class="js-salePrice">$${book.saleInfo.retailPrice.amount}</div>
-            <div class="js-linkToBuy">${book.saleInfo.buyLink}</div>
-            <hr>
-        </div>
-        `
-      ); 
+      
     };
 
 
@@ -121,7 +134,7 @@ function watchSubmit() {
 }
 
 function listenForBookSelection() {
-  $('.js-resultsOverview').on('click', '.dataItem', (function(e) {
+  $('.js-Overview').on('click', '.dataItem', (function(e) {
     e.preventDefault();
     const selectedBookId = $(e.currentTarget).find('.js-itemId').attr('data-bookId');
     getSelectedGoogleBookAPIData(selectedBookId);
