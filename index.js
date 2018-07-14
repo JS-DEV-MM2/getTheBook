@@ -10,6 +10,7 @@ const youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
 
 //Calls to the APIs
 
+//first call to Google Books
 function getGoogleBooksAPIData(userSelectedSearchItem) {
   const params = {
     q: `"${userSelectedSearchItem}"`,
@@ -19,21 +20,22 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
     volumePart: `volumeInfo`,
     salePart: `saleInfo`,
     searchPart: `searchInfo`
-    //categoryId: `???`
   }
- $.getJSON(googleBooksURL, params, function(data){
-   renderGoogleBooksAPIData(data.items);
- });
+  $.getJSON(googleBooksURL, params, function(data){
+    renderGoogleBooksAPIData(data.items);
+  });
 }
 
+//call to Google Books for selected book
 function getSelectedGoogleBookAPIData(book) {
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
- $.getJSON(singleBookURL, function(result){
-   renderSelectedBookAPIData(result);
+  $.getJSON(singleBookURL, function(result){
+    renderSelectedBookAPIData(result);
    //nextPageToken = data.nextPageToken;
  });
 }
 
+//call to Youtube for videos
 function getYouTubeAPIData(userSelectedSearchItem) {
   const params = {
     q: `${userSelectedSearchItem} in:name`,
@@ -42,24 +44,45 @@ function getYouTubeAPIData(userSelectedSearchItem) {
     maxResults: 8,
     videoID:'id'
   }
- $.getJSON(youtubeURL, params, function(data){
-   renderYouTubeAPIData(data.items);
-   nextPageToken = data.nextPageToken;
- });
+  $.getJSON(youtubeURL, params, function(data){
+    renderYouTubeAPIData(data.items);
+    nextPageToken = data.nextPageToken;
+  });
 }
 
+
+//call to News for articles
 function getNewsAPIData(userSelectedSearchItem) {
   const params = {
     q: `${userSelectedSearchItem}`,
     apiKey: `430d190071894a52b7716e87bf74ced3`,
-    //language: `en`,
-    //pagesize: `5`
+    articleList:`articles`,
+    pagesize: 5,
+    language: `en`
     }
-  
-    $.getJSON(newsURL, params, function(data){
-      renderNewsAPIData(data.items);
+   
+  $.getJSON(newsURL, params, function(data){
+    console.log('the news articles is ');
+    console.log(data.articles);
+    var indexNum = 0;
+    $.each(data, function(index, item) {
+      console.log('made it to inside loop');
+      console.log(data.articles[0].author);
+      indexNum +=1;
+      $(`.js-news`).append(`
+        <div class='news'>
+              <H3><div class="js-title">${data.articles[indexNum].title} </div></h3>
+           <div class="js-subtitle">${data.articles[indexNum].author} </div>
+           <div class="js-subtitle">${data.articles[indexNum].description} </div>
+           <div class="js-authors"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
+        </div>
+        `
+      );
+      });
     });
-}
+    //renderNewsAPIData(data.items);
+  }
+
 
 function renderYouTubeAPIData(data) {
   console.log(`the following are youtube videos`)
@@ -88,26 +111,22 @@ function renderYouTubeAPIData(data) {
   });
 }
 
-
-
-
-function renderNewsAPIData(articles) {
-  console.log(`the following are articles on the topic videos`)
-  console.log(articles);
-  $('.newsItem').remove();
+function renderNewsAPIData(data) {
+  console.log('made it to render news');
+  //$('.news').remove();
   var indexNum = 0;
   //var dataId="";
-  $.each(articles, function(index, article) {
+  
+  $.each(data, function(index, item) {
+    console.log('made it to inside loop');
     indexNum +=1;
-    //dataId=`${article.id}`;
-    console.log(article.author);
-
+    dataId=`${item.id}`;
     $(`.js-news`).append(`
-      <div class='newsItem'>
-           <H3><div class="js-title">${article.articles.title} by ${article.author}</div></h3>
-           <div class="js-subtitle">${article.description}</div>
-           <div class="js-subtitle">${article.publishedAt} from source:  ${article.id}</div>
-           <div class="js-authors"><a href="${article.url}">${article.url}</a></div>
+      <div class='news'>
+           <H3><div class="js-title">${item.articles.title} by ${item.articles.author}</div></h3>
+           <!--<div class="js-subtitle">${item.description}</div>
+           <div class="js-subtitle">${item.publishedAt} from source:  ${item.id}</div>
+           <div class="js-authors"><a href="${item.url}">${data.url}</a></div> -->
       </div>
       `
     ); 
@@ -124,6 +143,8 @@ function renderNewsAPIData(articles) {
 
 // Render the API data to the DOM
 function renderGoogleBooksAPIData(data) {
+  console.log(`the following are google books on the topic`)
+  console.log(data);
   $('.dataItem').remove();
   var indexNum = 0;
   var dataId="";
