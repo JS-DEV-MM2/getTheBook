@@ -1,6 +1,20 @@
 * {
     box-sizing: border-box;
   }
+
+form {
+  margin: auto;
+}
+
+header {
+  background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(images/bg1.jpg);
+  background-size: cover;
+  background-position: 15% 0%;
+  background-attachment: scroll;
+  padding: 20px 0;
+  box-shadow: 0 0 10px black;
+}
+
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
@@ -9,22 +23,55 @@ body {
 
 }
 
-form {
-  margin: auto;
+footer {
+
 }
+
+.banner {
+  text-align:right;
+}
+
+
+.example {
+  padding: 25px;
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+  text-shadow: none;
+  color: white;
+  float:left;
+}
+
+#definition {
+  vertical-align: middle;
+  width: 75%; 
+  text-align:left;
+}
+
+
+#logo {
+  border-style:outset;
+  border: 3px solid  #9BAA37;
+  background-color: #BEB968;
+  padding: 15px;
+  margin-top:10px;
+  margin-right:4px;
+  color: #0B4863;
+  float: left;
+}
+
+
 
 .fa-kiwi-bird:before {
   content: "\f535";
 }
 .content {
   padding: 5px;
+ 
 }
 
-
 .boxshadow {
-  /* box-shadow: 1px 1px 5px #777777; */
-  background-color: #F2EEED;
-  border-style: outset;
+  box-shadow: 1px 1px 5px #777777; 
+  background-color:white;
+  margin: 20px;
 
 }
 
@@ -33,10 +80,6 @@ form {
   margin-right:auto;
 }
 
-.col-6 {
-  display:none;
-  
-}
 
 .overviewdetail {
   float: left;
@@ -47,21 +90,35 @@ form {
   border-bottom: 1px solid #efefef;
   border-top: 1px solid #efefef;
   padding: 5px 20px;
-  /*background-color:white;
-  //box-shadow: 0 0 15px #eaeaea; */
   display: block;
 
 }   
 
+.js-itemid {
+  display:none;
+}
+.js-title {
+  font-weight: bold;
+}
 
 .results {
   padding: 20px;
+  
 }
 
-@media only screen and (min-width: 769px){
- 
-  .boxshadow {
-    margin-bottom: 10px;
-  }
+.dataItem {
+  color: #0B4863;
+}
+
+
+@media only screen and (min-height: 450px) {
+header {
+    height: 100vh;
+}
 }
   
+@media only screen and (max-width: 767px) {
+header {
+    padding: 10px;
+}
+}

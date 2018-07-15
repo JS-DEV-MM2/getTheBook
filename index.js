@@ -71,7 +71,7 @@ function getNewsAPIData(userSelectedSearchItem) {
       indexNum +=1;
       $(`.js-news`).append(`
         <div class='news'>
-              <H3><div class="js-title">${data.articles[indexNum].title} </div></h3>
+             <div class="js-title">${data.articles[indexNum].title} </div>
            <div class="js-subtitle">${data.articles[indexNum].author} </div>
            <div class="js-subtitle">${data.articles[indexNum].description} </div>
            <div class="js-authors"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
@@ -93,9 +93,9 @@ function renderYouTubeAPIData(data) {
     indexNum +=1;
     $(`.js-youtube`).append(`
       <div class='videoItem'>
-        <h3><div class='js-result-name'>
+        <div class='js-title'>
            <a href='${item.snippet.title}'>${item.snippet.title}</a>
-        </div></h3>
+        </div><
         <div class='js-image'>
          <img data-videoid='${item.id.videoId}' src='${item.snippet.thumbnails.medium.url}' >
         </div>
@@ -113,7 +113,7 @@ function renderYouTubeAPIData(data) {
 
 function renderNewsAPIData(data) {
   console.log('made it to render news');
-  //$('.news').remove();
+  $('.news').remove();
   var indexNum = 0;
   //var dataId="";
   
@@ -123,7 +123,7 @@ function renderNewsAPIData(data) {
     dataId=`${item.id}`;
     $(`.js-news`).append(`
       <div class='news'>
-           <H3><div class="js-title">${item.articles.title} by ${item.articles.author}</div></h3>
+           <div class="js-title">${item.articles.title} by ${item.articles.author}</div>
            <!--<div class="js-subtitle">${item.description}</div>
            <div class="js-subtitle">${item.publishedAt} from source:  ${item.id}</div>
            <div class="js-authors"><a href="${item.url}">${data.url}</a></div> -->
@@ -136,7 +136,7 @@ function renderNewsAPIData(data) {
 
 
 
-// Query Google Books API
+
 
 
 
@@ -153,8 +153,8 @@ function renderGoogleBooksAPIData(data) {
     dataId=`${item.id}`;
     $(`.js-Overview`).append(`
       <div class='dataItem'>
-           <H3><div class="js-title">${item.volumeInfo.title}</div></h3>
-           <div class="js-itemId" data-bookId="${dataId}">${dataId}</div>
+           <div class="js-title">${item.volumeInfo.title}</div>
+           <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
            <div class="js-subtitle">${item.volumeInfo.subtitle}</div>
            <div class="js-authors">${item.volumeInfo.authors}</div>
            <div class="js-categories">${item.volumeInfo.categories}</div>
@@ -166,18 +166,14 @@ function renderGoogleBooksAPIData(data) {
 }
 
 function renderSelectedBookAPIData(book) {
-  console.log(`the following are details on the book selected`)
-  console.log(book);
   $('.dataItem').remove();
     $(`.js-Overview`).append(`
       <div class='dataItem'>
-           <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
-           <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
+           <div class="js-title">${book.volumeInfo.title}</div>
            <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
            <div class="js-authors">${book.volumeInfo.authors}</div>
            <div class="js-categories">${book.volumeInfo.categories}</div>
            <div class="js-average-rating">Average Rating of ${book.volumeInfo.averageRating} out of ${book.volumeInfo.ratingsCount} ratings.</div>
-           
       </div>
       `
     ); 
@@ -185,36 +181,28 @@ function renderSelectedBookAPIData(book) {
     $('.purchaseDataItem').remove();
     var forSale=`${book.saleInfo.saleability}`;
     var isElectronic = `${book.saleInfo.isEbook}`;
-    //console.log('This book is for sale ' + forSale + ' also, this book is electronic ' + isElectronic );
-
     if (isElectronic === `true`) {
       //console.log('did book make it to here');
         if (forSale == 'FREE') {
           $(`.js-purchase`).append(`
                 <div class='purchaseDataItem'>
-                    <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
                     <div class="js-salePrice">The price is 0!  Yeah!</div>
                     <div class="js-linkToBuy"><a href=${book.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                 
                 </div>
                 `
           ); 
         } else if (forSale === 'FOR_SALE') {
           $(`.js-purchase`).append(`
             <div class='purchaseDataItem'>
-                <H3><div class="js-title">${book.volumeInfo.title}</div></h3>
                 <div class="js-salePrice">The price is: ${book.saleInfo.retailPrice.amount}</div>
                 <div class="js-linkToBuy"><a href=${book.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                
             </div>
             `
           ); 
         } else {
           `<div class='purchaseDataItem'>
                     <div class="js-linkToBuy">There is some other status that I haven't considered.</div>
-                  
                 </div>`
-
         }
     } else {
       $(`.js-purchase`).append(`
@@ -223,10 +211,7 @@ function renderSelectedBookAPIData(book) {
       </div>
       `
       );
-      
     };
-
-
     $('.col-6').show();
 }
 
@@ -234,11 +219,15 @@ function renderSelectedBookAPIData(book) {
 /* Event listeners */
 
 function watchSubmit() {
-  $('.js-search-form').submit(function(e){
+  $('#js-inputform').submit(function(e){
     e.preventDefault();
-    const queryTarget = $(e.currentTarget).find('.js-queryByTitle');
+    $('.content').hide();
+    const queryTarget = $(e.currentTarget).find('#js-searchfield');
+    console.log(queryTarget);
     userSelectedSearchTerm  = queryTarget.val();
+    console.log(userSelectedSearchTerm);
     getGoogleBooksAPIData(userSelectedSearchTerm);
+    $('.content').show();
     
   });
 }
@@ -246,14 +235,12 @@ function watchSubmit() {
 function listenForBookSelection() {
   $('.js-Overview').on('click', '.dataItem', (function(e) {
     e.preventDefault();
-    const selectedBookId = $(e.currentTarget).find('.js-itemId').attr('data-bookId');
+    const selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
     getSelectedGoogleBookAPIData(selectedBookId);
     getNewsAPIData(userSelectedSearchTerm);
     getYouTubeAPIData(userSelectedSearchTerm)
   }));
 }
-
-
 
 watchSubmit();
 listenForBookSelection();

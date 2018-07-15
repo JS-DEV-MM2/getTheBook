@@ -2,12 +2,52 @@
 <html lang="en">
 
 <head>
+
+ 
+    <!--<head>
+        <title>getTheBook</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Select a the best book for your bookclub.">
+        <meta property="og:title" content="getTheBook.co" />  
+        <meta property="og:image" content="/images/getTheBook_bkgrd.jpeg" />
+        <meta property="og:description" content="Select a the best book for your bookclub." />
+        <meta property="og:type" content="website"> 
+        <meta property="og:url" content="http://www.lookitup.co" 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="msapplication-config" content="/browserconfig.xml" 
+        <meta name="theme-color" content="#ffffff">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/lity.min.css">
+        <link rel="stylesheet" type="text/css" href="css/grid.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Lato:100,300,400">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#999999">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script async src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <script async src="https://use.fontawesome.com/0f63d8ca7c.js"></script>
+        <script async src="js/lity.min.js"></script>
+        <script async src="js/app.js"></script>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+      </head>
+
+
+    -->
   <meta charset="UTF-8">
   <title>getTheBook</title>
   <meta name="author" content="Missy Maloney">
-  <meta name="description" content="Get the Book">
+  <meta name="description" content="Select a the best book for your bookclub.">
   <meta name="keywords" content="books, Thinkful">
-
+  <meta property="og:title" content="getTheBook.co" />  
+  <meta property="og:image" content="/images/getTheBook_bkgrd.jpeg" />
+  <meta property="og:description" content="Select a the best book for your bookclub." />
+  
   <!-- Responsive viewport tag, tells small screens that it's responsive-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,31 +67,51 @@
   <div id="wrapper">
 
     <header>
-      <div class="header_content">
           <div class="row">
-                <h1 class="title">Get the book</h1>
-                <form class="js-search-form">
-                    Check by Author, Title or Subjectc:<br>
-                    <input type="text" class="js-queryByTitle" placeholder="Book Title..">
-                    <button class="button hover-color" type="submit"><h3>Search</h3></button>
-                  </form>
-                  <h2 class="example_search">See an example
-                    <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
+            <div class="banner">
+                <h1 class="tagline">Select a the best book for your bookclub.</h1>
+                <form id="js-inputform">
+                  <span> Check by Author, Title or Subject:</span> 
+                  <input id="js-searchfield" type="text" name="searchfield" placeholder="Book Title.." autofocus required spellcheck="true">
+                  <button id="getthebook" type="submit">getTheBook</button>
+                </form>
+                  <a href = "#">
+                    <h2 class="example_search">See an example<i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
+                </a>
+            </div>
           </div>
-    </div>
     </header>
 
     <main role="main">
-      <div class="row"></div>  
+      <div class="row">
+        
+          <div class="boxshadow">
+            <div class="example">
+              <span id="logo">getTheBook</span><p><span id="definition">after being presented with a list of books based on your selection, choose one.  You will be shown information on the book, the price, and articles and videos on the book, author or topic.</span></p>
+            
+            </div>
+          </div>
+       
+      </div>  
       <div class="row"></div>  
       <div class="row">
         <div class="col-12">
           <div class="content">
             <div class="boxshadow">
               <div class="results js-Overview">
+                  <div class='dataItem'>
+                      <H3><div class="js-title">Killers of the Flower Moon</div></h3>
+                      <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
+                      <div class="js-authors">David Grann</div>
+                      <div class="js-categories">asdfadsfasdf</div>
+                      <div class="js-average-rating">Average Rating of 4 out of 37 ratings.</div>
+                 </div>
               </div>
-              <hr>
               <div class="results js-purchase">
+                  <div class='purchaseDataItem'>
+                      <div class="js-salePrice">The price is $13.99</div>
+                      <div class="js-linkToBuy"><a href="">Click to purchase from Google Play</a></div>
+                  </div>
               </div>
             </div>
           </div>
@@ -67,6 +127,49 @@
                     </h3>
                     <hr>
                     <div class="results js-youtube">
+                        <div class='videoItem'>
+                            <div class='js-title'>
+                               <a href=''>‘Killers of the Flower Moon’ author David Grann answers your questions</a>
+                            </div>
+                            <div class='js-image'>
+                             <img data-videoid='https://i.ytimg.com/vi/Wth_3SSW4ds/mqdefault.jpg' src='https://i.ytimg.com/vi/Wth_3SSW4ds/mqdefault.jpg' >
+                            </div>
+                            <div class='js-desc'>
+                             <p>As part of the NewsHour and New York Times book club, Now Read This, author David Grann answers your questions about 
+                               “Killers of the Flower Moon,” his ...</p>
+                            </div>
+                            <div class='myVideo' id='${indexNum}'>
+                                <iframe data-videoIndex = ${index} src='<iframe width="300" height="150" src="https://www.youtube.com/embed/Wth_3SSW4ds" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>'></iframe>
+                            </div>
+                          </div>
+                          <div class='videoItem'>
+                              <h3><div class='js-title'>
+                                 <a href=''>The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie</a>
+                              </div></h3>
+                              <div class='js-image'>
+                               <img data-videoid='https://i.ytimg.com/vi/Xu4UAf8Vfnc/mqdefault.jpg' src='https://i.ytimg.com/vi/Xu4UAf8Vfnc/mqdefault.jpg' >
+                              </div>
+                              <div class='js-desc'>
+                               <p>Starring: Tom Holland, Charlie Hunnam, Sienna Miller The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie Based on David Grann's ...</p>
+                              </div>
+                              <div class='myVideo' id='${indexNum}'>
+                                  <iframe data-videoIndex = ${index} src='https://youtu.be/Xu4UAf8Vfnc'></iframe>
+                              </div>
+                            </div>
+                            <div class='videoItem'>
+                                <h3><div class='js-title'>
+                                   <a href='${item.snippet.title}'>${item.snippet.title}</a>
+                                </div></h3>
+                                <div class='js-image'>
+                                 <img data-videoid='${item.id.videoId}' src='${item.snippet.thumbnails.medium.url}' >
+                                </div>
+                                <div class='js-desc'>
+                                 <p>${item.snippet.description}</p>
+                                </div>
+                                <div class='myVideo' id='${indexNum}'>
+                                    <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
+                                </div>
+                              </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +186,30 @@
                     </h3>
                     <hr>
                     <div class="results js-news">
+                        <div class='news'>
+                            <H3><div class="js-title">Meet National Book Award Finalist David Grann </div></h3>
+                         <div class="js-subtitle">Emily Temple </div>
+                         <div class="js-subtitle">The 2017 National Book Awards (also known as the Oscars of the 
+                           literary world), will be held on November 15th in New York City. In preparation for the 
+                           ceremony, and to celebrate all of the wonderful books and authors nominated for the awards 
+                           this year, Litera…</div>
+                         <div class="js-authors"><a href="">Click here to read the article </a></div>
+                      </div>
+                      <div class='news'>
+                          <H3><div class="js-title">Here Are the Nominees for the 2017 National Book Award</div></h3>
+                       <div class="js-subtitle">Sarah Begley</div>
+                       <div class="js-subtitle">Jesmyn Ward, Jennifer Egan and David Grann were among the nominees</div>
+                       <div class="js-authors"><a href="">Click here to read the article </a></div>
+                    </div>
+                    <div class='news'>
+                        <H3><div class="js-title">The Best Reviewed Books of 2017:History &Politics</div></h3>
+                     <div class="js-subtitle">Book Marks</div>
+                     <div class="js-subtitle">History & Politics 1. Killers of the Flower Moon by David Grann 
+                       (18 Rave, 4 Positive, 1 Mixed) “…the strangest, most horrific story that Grann has told … 
+                       Grann folds it, neatly, into three hundred pages. But he also makes something much more out 
+                       of the materi…</div>
+                     <div class="js-authors"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
+                  </div>
                     </div>
             </div>
           </div>
