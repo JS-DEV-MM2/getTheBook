@@ -19,11 +19,14 @@ body {
   margin: 0;
   font-family: 'Lato', sans-serif;
   background-color:#F1C0B1;
-  color: #0B4863;
+  /*color: #0B4863; */
+  color: white;
 
 }
 
 footer {
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+
 
 }
 
@@ -46,6 +49,72 @@ footer {
   text-align:left;
 }
 
+#itc_icon {
+  height: 40px;
+
+}
+
+#copyright {
+  vertical-align: middle;
+  float: right;
+  font-size: 18px;
+  color: #0B4863;
+  text-align: right;
+
+}
+
+.example_search {
+  text-align: center;
+  padding-top: 30px;
+  color: white;
+  text-shadow: 0 0 3px #555555;
+  font-size: 28px;
+  font-weight: 200;
+  transition: color 0.25s linear, text-shadow 0.25s linear;
+}
+
+.fa-search {
+   color: #BEB968
+}
+
+.fa-angle-double-down, .fa-angle-double-up {
+  font-size: 23px !important;
+  color: #0B4863;
+  /*text-shadow: 0 0 3px #555555;; */
+  position: relative;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.tagline {
+  margin-bottom: 10px;
+  line-height: 40px;
+  color: white;
+  text-shadow: 0 0 3px #777777;
+  padding-bottom: 20px;
+  font-size: 40px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+
+#instruction {
+  font-weight: 50;
+  font-size:24px;
+  padding-bottom: 20px;
+  text-shadow: 0 0 3px #777777;
+
+}
+
 
 #logo {
   border-style:outset;
@@ -54,7 +123,8 @@ footer {
   padding: 15px;
   margin-top:10px;
   margin-right:4px;
-  color: #0B4863;
+  /*color: #0B4863; */
+  color: white;
   float: left;
 }
 
@@ -108,6 +178,18 @@ footer {
 
 .dataItem {
   color: #0B4863;
+}
+
+input {
+  border: none;
+  border-bottom: 3px solid ghostwhite;
+  border-radius: 0px;
+  padding: 8px 0;
+  color: lawngreen;
+  -webkit-font-smoothing: antialiased;
+  font-size: 28px;
+  background: none;
+  width: 500px;
 }
 
 

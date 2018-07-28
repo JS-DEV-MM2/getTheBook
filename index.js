@@ -219,6 +219,18 @@ function renderSelectedBookAPIData(book) {
 /* Event listeners */
 
 function watchSubmit() {
+//suggestions for submission text input
+  var searchEx = [ 'Want some suggestions?', 'David Grann', 'Jane Eyre', 'Radium Girls', 'William Shakespeare', 'Shakespeare', 'nanotechnology', 'sustainability', 'sensationalism', 'gentrification', 'socialization', 'benchmarking', 'brick and mortar', 'best practice', 'syllogism', 'paradigm shift', 'semantics', 'responsive web design' ];
+  setInterval(function() {
+    $("input#js-searchfield").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
+  }, 3000);
+
+ //user clicks to look at example
+  $('.example_search').click(function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $('main').offset().top - 20});    
+  });
+
   $('#js-inputform').submit(function(e){
     e.preventDefault();
     $('.content').hide();
@@ -241,6 +253,9 @@ function listenForBookSelection() {
     getYouTubeAPIData(userSelectedSearchTerm)
   }));
 }
+
+
+
 
 watchSubmit();
 listenForBookSelection();

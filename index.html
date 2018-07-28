@@ -71,7 +71,7 @@
             <div class="banner">
                 <h1 class="tagline">Select a the best book for your bookclub.</h1>
                 <form id="js-inputform">
-                  <span> Check by Author, Title or Subject:</span> 
+                  <h3 id="instruction"> Check by Author, Title or Subject</h3> 
                   <input id="js-searchfield" type="text" name="searchfield" placeholder="Book Title.." autofocus required spellcheck="true">
                   <button id="getthebook" type="submit">getTheBook</button>
                 </form>
@@ -217,7 +217,21 @@
     </main>
 
     <footer>
-      <div class="row">
+      <div class="row newsearchrow">
+        <div class="banner">
+          <h2 class="searchagain">
+            <a id="newsearch" href="#js-inputform">
+              <i class="fa fa-angle-double-up" aria-hidden="true" style="-webkit-text-stroke: 0px;"></i>
+              <i class="fa fa-search" aria-hidden="true" style="-webkit-text-stroke: 0px;"></i>
+            </a>
+            <a href="www.inspiredtechnologycoaching.com" target="_blank">
+              <span id="copyright" style="-webkit-text-stroke: 0.1px;">
+                Built by 
+                <img id="itc_icon" src="images/itc_icon.png">
+              </span>
+            </a>
+          </h2>
+        </div>
       </div>
     </footer>
      
