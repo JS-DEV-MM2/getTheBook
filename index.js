@@ -71,10 +71,11 @@ function getNewsAPIData(userSelectedSearchItem) {
       indexNum +=1;
       $(`.js-news`).append(`
         <div class='news'>
-             <div class="js-title">${data.articles[indexNum].title} </div>
+            <div class="js-title">${data.articles[indexNum].title} </div>
            <div class="js-subtitle">${data.articles[indexNum].author} </div>
            <div class="js-subtitle">${data.articles[indexNum].description} </div>
            <div class="js-authors"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
+           <hr>
         </div>
         `
       );
@@ -95,9 +96,6 @@ function renderYouTubeAPIData(data) {
       <div class='videoItem'>
         <div class='js-title'>
            <a href='${item.snippet.title}'>${item.snippet.title}</a>
-        </div><
-        <div class='js-image'>
-         <img data-videoid='${item.id.videoId}' src='${item.snippet.thumbnails.medium.url}' >
         </div>
         <div class='js-desc'>
          <p>${item.snippet.description}</p>
@@ -105,6 +103,7 @@ function renderYouTubeAPIData(data) {
         <div class='myVideo' id='${indexNum}'>
             <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
         </div>
+        <hr>
       </div>
       `
     );
@@ -148,6 +147,17 @@ function renderGoogleBooksAPIData(data) {
   $('.dataItem').remove();
   var indexNum = 0;
   var dataId="";
+  $(`.js-Overview`).append(`
+      <h3 class="boxtitle booklisttitle" >
+        <span class="title_style">
+          <i class="fas fa-bird"></i>
+          Select one of the following books to get more information
+        </span>
+      </h3>
+      <hr>  
+      `
+    );
+
   $.each(data, function(index, item) {
     indexNum +=1;
     dataId=`${item.id}`;
@@ -160,6 +170,9 @@ function renderGoogleBooksAPIData(data) {
            <div class="js-categories">${item.volumeInfo.categories}</div>
            <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
       </div>
+      <p>
+      <hr>
+      <p>
       `
     );
   });
@@ -167,7 +180,25 @@ function renderGoogleBooksAPIData(data) {
 
 function renderSelectedBookAPIData(book) {
   $('.dataItem').remove();
+
+
+  $(`.js-Overview`).append(`
+      <h3 class="boxtitle booklisttitle" >
+        <span class="title_style">
+          <i class="fas fa-bird"></i>
+          Select one of the following books to get more information
+        </span>
+      </h3>
+      <hr>  
+      `
+    );
     $(`.js-Overview`).append(`
+      <h3 class="boxtitle booklisttitle" >
+        <span class="title_style">
+          <i class="fas fa-bird"></i>
+          Overview of the book you selected
+        </span>
+      </h3>
       <div class='dataItem'>
            <div class="js-title">${book.volumeInfo.title}</div>
            <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
@@ -233,12 +264,16 @@ function watchSubmit() {
 
   $('#js-inputform').submit(function(e){
     e.preventDefault();
-    $('.content').hide();
+    //$('.content').hide();
+    
     const queryTarget = $(e.currentTarget).find('#js-searchfield');
     console.log(queryTarget);
     userSelectedSearchTerm  = queryTarget.val();
     console.log(userSelectedSearchTerm);
     getGoogleBooksAPIData(userSelectedSearchTerm);
+    $('html, body').animate({ scrollTop: $('main').offset().top - 20});  
+    $('.results').empty();
+    $('.col-6').hide();
     $('.content').show();
     
   });
