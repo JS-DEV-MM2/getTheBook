@@ -153,8 +153,7 @@ function renderGoogleBooksAPIData(data) {
           <i class="fas fa-bird"></i>
           Select one of the following books to get more information
         </span>
-      </h3>
-      <hr>  
+      </h3> 
       `
     );
 
@@ -163,16 +162,18 @@ function renderGoogleBooksAPIData(data) {
     dataId=`${item.id}`;
     $(`.js-Overview`).append(`
       <div class='dataItem'>
-           <div class="js-title">${item.volumeInfo.title}</div>
-           <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
-           <div class="js-subtitle">${item.volumeInfo.subtitle}</div>
-           <div class="js-authors">${item.volumeInfo.authors}</div>
-           <div class="js-categories">${item.volumeInfo.categories}</div>
-           <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
+        <div class="headerinfo">
+           <h3><div class="js-title">${item.volumeInfo.title}:  ${item.volumeInfo.subtitle}</div></h3>
+           <div class="js-author"> by ${item.volumeInfo.authors}</div>
+        </div>
+        <div class="resultbody">
+            <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
+            <div class="js-categories"> Genres:  ${item.volumeInfo.categories}</div>
+        </div>
+        <div class="purchasedata">
+            <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
+        </div>
       </div>
-      <p>
-      <hr>
-      <p>
       `
     );
   });
@@ -180,6 +181,7 @@ function renderGoogleBooksAPIData(data) {
 
 function renderSelectedBookAPIData(book) {
   $('.dataItem').remove();
+  $('.booklisttitle').remove();
 
 
   $(`.js-Overview`).append(`
@@ -189,7 +191,7 @@ function renderSelectedBookAPIData(book) {
           Select one of the following books to get more information
         </span>
       </h3>
-      <hr>  
+    
       `
     );
     $(`.js-Overview`).append(`
@@ -200,11 +202,13 @@ function renderSelectedBookAPIData(book) {
         </span>
       </h3>
       <div class='dataItem'>
-           <div class="js-title">${book.volumeInfo.title}</div>
-           <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
-           <div class="js-authors">${book.volumeInfo.authors}</div>
-           <div class="js-categories">${book.volumeInfo.categories}</div>
-           <div class="js-average-rating">Average Rating of ${book.volumeInfo.averageRating} out of ${book.volumeInfo.ratingsCount} ratings.</div>
+           <h3><div class="js-title">${book.volumeInfo.title}</div></h3>
+           <div class="resultbody">
+             <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
+             <div class="js-authors">${book.volumeInfo.authors}</div>
+             <div class="js-categories">${book.volumeInfo.categories}</div>
+             <div class="js-average-rating">Average Rating of ${book.volumeInfo.averageRating} out of ${book.volumeInfo.ratingsCount} ratings.</div>
+           </div>
       </div>
       `
     ); 

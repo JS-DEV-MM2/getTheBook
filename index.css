@@ -19,8 +19,8 @@ body {
   margin: 0;
   font-family: 'Lato', sans-serif;
   background-color:#F1C0B1;
-  /*color: #0B4863; */
-  color: white;
+  color: #0B4863; 
+  /*color: white; */
 
 }
 
@@ -31,19 +31,13 @@ h3 {
 
 }
 
-.resultbody {
-  color:  #0B4863;
-  font-size: 12px;
-}
+
 
 
 footer {
   background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
 }
 
-.news {
-  color:  #0B4863;
-}
 
 .banner {
   text-align:right;
@@ -224,7 +218,23 @@ iframe {
 
 .dataItem {
   color: #0B4863;
+  border-bottom:1px inset #0B4863;
+  padding-bottom: 13px;
 }
+
+.headerinfo {
+  padding-bottom: 20px;
+}
+
+.resultbody {
+  /*color:  #0B4863;*/
+  font-size: 12px;
+}
+
+.purchasedata {
+  margin: 20px;
+}
+
 .js-author {
   margin-bottom: 5px;
 }
@@ -235,6 +245,8 @@ iframe {
 .js-desc {
   margin-bottom: 10px;
 }
+
+
 
 input {
   border: none;
