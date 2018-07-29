@@ -1,12 +1,16 @@
 
 /* Generic Classes */
 
-* {
-    box-sizing: border-box;
-  }
-
 form {
   margin: auto;
+}
+
+#wrapper {
+  margin-left:auto;
+  margin-right:auto;
+  max-width: 100%;
+  padding:0;
+
 }
 
 header {
@@ -20,74 +24,61 @@ header {
 }
 
 body {
-  margin: 0;
+  margin: 0px auto;
+
   font-family: 'Lato', sans-serif;
   background-color:#F1C0B1;
   color: #0B4863; 
-  /*color: white; */
+}
 
+h1 {
+  color: white;
+}
+
+h2 {
+  color:black;
 }
 
 h3 {
-  color:  #0B4863;
-  font-weight: bold;
+  color:#0B4863;;
   font-size:16px;
+  text-align:left;
+}
+h4 {
+  color: #0B4863;
+  font-size:16px;
+  text-align:center;
+}
 
-}
-/*
-.col-3 {
-  background-color:white;
+i {
+  padding: 2px;
 }
 
-.col-9 {
-  background-color:white;
+input {
+  display:inline-block;
+  overflow:auto;
 }
-*/
+
+*:focus {
+  outline:none;
+}
+
 /* Header rules */
-
-
 .banner {
   text-align:right;
 
 }
 
+
 .tagline {
   margin-bottom: 10px;
-  line-height: 40px;
   color: white;
   text-shadow: 0 0 3px #777777;
   padding-bottom: 20px;
-  font-size: 40px;
   font-weight: 200;
   -webkit-font-smoothing: antialiased;
 }
 
-#instruction {
-  font-weight: 50;
-  font-size:24px;
-  padding-bottom: 20px;
-  text-shadow: 0 0 3px #777777;
-
-}
-
-/*#js-inputform {
-  background-color:white;
-  position: absolute;
-    top: 50%;
-    left: 50%;
-}*/
-button {
-  border: 3px solid ghostwhite;
-  padding: 8px 13px;
-  color: ghostwhite;
-  font-size: 25px;
-  font-weight: 400;
-  background: rgba(255, 255, 255, 0.25);
-  transition: color 0.25s linear;
-  text-shadow: 0 0 3px #555555;
-  position: relative;
-  border-radius: 0;
-}
 
 
 /* Main rules */
@@ -142,14 +133,10 @@ button {
   padding-top: 10px;
   position:relative;
   color: white;
-  
   padding: 2%;
-  
-
 }
 
 /* Data section rules */
-
 .boxshadow {
   box-shadow: 1px 1px 5px #777777; 
   background-color:white;
@@ -250,7 +237,6 @@ button {
 
 .newsearchrow {
   vertical-align:middle;
-  background-color:
 }
 
 .row {
@@ -262,11 +248,11 @@ input {
   border-bottom: 3px solid ghostwhite;
   border-radius: 0px;
   padding: 8px 0;
-  color: lawngreen;
+  color: white;
   -webkit-font-smoothing: antialiased;
-  font-size: 28px;
+  font-size: 2em;
   background: none;
-  width: 500px;
+  width: 75%;
 }
 iframe {
   overflow:auto;
@@ -275,17 +261,6 @@ iframe {
 .searchagain {
   text-align: left;
 }
-
-.example_search {
-  text-align: center;
-  padding-top: 30px;
-  color: white;
-  text-shadow: 0 0 3px #555555;
-  font-size: 28px;
-  font-weight: 200;
-  transition: color 0.25s linear, text-shadow 0.25s linear;
-}
-
 
 
 /* Footer rules */
@@ -310,10 +285,11 @@ footer {
 
 .fa-angle-double-down, .fa-angle-double-up, .fa-search {
   font-size: 25px !important;
-  color: #0B4863;
+  color:  #F1C0B1;;
   position: relative;
   padding-top:10px;
   padding-right:3px;
+  padding-left:4px;
 }
 
 .footerbox {
@@ -334,25 +310,38 @@ footer {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 @media only screen and (min-height: 450px) {
 header {
     height: 100vh;
 
 }
+
 }
   
 @media only screen and (max-width: 767px) {
 header {
     padding: 10px;
 }
+
+.logo {
+  width:0;
+}
+
+input {
+  width:100%;
+}
+
+.logo { 
+  float: none;
+  margin-right:0;
+  margin-top:10px;
+  width:auto;
+  border:0;
+  text-align:center;
+}
+.verbage { 
+  width:100%;
+  margin-top: 10px; 
+}
+
 }
