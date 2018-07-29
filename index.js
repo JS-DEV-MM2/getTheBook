@@ -266,6 +266,13 @@ function watchSubmit() {
     $('html, body').animate({ scrollTop: $('main').offset().top - 20});    
   });
 
+  $('a#newsearch').click(function(e) {
+    e.preventDefault();
+    document.getElementById("js-inputform");
+    $('html, body').animate({ scrollTop: $('header').offset().top});
+    $('input#js-searchfield').focus();
+  });
+
   $('#js-inputform').submit(function(e){
     e.preventDefault();
     //$('.content').hide();

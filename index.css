@@ -1,3 +1,6 @@
+
+/* Generic Classes */
+
 * {
     box-sizing: border-box;
   }
@@ -12,6 +15,7 @@ header {
   background-position: 15% 0%;
   background-attachment: scroll;
   padding: 20px 0;
+  margin-bottom: 13px;
   box-shadow: 0 0 10px black;
 }
 
@@ -30,83 +34,21 @@ h3 {
   font-size:16px;
 
 }
-
-
-
-
-footer {
-  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+/*
+.col-3 {
+  background-color:white;
 }
+
+.col-9 {
+  background-color:white;
+}
+*/
+/* Header rules */
 
 
 .banner {
   text-align:right;
-}
 
-
-.example {
-  padding: 25px;
-  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
-  text-shadow: none;
-  color: white;
-  float:left;
-}
-
-#definition {
-  vertical-align: middle;
-  width: 75%; 
-  text-align:left;
-}
-
-#itc_icon {
-  height: 40px;
-
-}
-
-#copyright {
-  vertical-align: middle;
-  float: right;
-  font-size: 18px;
-  color: #0B4863;
-  text-align: right;
-
-}
-
-iframe {
-  overflow:auto;
-}
-
-.example_search {
-  text-align: center;
-  padding-top: 30px;
-  color: white;
-  text-shadow: 0 0 3px #555555;
-  font-size: 28px;
-  font-weight: 200;
-  transition: color 0.25s linear, text-shadow 0.25s linear;
-}
-
-.fa-search {
-   color: #BEB968
-}
-
-.fa-angle-double-down, .fa-angle-double-up {
-  font-size: 23px !important;
-  color: #0B4863;
-  /*text-shadow: 0 0 3px #555555;; */
-  position: relative;
-  -webkit-animation-name: blinker;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-name: blinker;
-  -moz-animation-duration: 1s;
-  -moz-animation-timing-function: linear;
-  -moz-animation-iteration-count: infinite;
-  animation-name: blinker;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 
 .tagline {
@@ -128,25 +70,85 @@ iframe {
 
 }
 
+/*#js-inputform {
+  background-color:white;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+}*/
+button {
+  border: 3px solid ghostwhite;
+  padding: 8px 13px;
+  color: ghostwhite;
+  font-size: 25px;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.25);
+  transition: color 0.25s linear;
+  text-shadow: 0 0 3px #555555;
+  position: relative;
+  border-radius: 0;
+}
 
-#logo {
+
+/* Main rules */
+
+/* Definition and Example rules */
+.example {
+  padding: 25px;
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+  text-shadow: none;
+  color: white;
+  float:left;
+}
+
+.definition {
+ background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+  overflow:auto;
+  float:left;
+  position:relative;
+  margin: 3px;
+
+}
+
+#copyright {
+  
+  float: right;
+  font-size: 18px;
+  color: #0B4863;
+}
+
+.logo {
+  float: left;
+  width:25%;
+  position:relative;
+  padding-top:4%;
+  padding-left:5%;
+}
+
+.getTheBookLogo {
   border-style:outset;
   border: 3px solid  #9BAA37;
   background-color: #BEB968;
-  padding: 15px;
-  margin-top:10px;
-  margin-right:4px;
-  /*color: #0B4863; */
   color: white;
-  float: left;
+  text-shadow: 0 0 3px #555555;
+  text-align:center;
+  padding: 10px 25px 10px 25px;
 }
 
+.verbage {
+  float:left;
+  width:75%;
+  position:relative;
+  padding-top: 10px;
+  position:relative;
+  color: white;
+  
+  padding: 2%;
+  
 
-
-.fa-kiwi-bird:before {
-  content: "\f535";
 }
 
+/* Data section rules */
 
 .boxshadow {
   box-shadow: 1px 1px 5px #777777; 
@@ -154,6 +156,11 @@ iframe {
   padding-bottom: 3%;
 
 }
+
+.fa-kiwi-bird:before {
+  content: "\f535";
+}
+
 
 .js-search-form {
   margin-left: auto;
@@ -193,11 +200,6 @@ iframe {
   
 }
 
-.news {
-  padding-bottom: 8%;
-  border-bottom: 1px inset #0B4863;
- 
-}
 .resp-iframe {
   position: absolute;
   top: 0;
@@ -212,7 +214,7 @@ iframe {
 }
 
 .results {
-  margin: 10%;
+  margin: 0 5%;
   padding-top:3%;
 }
 
@@ -222,17 +224,17 @@ iframe {
   padding-bottom: 13px;
 }
 
-.headerinfo {
-  padding-bottom: 20px;
-}
 
 .resultbody {
-  /*color:  #0B4863;*/
-  font-size: 12px;
+  color:  #0B4863;
+  font-size: 14px;
 }
 
 .purchasedata {
-  margin: 20px;
+  margin-bottom: 20px;
+  margin-top:10px;
+  margin-left:20px;
+  font-size:14px;
 }
 
 .js-author {
@@ -246,7 +248,14 @@ iframe {
   margin-bottom: 10px;
 }
 
+.newsearchrow {
+  vertical-align:middle;
+  background-color:
+}
 
+.row {
+  margin-bottom: 13px;
+}
 
 input {
   border: none;
@@ -259,11 +268,86 @@ input {
   background: none;
   width: 500px;
 }
+iframe {
+  overflow:auto;
+}
+
+.searchagain {
+  text-align: left;
+}
+
+.example_search {
+  text-align: center;
+  padding-top: 30px;
+  color: white;
+  text-shadow: 0 0 3px #555555;
+  font-size: 28px;
+  font-weight: 200;
+  transition: color 0.25s linear, text-shadow 0.25s linear;
+}
+
+
+
+/* Footer rules */
+footer {
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+  padding-top: 20px;
+}
+
+#builtby {
+  text-align:right;
+  vertical-align:middle;
+  padding-left: 128px;
+  margin-top:10px;
+  float:left;
+}
+
+#itc_icon {
+  height: 40px;
+  float:right;
+}
+
+
+.fa-angle-double-down, .fa-angle-double-up, .fa-search {
+  font-size: 25px !important;
+  color: #0B4863;
+  position: relative;
+  padding-top:10px;
+  padding-right:3px;
+}
+
+.footerbox {
+  padding-bottom: 1px; 
+  background-color:white;
+  height:45px;
+  overflow:auto;
+  width:100%;
+  float:left;
+  margin-left: 10px;
+  position: relative;
+
+}
+
+#footerdetail {
+  position: absolute;
+  bottom:0;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 @media only screen and (min-height: 450px) {
 header {
     height: 100vh;
+
 }
 }
   

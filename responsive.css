@@ -33,8 +33,9 @@
     clear: both;
 }
 
-.col-3, .col-4, .col-6, .col-12 {
+.col-3, .col-4, .col-6, .col-9, .col-12 {
     float: left;
+    margin-bottom: 5%;
 
 /* Gutters:
 *  Each column is padded by half-a-gutter on each side,
@@ -67,6 +68,11 @@
     /* 6 columns 6/12 in % */
     .col-6 {
         width: 50%;
+    }
+
+    /* 9 columns, 9/12 in % */
+   .col-9 {
+        width:75%;
     }
 
     /* 12 columns, 12/12 */

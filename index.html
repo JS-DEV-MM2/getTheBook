@@ -73,7 +73,8 @@
                 <form id="js-inputform">
                   <h3 id="instruction"> Check by Author, Title or Subject</h3> 
                   <input id="js-searchfield" type="text" name="searchfield" placeholder="Book Title.." autofocus required spellcheck="true">
-                  <button id="getthebook" type="submit">getTheBook</button>
+                    <button class="getTheBookLogo" type="submit"><i class="fas fa-kiwi-bird"></i>
+                        getTheBook</button>
                 </form>
                   <a href = "#">
                     <h2 class="example_search">See an example<i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
@@ -84,14 +85,23 @@
 
     <main role="main">
       <div class="row">
-            <div class="example">
-              <span id="logo">getTheBook</span><p><span id="definition">after being presented with a list of books based on your selection, choose one.  You will be shown information on the book, the price, and articles and videos on the book, author or topic.</span></p>
-            </div>
+        <div class="col-12">
+          <div class="definition">
+          <div class="logo">
+            <span class="getTheBookLogo"><i class="fas fa-kiwi-bird"></i>
+              getTheBook
+            </span>
+          </div>
+          <div class="verbage">
+              after being presented with a list of books based on your selection, choose one.  You will be shown information on the book, the price, and articles and videos on the book, author or topic.
+          </div>
+        </div>
+        </div>
       </div>  
 
       <div class="row">
         <div class="col-12">
-          <div class="content">
+          <!--<div class="content"> -->
             <div class="boxshadow">
               <div class="results js-Overview">
                   <h3 class="boxtitle booklisttitle" >
@@ -102,8 +112,8 @@
                     </h3>
                   <div class='dataItem'>
                     <div class="headerinfo">
-                      <H3><div class="js-title">Killers of the Flower Moon: The Osage Murders and the Birth of the FBI</div></h3>
-                      <div class="js-author">by David Grann</div>
+                      <H3><div class="js-title">Killers of the Flower Moon: The Osage Murders and the Birth of the FBI</div>
+                      <div class="js-author">by David Grann</div></H3>
                     </div>
                     <div class="resultbody">
                         <div class="js-categories">True Crime / Murder / General,History / Native American,History / United States / 20th Century</div>
@@ -115,14 +125,12 @@
                     </div>
                  </div>
               </div>
-            </div>
+            <!--</div> -->
           </div>
         </div>
         <div class="col-6">
-            <div class="content">
+            <!--<div class="content"> -->
                 <div class="boxshadow">
-                    
-
                     <div class="results js-youtube">
                         <h3 class="boxtitle youtubeTitle">
                             <span class="title_style">
@@ -180,12 +188,12 @@
                         </div>
                             
                     </div>
-                </div>
+               <!-- </div>-->
             </div>
             
         </div>
         <div class="col-6">
-            <div class="content">
+           <!-- <div class="content">-->
                 <div class="boxshadow">
                     
 
@@ -243,27 +251,42 @@
                      </div>
                   </div>
                     </div>
-            </div>
+           <!-- </div> -->
           </div>
         </div>  
     </main>
 
+
+
+   
+
+
+
+
     <footer>
       <div class="row newsearchrow">
-        <div class="banner">
-          <h2 class="searchagain">
-            <a id="newsearch" href="#js-inputform">
-              <i class="fa fa-angle-double-up" aria-hidden="true" style="-webkit-text-stroke: 0px;"></i>
-              <i class="fa fa-search" aria-hidden="true" style="-webkit-text-stroke: 0px;"></i>
-            </a>
-            <a href="www.inspiredtechnologycoaching.com" target="_blank">
-              <span id="copyright" style="-webkit-text-stroke: 0.1px;">
-                Built by 
-                <img id="itc_icon" src="images/itc_icon.png">
-              </span>
-            </a>
-          </h2>
+        <div class="col-6">
+            <div class="footerbox">
+                <a id="newsearch" href="#js-inputform">
+                  <i class="fa fa-angle-double-up" aria-hidden="true" ></i>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            
+            </div>
         </div>
+        <div class="col-6">
+            <div class="footerbox">
+              <a href="www.inspiredtechnologycoaching.com" target="_blank">
+                <div id="builtby">
+                    <span >Built by </span>
+                </div>
+                <div id="itc_logo">
+                  <img id="itc_icon" src="images/itc_icon.png">
+                </div>
+                </a>
+            </div>
+        </div>
+      
       </div>
     </footer>
      
