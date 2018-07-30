@@ -22,8 +22,44 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
     searchPart: `searchInfo`
   }
   $.getJSON(googleBooksURL, params, function(data){
-    renderGoogleBooksAPIData(data.items);
+    console.log(data.items);
+    //renderGoogleBooksAPIData(data.items);
+    $('.dataItem').remove();
+    var indexNum = 0;
+    var dataId="";
+    $(`.js-Overview`).append(`
+      <h3 class="boxtitle booklisttitle" >
+        <span class="title_style">
+          <i class="fas fa-bird"></i>
+          Select one of the following books to get more information
+        </span>
+      </h3>
+      `
+    );
+    $.each(data, function(index, item) {
+    indexNum +=1;
+    dataId=`${item.id}`;
+    $(`.js-Overview`).append(`
+      <div class='dataItem'>
+        <div class="headerinfo">
+           <div class="js-title">${item.volumeInfo.title}</div>
+           <div class="js-author"> by ${item.volumeInfo.authors}</div>
+        </div>
+        <div class="resultbody">
+          <div class="js-categories"> Genres:  ${item.volumeInfo.categories}</div>
+          <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
+          <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
+        </div>
+        
+      </div>
+      `
+    );
   });
+  });
+
+  console.log(`the following are google books on the topic`)
+  
+  
 }
 
 //call to Google Books for selected book
@@ -44,12 +80,36 @@ function getYouTubeAPIData(userSelectedSearchItem) {
     maxResults: 8,
     videoID:'id'
   }
+
   $.getJSON(youtubeURL, params, function(data){
-    renderYouTubeAPIData(data.items);
+    console.log('made it to the youtube api');
+    //renderYouTubeAPIData(data.items);
+    $('.dataItem').remove();
+    var indexNum = 0;
+    $.each(data, function(index, item) {
+      indexNum +=1;
+      $(`.js-youtube`).append(`
+        <div class='dataItem'>
+          <div class="headerinfo">
+            <div class='js-title'>
+              <a href='${item.snippet.title}'>${item.snippet.title}</a>
+            </div>
+          </div>
+          <div class="resultbody">
+            <div class='js-desc'>
+              ${item.snippet.description}
+            </div>
+          </div>
+          <div class='myVideo' id='${indexNum}'>
+              <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
+          </div>
+        </div>
+        `
+      );
     nextPageToken = data.nextPageToken;
   });
+  });
 }
-
 
 //call to News for articles
 function getNewsAPIData(userSelectedSearchItem) {
@@ -60,155 +120,54 @@ function getNewsAPIData(userSelectedSearchItem) {
     pagesize: 5,
     language: `en`
     }
-   
+
   $.getJSON(newsURL, params, function(data){
-    console.log('the news articles is ');
-    console.log(data.articles);
+    console.log('made it to the news api');
+    $('.dataItem').remove();
     var indexNum = 0;
     $.each(data, function(index, item) {
-      console.log('made it to inside loop');
-      console.log(data.articles[0].author);
       indexNum +=1;
       $(`.js-news`).append(`
-        <div class='news'>
+        <div class='dataItem'>
+          <div class="headerinfo">
             <div class="js-title">${data.articles[indexNum].title} </div>
-           <div class="js-subtitle">${data.articles[indexNum].author} </div>
-           <div class="js-subtitle">${data.articles[indexNum].description} </div>
-           <div class="js-authors"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
-           <hr>
+          </div>
+          <div class="resultbody">
+            <div class="js-author"><span class="js-authorname">Author:  </span>${data.articles[indexNum].author} </div>
+            <div class="js-subtitle">${data.articles[indexNum].description} </div>
+            <div class="read"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
+          </div>
         </div>
         `
       );
       });
     });
-    //renderNewsAPIData(data.items);
   }
 
-
-function renderYouTubeAPIData(data) {
-  console.log(`the following are youtube videos`)
-  console.log(data);
-  $('.dataItem').remove();
-  var indexNum = 0;
-  $.each(data, function(index, item) {
-    indexNum +=1;
-    $(`.js-youtube`).append(`
-      <div class='videoItem'>
-        <div class='js-title'>
-           <a href='${item.snippet.title}'>${item.snippet.title}</a>
-        </div>
-        <div class='js-desc'>
-         <p>${item.snippet.description}</p>
-        </div>
-        <div class='myVideo' id='${indexNum}'>
-            <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
-        </div>
-        <hr>
-      </div>
-      `
-    );
-  });
-}
-
-function renderNewsAPIData(data) {
-  console.log('made it to render news');
-  $('.news').remove();
-  var indexNum = 0;
-  //var dataId="";
-  
-  $.each(data, function(index, item) {
-    console.log('made it to inside loop');
-    indexNum +=1;
-    dataId=`${item.id}`;
-    $(`.js-news`).append(`
-      <div class='news'>
-           <div class="js-title">${item.articles.title} by ${item.articles.author}</div>
-           <!--<div class="js-subtitle">${item.description}</div>
-           <div class="js-subtitle">${item.publishedAt} from source:  ${item.id}</div>
-           <div class="js-authors"><a href="${item.url}">${data.url}</a></div> -->
-      </div>
-      `
-    ); 
-  });
-}
-
-
-
-
-
-
-
-
-
-// Render the API data to the DOM
-function renderGoogleBooksAPIData(data) {
-  console.log(`the following are google books on the topic`)
-  console.log(data);
-  $('.dataItem').remove();
-  var indexNum = 0;
-  var dataId="";
-  $(`.js-Overview`).append(`
-      <h3 class="boxtitle booklisttitle" >
-        <span class="title_style">
-          <i class="fas fa-bird"></i>
-          Select one of the following books to get more information
-        </span>
-      </h3> 
-      `
-    );
-
-  $.each(data, function(index, item) {
-    indexNum +=1;
-    dataId=`${item.id}`;
-    $(`.js-Overview`).append(`
-      <div class='dataItem'>
-        <div class="headerinfo">
-           <h3><div class="js-title">${item.volumeInfo.title}:  ${item.volumeInfo.subtitle}</div></h3>
-           <div class="js-author"> by ${item.volumeInfo.authors}</div>
-        </div>
-        <div class="resultbody">
-            <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
-            <div class="js-categories"> Genres:  ${item.volumeInfo.categories}</div>
-        </div>
-        <div class="purchasedata">
-            <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
-        </div>
-      </div>
-      `
-    );
-  });
-}
 
 function renderSelectedBookAPIData(book) {
   $('.dataItem').remove();
   $('.booklisttitle').remove();
-
-
   $(`.js-Overview`).append(`
-      <h3 class="boxtitle booklisttitle" >
-        <span class="title_style">
-          <i class="fas fa-bird"></i>
-          Select one of the following books to get more information
-        </span>
-      </h3>
-    
-      `
-    );
-    $(`.js-Overview`).append(`
-      <h3 class="boxtitle booklisttitle" >
+      <div class="boxtitle booklisttitle" >
         <span class="title_style">
           <i class="fas fa-bird"></i>
           Overview of the book you selected
         </span>
-      </h3>
+      </div>
       <div class='dataItem'>
-           <h3><div class="js-title">${book.volumeInfo.title}</div></h3>
-           <div class="resultbody">
-             <div class="js-subtitle">${book.volumeInfo.subtitle}</div>
-             <div class="js-authors">${book.volumeInfo.authors}</div>
+        <div class="headerinfo">
+           <div class="js-title">${book.volumeInfo.title}:  ${book.volumeInfo.subtitle}</div>
+           <div class="js-author">${book.volumeInfo.authors}</div>
+        </div>
+        <div class="resultbody">
              <div class="js-categories">${book.volumeInfo.categories}</div>
              <div class="js-average-rating">Average Rating of ${book.volumeInfo.averageRating} out of ${book.volumeInfo.ratingsCount} ratings.</div>
-           </div>
+        </div>
+        <div class="purchasedata">
+             <div class="saleprice">SALE PRICE GOES HERE</div>
+             <div class="linktobuy"><a href="URL GOES HERE">Click to purchase from Google Play</a></div>
+        </div>
       </div>
       `
     ); 
@@ -282,7 +241,7 @@ function watchSubmit() {
     userSelectedSearchTerm  = queryTarget.val();
     console.log(userSelectedSearchTerm);
     getGoogleBooksAPIData(userSelectedSearchTerm);
-    $('html, body').animate({ scrollTop: $('main').offset().top - 20});  
+    $('html, body').animate({ scrollTop: $('main').offset().top - 50});  
     $('.results').empty();
     $('.col-6').hide();
     $('.content').show();

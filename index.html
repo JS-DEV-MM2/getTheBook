@@ -75,11 +75,11 @@
                 <form id="js-inputform">
                   <h4 > Check by Author, Title or Subject</h4> 
                   <input id="js-searchfield" type="text" name="searchfield" placeholder="Book Title.." autofocus required spellcheck="true">
-                    <button class="getTheBookLogo" type="submit"><i class="fas fa-kiwi-bird"></i>
+                    <button class="getTheBookBtn" type="submit"><i class="fas fa-kiwi-bird"></i>
                         getTheBook</button>
                 </form>
                   <a href = "#">
-                    <h4 class="example_search">Click here to take a look at an example <i class="fa fa-angle-double-down" aria-hidden="true"></i></h4>
+                    <h4 class="example_search">Click here to take a look at an example <i class="fas fa-angle-double-down" aria-hidden="true"></i></h4>
                 </a>
             </div>
           </div>
@@ -106,24 +106,24 @@
           <!--<div class="content"> -->
             <div class="boxshadow">
               <div class="results js-Overview">
-                  <h3 class="boxtitle booklisttitle" >
+                  <div class="boxtitle booklisttitle" >
                       <span class="title_style">
                         <i class="fas fa-kiwi-bird"></i>
                         Overview of the book you selected
                       </span>
-                    </h3>
+                    </div>
                   <div class='dataItem'>
                     <div class="headerinfo">
-                      <H3><div class="js-title">Killers of the Flower Moon: The Osage Murders and the Birth of the FBI</div>
-                      <div class="js-author">by David Grann</div></H3>
+                      <div class="js-title">Killers of the Flower Moon: The Osage Murders and the Birth of the FBI</div>
+                      <div class="js-author">by David Grann</div>
                     </div>
                     <div class="resultbody">
                         <div class="js-categories">True Crime / Murder / General,History / Native American,History / United States / 20th Century</div>
                         <div class="js-average-rating">Average Rating of 4 out of 37 ratings.</div>
                     </div>
                     <div class='purchasedata'>
-                          <div class="js-salePrice">The price is $13.99</div>
-                          <div class="js-linkToBuy"><a href="">Click to purchase from Google Play</a></div>
+                          <div class="salePrice">The price is $13.99</div>
+                          <div class="linktobuy"><a href="">Click to purchase from Google Play</a></div>
                     </div>
                  </div>
               </div>
@@ -134,18 +134,18 @@
             <!--<div class="content"> -->
                 <div class="boxshadow">
                     <div class="results js-youtube">
-                        <h3 class="boxtitle youtubeTitle">
+                        <div class="boxtitle youtubeTitle">
                             <span class="title_style">
                               <i class="fas fa-handshake" ></i>
                               Youtube Videos: YouTube
                             </span>
-                          </h3>
+                          </div>
                         <div class='dataItem'>
-                            <h3>
-                              <div class='js-title'>
+                            <div class="headerinfo">
+                              <span class='js-title'>
                                  ‘Killers of the Flower Moon’ author David Grann answers your questions
-                              </div>
-                            </h3>
+                              </span>
+                            </div>
                             <div class="resultbody">
                                <div class='js-desc'>
                                As part of the NewsHour and New York Times book club, Now Read This, author David Grann answers your questions about 
@@ -158,11 +158,11 @@
                         </div>
 
                         <div class='dataItem'>
-                              <h3>
+                              <div class="headerinfo">
                                 <div class='js-title'>
                                   The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie
                                 </div>
-                              </h3>
+                              </div>
                               <div class="resultbody">
                                 <div class='js-desc'>
                                  Starring: Tom Holland, Charlie Hunnam, Sienna Miller The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie Based on David Grann's ...
@@ -174,11 +174,11 @@
                         </div>
  
                         <div class='dataItem'>
-                            <h3>
+                            <div class="headerinfo">
                               <div class='js-title'>
                                 The Lost City of Z trailer
                               </div>
-                            </h3>
+                            </div>
                             <div class='resultbody'>
                               <div class='js-desc'>
                                 Based on David Grann's best-selling book of the same name, The Lost City of Z is the true-life drama which centers on British explorer Col. Percival Fawcett, who ...
@@ -200,85 +200,78 @@
                     
 
                     <div class="results js-news">
-                        <h3 class="boxtitle newstitle">
+                        <div class="boxtitle newstitle">
                             <span class="title_style">
                                 <i class="fas fa-star"></i>
                               Articles (news) API
                             </span>
-                          </h3>
+                          </div>
                         <div class='dataItem'>
-                            <H3>
-                              <div class="js-title">Meet National Book Award Finalist David Grann 
-                              </div>
-                            </h3>
-                        <div class="resultbody">
-                          <div class="js-author"><span class="js-authorname">Author:  </span>  Emily Temple </div>
-                          <div class="js-subtitle">The 2017 National Book Awards (also known as the Oscars of the 
-                           literary world), will be held on November 15th in New York City. In preparation for the 
-                           ceremony, and to celebrate all of the wonderful books and authors nominated for the awards 
-                           this year, Litera…</div>
-                           <p></p>
-                          <div class="js-authors"><a href="">Click here to read the article </a></div>
-                        </div>
-                    </div>
+                          <div class="headerinfo">
+                            <div class="js-title">Meet National Book Award Finalist David Grann 
+                            </div>
+                          </div>
+                          <div class="resultbody">
+                            <div class="js-author"><span class="js-authorname">Author:  </span>  Emily Temple </div>
+                            <div class="js-subtitle">The 2017 National Book Awards (also known as the Oscars of the 
+                            literary world), will be held on November 15th in New York City. In preparation for the 
+                            ceremony, and to celebrate all of the wonderful books and authors nominated for the awards 
+                            this year, Litera…</div>
+                            <p></p>
+                            <div class="read"><a href="">Click here to read the article </a></div>
+                          </div>
+                      </div>
  
                       <div class='dataItem'>
-                          <H3>
+                          <div class="headerinfo">
                             <div class="js-title">
                               Here Are the Nominees for the 2017 National Book Award
                             </div>
-                          </h3>
-                       <div class="resultbody">
-                         <div class="js-author"><span class="js-authorname">Author:  </span>Sarah Begley</div>
-                         <div class="js-subtitle">Jesmyn Ward, Jennifer Egan and David Grann were among the nominees</div>
-                         <p></p>
-                         <div class="js-authors"><a href="">Click here to read the article </a></div>
-                      </div>
-                    </div>
+                          </div>
+                          <div class="resultbody">
+                            <div class="js-author"><span class="js-authorname">Author:  </span>Sarah Begley</div>
+                            <div class="js-subtitle">Jesmyn Ward, Jennifer Egan and David Grann were among the nominees</div>
+                            <p></p>
+                            <div class="read"><a href="">Click here to read the article </a></div>
+                          </div>
+                        </div>
    
                     <div class='dataItem'>
-                        <H3>
+                        <div class="headerinfo">
                           <div class="js-title">
                             The Best Reviewed Books of 2017:History & Politics
                           </div>
-                        </h3>
-                     <div class="resultbody">
-                       <div class="js-author"><span class="js-authorname">Author:  </span>Book Marks</div>
-                       <div class="js-subtitle">History & Politics 1. Killers of the Flower Moon by David Grann 
-                       (18 Rave, 4 Positive, 1 Mixed) “…the strangest, most horrific story that Grann has told … 
-                       Grann folds it, neatly, into three hundred pages. But he also makes something much more out 
-                       of the materi…</div>
-                       <p></p>
-                       <div class="js-authors"><a href="">Click here to read the article </a></div>
-                     </div>
-                  </div>
+                        </div>
+                        <div class="resultbody">
+                          <div class="js-author"><span class="js-authorname">Author:  </span>Book Marks</div>
+                          <div class="js-subtitle">History & Politics 1. Killers of the Flower Moon by David Grann 
+                          (18 Rave, 4 Positive, 1 Mixed) “…the strangest, most horrific story that Grann has told … 
+                          Grann folds it, neatly, into three hundred pages. But he also makes something much more out 
+                          of the materi…</div>
+                          <p></p>
+                          <div class="read"><a href="">Click here to read the article </a></div>
+                        </div>
+                      </div>
                     </div>
            <!-- </div> -->
           </div>
         </div>
     </main>
 
-
-
-   
-
-
-
-
     <footer>
       <div class="row newsearchrow">
         <div class="col-6">
             <div class="footerbox">
                 <a id="newsearch" href="#js-inputform">
-                  <i class="fa fa-angle-double-up" aria-hidden="true" ></i>
-                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <i class="fas fa-angle-double-up" aria-hidden="true" ></i>
+                  <i class="fas fa-search" aria-hidden="true"></i>
                 </a>
             
             </div>
         </div>
         <div class="col-6">
             <div class="footerbox">
-              <a href="www.inspiredtechnologycoaching.com" target="_blank">
+              <a id="itc" href="www.inspiredtechnologycoaching.com" target="_blank">
                 <div id="builtby">
                     <span >Built by </span>
                 </div>
