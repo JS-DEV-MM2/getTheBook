@@ -22,10 +22,10 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
     searchPart: `searchInfo`
   }
   $.getJSON(googleBooksURL, params, function(data){
-    console.log(data.items);
-    //renderGoogleBooksAPIData(data.items);
+    
+    
     $('.dataItem').remove();
-    var indexNum = 0;
+    
     var dataId="";
     $(`.js-Overview`).append(`
       <h3 class="boxtitle booklisttitle" >
@@ -35,33 +35,34 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
         </span>
       </h3>
       `
-    );
-    $.each(data, function(index, item) {
-    indexNum +=1;
-    dataId=`${item.id}`;
+    ); 
+    console.log(data.items.length);
+    console.log(data.items[1].volumeInfo.title);
+    for (var i=0;i < data.items.length; i++) {
+      console.log(data.items[i].volumeInfo.title);
+
     $(`.js-Overview`).append(`
       <div class='dataItem'>
         <div class="headerinfo">
-           <div class="js-title">${item.volumeInfo.title}</div>
-           <div class="js-author"> by ${item.volumeInfo.authors}</div>
+           <div class="js-title">${data.items[i].volumeInfo.title}</div>
+           <div class="js-author"> by ${data.items[i].volumeInfo.authors}</div>
         </div>
         <div class="resultbody">
-          <div class="js-categories"> Genres:  ${item.volumeInfo.categories}</div>
-          <div class="js-itemid" data-bookId="${dataId}">${dataId}</div>
-          <div class="js-average-rating">Average Rating of ${item.volumeInfo.averageRating} out of ${item.volumeInfo.ratingsCount} ratings.</div>
+          <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
+          <!--<div class="js-itemid" data-bookId="${dataId}">${dataId}</div> -->
+          <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div>
         </div>
         
       </div>
       `
-    );
-  });
-  });
-
-  console.log(`the following are google books on the topic`)
-  
-  
+      );
+    };
+});
 }
+  
 
+
+/*
 //call to Google Books for selected book
 function getSelectedGoogleBookAPIData(book) {
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
@@ -208,7 +209,7 @@ function renderSelectedBookAPIData(book) {
     };
     $('.col-6').show();
 }
-
+*/
 
 /* Event listeners */
 
@@ -239,7 +240,6 @@ function watchSubmit() {
     const queryTarget = $(e.currentTarget).find('#js-searchfield');
     console.log(queryTarget);
     userSelectedSearchTerm  = queryTarget.val();
-    console.log(userSelectedSearchTerm);
     getGoogleBooksAPIData(userSelectedSearchTerm);
     $('html, body').animate({ scrollTop: $('main').offset().top - 50});  
     $('.results').empty();
