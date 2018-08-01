@@ -22,10 +22,7 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
     searchPart: `searchInfo`
   }
   $.getJSON(googleBooksURL, params, function(data){
-    
-    
     $('.dataItem').remove();
-    
     var dataId="";
     $(`.js-Overview`).append(`
       <h3 class="boxtitle booklisttitle" >
@@ -37,33 +34,28 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
       `
     ); 
     console.log(data.items.length);
-    console.log(data.items[1].volumeInfo.title);
+    console.log(data.items);
     for (var i=0;i < data.items.length; i++) {
-      console.log(data.items[i].volumeInfo.title);
-
-    $(`.js-Overview`).append(`
-      <div class='dataItem'>
-        <div class="headerinfo">
-           <div class="js-title">${data.items[i].volumeInfo.title}</div>
-           <div class="js-author"> by ${data.items[i].volumeInfo.authors}</div>
+      $(`.js-Overview`).append(`
+        <div class='dataItem'>
+          <div class="headerinfo">
+            <div class="js-title">${data.items[i].volumeInfo.title}</div>
+            <div class="js-author"> by ${data.items[i].volumeInfo.authors}</div>
+          </div>
+          <div class="resultbody">
+            <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
+            <div class="js-itemid" data-bookId="${data.items[i].id}">${data.items[i].id}</div> -->
+            <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div>
+          </div>
+          
         </div>
-        <div class="resultbody">
-          <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
-          <!--<div class="js-itemid" data-bookId="${dataId}">${dataId}</div> -->
-          <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div>
-        </div>
-        
-      </div>
-      `
-      );
+        `
+        );
     };
-});
-}
-  
+  });
+} 
 
-
-/*
-//call to Google Books for selected book
+//call to Google Books for the selected book
 function getSelectedGoogleBookAPIData(book) {
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
   $.getJSON(singleBookURL, function(result){
@@ -72,80 +64,7 @@ function getSelectedGoogleBookAPIData(book) {
  });
 }
 
-//call to Youtube for videos
-function getYouTubeAPIData(userSelectedSearchItem) {
-  const params = {
-    q: `${userSelectedSearchItem} in:name`,
-    key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
-    part: 'snippet',
-    maxResults: 8,
-    videoID:'id'
-  }
-
-  $.getJSON(youtubeURL, params, function(data){
-    console.log('made it to the youtube api');
-    //renderYouTubeAPIData(data.items);
-    $('.dataItem').remove();
-    var indexNum = 0;
-    $.each(data, function(index, item) {
-      indexNum +=1;
-      $(`.js-youtube`).append(`
-        <div class='dataItem'>
-          <div class="headerinfo">
-            <div class='js-title'>
-              <a href='${item.snippet.title}'>${item.snippet.title}</a>
-            </div>
-          </div>
-          <div class="resultbody">
-            <div class='js-desc'>
-              ${item.snippet.description}
-            </div>
-          </div>
-          <div class='myVideo' id='${indexNum}'>
-              <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
-          </div>
-        </div>
-        `
-      );
-    nextPageToken = data.nextPageToken;
-  });
-  });
-}
-
-//call to News for articles
-function getNewsAPIData(userSelectedSearchItem) {
-  const params = {
-    q: `${userSelectedSearchItem}`,
-    apiKey: `430d190071894a52b7716e87bf74ced3`,
-    articleList:`articles`,
-    pagesize: 5,
-    language: `en`
-    }
-
-  $.getJSON(newsURL, params, function(data){
-    console.log('made it to the news api');
-    $('.dataItem').remove();
-    var indexNum = 0;
-    $.each(data, function(index, item) {
-      indexNum +=1;
-      $(`.js-news`).append(`
-        <div class='dataItem'>
-          <div class="headerinfo">
-            <div class="js-title">${data.articles[indexNum].title} </div>
-          </div>
-          <div class="resultbody">
-            <div class="js-author"><span class="js-authorname">Author:  </span>${data.articles[indexNum].author} </div>
-            <div class="js-subtitle">${data.articles[indexNum].description} </div>
-            <div class="read"><a href="${data.articles[indexNum].url} ">Click here to read the article </a></div>
-          </div>
-        </div>
-        `
-      );
-      });
-    });
-  }
-
-
+//render HTML for the selected book
 function renderSelectedBookAPIData(book) {
   $('.dataItem').remove();
   $('.booklisttitle').remove();
@@ -209,7 +128,98 @@ function renderSelectedBookAPIData(book) {
     };
     $('.col-6').show();
 }
-*/
+
+
+//call to News for articles
+function getNewsAPIData(userSelectedSearchItem) {
+  const params = {
+    q: `${userSelectedSearchItem}`,
+    apiKey: `430d190071894a52b7716e87bf74ced3`,
+    articleList:`articles`,
+    pagesize: 5,
+    language: `en`
+    }
+
+  $.getJSON(newsURL, params, function(data){
+    console.log('made it to the news api');
+    $('.dataItem').remove();
+    $(`.js-news`).append(`
+      <div class="boxtitle newstitle">
+        <span class="title_style">
+          <i class="fas fa-star"></i>
+            Articles (news) API
+          </span>
+      </div>
+      `
+    );
+    ///console.log(data);
+    //console.log(data.articles.length);
+    for (var i=0;i < data.articles.length; i++) {
+      console.log("i is " + i);
+      console.log(data.articles[i].title);
+      $(`.js-news`).append(`
+        <div class='newsItem'>
+         <div class="headerinfo">
+            <div class="js-title">${data.articles[i].title} </div>
+          </div>
+          <div class="resultbody">
+            <div class="js-author"><span class="js-authorname">Author:  </span>${data.articles[i].author} </div>
+            <div class="js-subtitle">${data.articles[i].description} </div>
+            <div class="read"><a href="${data.articles[i].url} ">Click here to read the article </a></div>
+          </div>
+        </div>
+       `
+      );
+      $('.col-6').show();
+    };
+  });
+}
+
+/*
+//call to Youtube for videos
+function getYouTubeAPIData(userSelectedSearchItem) {
+  const params = {
+    q: `${userSelectedSearchItem} in:name`,
+    key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
+    part: 'snippet',
+    maxResults: 8,
+    videoID:'id'
+  }
+
+  $.getJSON(youtubeURL, params, function(data){
+    console.log('made it to the youtube api');
+    //renderYouTubeAPIData(data.items);
+    $('.dataItem').remove();
+    var indexNum = 0;
+    $.each(data, function(index, item) {
+      indexNum +=1;
+      $(`.js-youtube`).append(`
+        <div class='dataItem'>
+          <div class="headerinfo">
+            <div class='js-title'>
+              <a href='${item.snippet.title}'>${item.snippet.title}</a>
+            </div>
+          </div>
+          <div class="resultbody">
+            <div class='js-desc'>
+              ${item.snippet.description}
+            </div>
+          </div>
+          <div class='myVideo' id='${indexNum}'>
+              <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
+          </div>
+        </div>
+        `
+      );
+    nextPageToken = data.nextPageToken;
+  });
+  });
+}
+
+
+
+
+
 
 /* Event listeners */
 
@@ -253,9 +263,10 @@ function listenForBookSelection() {
   $('.js-Overview').on('click', '.dataItem', (function(e) {
     e.preventDefault();
     const selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
+    console.log(selectedBookId);
     getSelectedGoogleBookAPIData(selectedBookId);
     getNewsAPIData(userSelectedSearchTerm);
-    getYouTubeAPIData(userSelectedSearchTerm)
+    //getYouTubeAPIData(userSelectedSearchTerm)
   }));
 }
 

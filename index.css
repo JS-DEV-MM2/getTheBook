@@ -252,7 +252,7 @@ input {
   padding-top:3%;
 }
 
-.dataItem {
+.dataItem, .newsItem {
 
   border-bottom:1px inset #0B4863;
   padding-bottom: 13px;
