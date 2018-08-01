@@ -152,11 +152,8 @@ function getNewsAPIData(userSelectedSearchItem) {
       </div>
       `
     );
-    ///console.log(data);
-    //console.log(data.articles.length);
+    
     for (var i=0;i < data.articles.length; i++) {
-      console.log("i is " + i);
-      console.log(data.articles[i].title);
       $(`.js-news`).append(`
         <div class='newsItem'>
          <div class="headerinfo">
@@ -175,7 +172,7 @@ function getNewsAPIData(userSelectedSearchItem) {
   });
 }
 
-/*
+
 //call to Youtube for videos
 function getYouTubeAPIData(userSelectedSearchItem) {
   const params = {
@@ -189,30 +186,41 @@ function getYouTubeAPIData(userSelectedSearchItem) {
   $.getJSON(youtubeURL, params, function(data){
     console.log('made it to the youtube api');
     //renderYouTubeAPIData(data.items);
-    $('.dataItem').remove();
-    var indexNum = 0;
-    $.each(data, function(index, item) {
-      indexNum +=1;
+    console.log(data.items);
+    $('.youtubeItem').remove();
+
+    $(`.js-youtube`).append(`
+      <div class="boxtitle newstitle">
+        <span class="title_style">
+        <i class="fas fa-handshake" ></i>
+        Youtube Videos: YouTube
+          </span>
+      </div>
+      `
+    );
+    
+    for (var i=0;i < data.items.length; i++) {
       $(`.js-youtube`).append(`
-        <div class='dataItem'>
+        <div class='youtubeItem'>
           <div class="headerinfo">
             <div class='js-title'>
-              <a href='${item.snippet.title}'>${item.snippet.title}</a>
+              <a href='${data.items[i].snippet.title}'>${data.items[i].snippet.title}</a>
             </div>
           </div>
           <div class="resultbody">
             <div class='js-desc'>
-              ${item.snippet.description}
+              ${data.items[i].snippet.description}
             </div>
           </div>
-          <div class='myVideo' id='${indexNum}'>
-              <iframe data-videoIndex = ${index} src='https://www.youtube.com/embed/${item.id.videoId}?controls=1'></iframe>
+          <div class='myVideo' id='${i}'>
+              <iframe class="resp-iframe" data-videoIndex = ${i} src='https://www.youtube.com/embed/${data.items[i].id.videoId}?controls=1'></iframe>
           </div>
         </div>
         `
       );
+      $('.col-6').show();
     nextPageToken = data.nextPageToken;
-  });
+  };
   });
 }
 
@@ -251,7 +259,7 @@ function watchSubmit() {
     console.log(queryTarget);
     userSelectedSearchTerm  = queryTarget.val();
     getGoogleBooksAPIData(userSelectedSearchTerm);
-    $('html, body').animate({ scrollTop: $('main').offset().top - 50});  
+    $('html, body').animate({ scrollTop: $('main').offset().top - 20});  
     $('.results').empty();
     $('.col-6').hide();
     $('.content').show();
@@ -266,7 +274,7 @@ function listenForBookSelection() {
     console.log(selectedBookId);
     getSelectedGoogleBookAPIData(selectedBookId);
     getNewsAPIData(userSelectedSearchTerm);
-    //getYouTubeAPIData(userSelectedSearchTerm)
+    getYouTubeAPIData(userSelectedSearchTerm)
   }));
 }
 

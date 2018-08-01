@@ -102,6 +102,7 @@ input {
 /* Header rules */
 .banner {
   text-align:right;
+  margin-top:150px;
 }
 
 .tagline {
@@ -252,7 +253,7 @@ input {
   padding-top:3%;
 }
 
-.dataItem, .newsItem {
+.dataItem, .newsItem, .youtubeItem {
 
   border-bottom:1px inset #0B4863;
   padding-bottom: 13px;
