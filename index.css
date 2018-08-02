@@ -55,6 +55,10 @@ a {
   text-decoration: none;
 }
 
+a, button, .fas, .dataItem, .newsItem, .youtubeItem {
+  cursor: pointer;
+}
+
 i {
   padding: 2px;
 }
@@ -69,6 +73,10 @@ i {
 
 .fa-angle-double-down, .fa-angle-double-up {
   color:  #0B4863;
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .fa-angle-double-down:hover, .fa-angle-double-up:hover {
@@ -145,10 +153,10 @@ input {
 
 .definition {
  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
-  overflow:auto;
-  float:left;
-  position:relative;
-  margin: 3px;
+ overflow:auto;
+ float:left;
+ position:relative;
+ margin: 3px;
 }
 
 #copyright {
@@ -176,10 +184,23 @@ input {
   padding: 0px 25px 10px 25px;
 }
 
+.getTheBookBtn:hover{
+  border-style:outset;
+  border: 3px solid  #BEB968;
+  background-color: #9BAA37;
+  color: white;
+  text-shadow: 0 0 3px #555555;
+  text-align:center;
+  padding: 0px 25px 10px 25px;
+}
+
 .getTheBookLogo {
   border-style:outset;
   border: 3px solid  #9BAA37;
   background-color: #BEB968;
+  height: 50px;
+  width: 170px;
+  margin:auto;
   color: white;
   text-shadow: 0 0 3px #555555;
   text-align:center;
@@ -209,9 +230,8 @@ input {
 }
 
 .boxtitle {
-  border-style:outset;
+  box-shadow: 1px 1px 5px #777777;
   border-width: 2px;
-  border-color: #9BAA37;
   background-color: #BEB968;
   padding-top:3%;
   padding-bottom: 3%;
@@ -222,6 +242,7 @@ input {
   padding: 5px 20px;
   display: block;
   text-align:right;
+  color:white;
 }   
 
 .myVideo {
@@ -254,11 +275,16 @@ input {
 }
 
 .dataItem, .newsItem, .youtubeItem {
-
   border-bottom:1px inset #0B4863;
   padding-bottom: 13px;
-  padding-top:13px;
+  padding:13px;
 }
+
+.dataItem:hover, .newsItem:hover, .youtubeItem:hover {
+
+  background-color:rgba(213, 102, 75, 0.2);
+}
+
 .headerinfo {
   font-size: 16px;
   text-align: left;
@@ -301,9 +327,12 @@ iframe {
   overflow:auto;
 }
 
-.searchagain {
-  text-align: left;
+.searchagain, .companylogo {
+  text-align: center;
+  margin:auto;
 }
+
+
 
 .saleprice {
   font-weight:600;
@@ -316,7 +345,8 @@ iframe {
 
 /* Footer rules */
 footer {
-  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+  text-shadow: 0 0 1px #555555;
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.5), rgba(213, 102, 75, 0.2) );
   padding-top: 20px;
   /*position: absolute;
   bottom: 0;
@@ -331,7 +361,7 @@ footer {
   float:left;
   text-align:right;
   margin-top:10px;
-  margin-left:75px;
+  margin-left:200px;
 }
 #builtby:hover {
   color:  #F1C0B1;
@@ -347,27 +377,28 @@ footer {
   margin-left:20px;
   font-size:14px;
 }
-
+/*
 .itc_logo {
   float:left;
 }
-
+*/
 #itc_icon {
   height: 40px;
-  float:right;
 }
 
+#newsearch {
+  float:left;
+}
 .footerbox {
   padding-bottom: 1px; 
   padding-top:3px;
-  /*background-color:white;*/
   height:45px;
-  overflow:auto;
-  width:100%;
   float:left;
-  
+  width:100%;
+  transition: color 0.25s linear;
   position: relative;
 }
+
 
 #footerdetail {
   position: absolute;
@@ -442,13 +473,15 @@ input {
   font-size:12px;
 }
 
-#newsearch {
-  text-align:center;
-  margin-left:118px;
+.footerbox {
+  float:none;
 }
 
 #builtby {
-  margin-left:42px;
+  float:none;
+  text-align:center;
+  margin-top:10px;
+  margin-left:0px;
 }
 
 #itc_logo {
@@ -459,4 +492,5 @@ input {
 #itc_icon {
   float:none;
 }
+*/
 }
