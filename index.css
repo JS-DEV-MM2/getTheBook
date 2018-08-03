@@ -308,11 +308,11 @@ input {
 
 .title_style {
   text-decoration: none;
-  padding: 5px 20px 5px 0px;
+  padding: 3px 20px 3px 0px;
   display: block;
   text-align:right;
   color:white;
-  height:60px;
+  height:30px;
   position:relative;
 }  
 
@@ -363,8 +363,24 @@ main:hover .fa-angle-double-down {
 
 .dataitem, .newsitem, .youtubeitem, .overviewitem {
   border-bottom:1px inset #0B4863;
-  padding-bottom: 13px;
-  padding:13px;
+  padding-bottom: 8px;
+  padding:8px;
+}
+
+.listofbooks {
+  float:left;
+  overflow:auto;
+  border-bottom:1px inset #0B4863;
+  padding-bottom: 8px;
+  padding:8px;
+  margin-top:13px;
+}
+
+.otherinfo {
+  text-align: left;
+  padding: 10px 3px 10px 10px;
+  color:  #a54132;
+  font-size:12px;
 }
 
 .dataitem:hover, .newsitem:hover, .youtubeitem:hover, .nextYoutube:hover {
@@ -372,25 +388,35 @@ main:hover .fa-angle-double-down {
 }
 
 .headerinfo {
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
+  float:left;
   padding: 0 0 10px 0;
   color:  #a54132;
+  overflow:auto;
+}
+.js-bookthumb {
+  float:left;
 }
 
 .resultbody {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .otherdata {
-  margin-bottom: 20px;
-  margin-top:10px;
+  margin-bottom: 10px;
+  margin-top:5px;
   margin-left:20px;
-  font-size:14px;
+  font-size:12px;
 }
-
+.js-title {
+  float:left;
+  padding:3px;
+}
 .js-author {
   margin-bottom: 5px;
+  float:left;
+  padding:3px;
 }
 
 .js-authorname {

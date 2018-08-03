@@ -283,8 +283,6 @@ function getWikiAPIData() {
   $.getJSON(wikiURL, wikiParams, function(data) {
       //console.log(data.query);
       renderWikiData(data.query)
-      
-      //showWiki(data.query); /*}*/
   });
 }
 
@@ -296,7 +294,7 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
   }
   $.getJSON(googleBooksURL, params, function(data){
     ////console.log("google data: " );
-    ////console.log(data.items);
+    console.log(data.items);
     $('.overviewitem').remove();
     var dataId="";
     $(`.js-Overview`).append(`
@@ -311,21 +309,19 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
    
     for (var i=0;i < data.items.length; i++) {
       $(`.js-Overview`).append(`
-        <div class='overviewitem'>
-          <div class="headerinfo">
+        <div class='listofbooks'>
+          <div class="js-bookthumb">
+            <img src='${data.items[i].volumeInfo.imageLinks.thumbnail}'></img>
+          </div>
+          <div class='otherinfo'>
+            <div class="js-author">${data.items[i].volumeInfo.authors}, </div>  
             <div class="js-title">${data.items[i].volumeInfo.title}</div>
-            <div class="js-author"> by ${data.items[i].volumeInfo.authors}</div>
             <div class="js-publisher"> Publisher: ${data.items[i].volumeInfo.publisher}</div>
             <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
+            <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div> s
+            <div class="js-textsnippet">${data.items[i].searchInfo.textSnippet}</div>
           </div>
-          <div class="resultbody">
-           <!-- <div class="js-textsnippet">TEXT SNIPPET GOES HERE</div> -->
-          </div>
-          <div class="otherdata">
-            <div class="js-itemid" data-bookId="${data.items[i].id}">${data.items[i].id}</div> 
-            <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div>
-          </div>
-          
+          <div class="js-itemid" data-bookId="${data.items[i].id}">${data.items[i].id}</div> 
         </div>
         `
         );
