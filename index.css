@@ -10,6 +10,7 @@ form {
   margin-right:auto;
   max-width: 100%;
   padding:0;
+  
 
 }
 
@@ -65,21 +66,37 @@ i {
 
 .fas {
   font-size: 25px !important;
-  position: relative;
+  *position: relative;
   padding-top:10px;
   padding-right:3px;
   padding-left:4px;
+  
 }
 
-.fa-angle-double-down, .fa-angle-double-up {
+.fa-angle-double-down, .fa-angle-double-up, .fa-angle-double-right {
   color:  #0B4863;
-  animation-name: blinker;
+  -webkit-transition-property: color;
+     -moz-transition-property: color;
+       -o-transition-property: color;
+          transition-property:color;
+  -webkit-transition-duration: .5s;
+     -moz-transition-duration: .5s;
+      -o-transition-duration: .5s;
+         transition-duration: .5s;
+  -webkit-transition-timing-function: linear;
+     -moz-transition-timing-function: linear;
+       -o-transition-timing-function: linear;
+          transition-timing-function: linear;
+height: 20px;
+position: absolute;
+width:20px;
+  /*animation-name: blinker;
   animation-duration: 1s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite;*/
 }
 
-.fa-angle-double-down:hover, .fa-angle-double-up:hover {
+.fa-angle-double-down:hover, .fa-angle-double-up:hover, .fa-angle-double-right:hover {
   color: #9BAA37;
 }
 
@@ -94,7 +111,6 @@ i {
 .fa-kiwi-bird:before {
   content: "\f535";
 }
-
 
 
 input {
@@ -237,16 +253,82 @@ input {
   padding-bottom: 3%;
   margin-bottom:2%;
 }
+
+.slidedown {
+  float:left;
+}
+
+@keyframes slidedown {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  
+  100% {
+    left: 0;
+    top: 25px;
+  }
+}
+
+@-moz-keyframes slidedown {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  
+  100% {
+    left: 0;
+    top: 25px;
+  }
+} 
+
+@-o-keyframes slidedown {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  
+  100% {
+    left: 0;
+    top: 25px;
+  }
+} 
+
+@-webkit-keyframes slidedown {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  
+  100% {
+    left: 0;
+    top: 25px;
+  }
+}
+
 .title_style {
   text-decoration: none;
-  padding: 5px 20px;
+  padding: 5px 20px 5px 0px;
   display: block;
   text-align:right;
   color:white;
+  height:60px;
+  position:relative;
 }  
 
+main:hover .fa-angle-double-down {
+  animation-name: slidedown;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.nextYoutube,.nextNews,.nextWiki{
+  display:none;
+}
+
 .nextYoutube, .nextNews {
-  text-align:right;
+  float:right;
   color: #0B4863;
 }
 

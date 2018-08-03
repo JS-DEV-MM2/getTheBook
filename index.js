@@ -1,63 +1,57 @@
 // Single state object
 var state = {
   userSelectedSearchTerm: "",
+  userSelectedAuthor:"",
   selectedBookId:"",
   newsNextPage:1,
-  nextPageToken: ""
+  nextPageToken: "",
+
 };
 
 const googleBooksURL = 'https://www.googleapis.com/books/v1/volumes';
 const newsURL = 'https://newsapi.org/v2/everything';
 const youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
+const wikiURL = 'https://en.wikipedia.org/w/api.php';
 
-//**Render Youtube Data
+//***Render Headers
+
+// Render Single Book header
+function renderSelectedBookHeader() {
+  $(`.js-Overview`).append(`
+      <div class="boxtitle booklisttitle" >
+        <span class="title_style">
+          <i class="fas fa-bird"></i>
+          Overview of the book you selected
+        </span>
+      </div>
+      `
+  );
+}
 //Render Youtube header
 function renderYoutubeHeader() {
   $(`.js-youtube`).append(`
-  <div class="boxtitle newstitle">
-    <span class="title_style">
-    <i class="fas fa-handshake" ></i>
-    Youtube Videos: YouTube
-      </span>
-      <span class="nextYoutube">More results</span>
-  </div>
+      <div class="boxtitle youtubetitle">
+        <span class="title_style">
+        <div class="slidedown sdyoutube">
+            <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
+        </div>
+            <i class="fas fa-handshake" ></i>
+            Youtube Videos: YouTube
+              </span>
+          <span class="nextYoutube">More results</span>
+      </div>
   `
 );
 }
 
-//Render Youtube detail
-function renderYoutubeData(youtubeData) {
-  console.log(youtubeData);
-    $('.youtubeitem').remove();
-    for (var i=0;i < youtubeData.length; i++) {
-      $(`.js-youtube`).append(`
-        <div class='youtubeitem'>
-          <div class="headerinfo">
-            <div class='js-title'>
-              <a href='${youtubeData[i].snippet.title}'>${youtubeData[i].snippet.title}</a>
-            </div>
-          </div>
-          <div class="resultbody">
-            <div class='js-desc'>
-              ${youtubeData[i].snippet.description}
-            </div>
-          </div>
-          <div class='myVideo' id='${i}'>
-              <iframe class="resp-iframe" data-videoIndex = ${i} src='https://www.youtube.com/embed/${youtubeData[i].id.videoId}?controls=1'></iframe>
-          </div>
-        </div>
-        `
-      );
-    }; 
-    $('.col-6').show();
-}
-
-//**Render News Data
 //Render News header
 function renderNewsHeader() {
   $(`.js-news`).append(`
       <div class="boxtitle newstitle">
         <span class="title_style">
+         <div class="slidedown sdnews">
+           <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
+         </div>
           <i class="fas fa-star"></i>
             Articles (news) API
           </span>
@@ -67,77 +61,302 @@ function renderNewsHeader() {
     );
 }
 
+function renderWikiHeader() {
+  $(`.js-wiki`).append(`
+      <div class="boxtitle wikititle">
+        <span class="title_style">
+        <div class="slidedown sdwiki">
+          <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
+        </div>
+          <i class="fas fa-feather-alt"></i>
+            Author Info
+          </span>
+          <!--<span class="nextWiki">More results</span>-->
+      </div>
+      `
+    );
+}
+
+//***Render Details
+
+//Render Single Book details
+function renderSelectedBookData(selectedBookData) {
+  //console.log('inside render selected book data');
+  //console.log(selectedBookData);
+$('.overviewitem').remove();
+      $('.booklisttitle').remove();
+      $(`.js-Overview`).append(`
+          <div class='overviewitem'>
+            <div class="headerinfo">
+              <div class="js-thumbnail">image goes here</div>
+              <div class="js-title">${selectedBookData.volumeInfo.title}</div>
+              <div class="js-author">${selectedBookData.volumeInfo.authors}</div>
+              <div class="js-publisher">Publisher:  ${selectedBookData.volumeInfo.publisher}  Published: ${selectedBookData.volumeInfo.publishedDate}</div>
+            </div>
+            <div class="resultbody">
+               <!--<div class="js-description">Publisher:  ${selectedBookData.volumeInfo.description}</div> -->
+               <div class="js-average-rating">Average Rating of ${selectedBookData.volumeInfo.averageRating} out of ${selectedBookData.volumeInfo.ratingsCount} ratings.</div>
+               <div class="pageCount">${selectedBookData.volumeInfo.pageCount} page(s)</div>
+            </div>
+            <div class="otherdata">
+                <!--<div class="saleprice">Price:  $${selectedBookData.saleInfo.retailPrice.amount}</div> -->
+                <div class="linktobuy"><a href="${selectedBookData.saleInfo.buyLink}">Click to purchase from Google Play</a></div>
+            </div>
+          </div>
+          `
+        ); 
+
+        $('.otherdata').remove();
+        var forSale=`${selectedBookData.saleInfo.saleability}`;
+        var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
+        if (isElectronic === `true`) {
+            if (forSale == 'FREE') {
+              $(`.js-purchase`).append(`
+                    <div class='otherdata'>
+                        <div class="js-salePrice">The price is 0!  Yeah!</div>
+                        <div class="js-linkToBuy"><a href=${selectedBookData.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
+                    </div>
+                    `
+              ); 
+            } else if (forSale === 'FOR_SALE') {
+              $(`.js-purchase`).append(`
+                <div class='otherdata'>
+                    <div class="js-salePrice">The price is: ${selectedBookData.saleInfo.retailPrice.amount}</div>
+                    <div class="js-linkToBuy"><a href=${selectedBookData.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
+                </div>
+                `
+              ); 
+            } else {
+              `<div class='otherdata'>
+                        <div class="js-linkToBuy">There is some other status that I haven't considered.</div>
+                    </div>`
+            }
+        } else {
+          $(`.js-purchase`).append(`
+          <div class='otherdata'>
+              <H3><div class="notForSale">This book is not for sale through Google Play.</div></h3>
+          </div>
+          `
+          );
+        };
+        $('.col-12').show();
+
+}
+
+
+//Render Youtube detail
+function renderYoutubeData(youtubeData) {
+  //console.log('mad it to render youtube')
+  //console.log(youtubeData);
+    $('.youtubeitem').remove();
+    var indexNum = 0;
+    var youtubeHTML="hello";
+     //$(`.js-youtube`).append(`
+    //console.log('youtube html' + youtubeHTML);
+  $.each(youtubeData, function(index, item) {
+    indexNum +=1;
+    console.log('inside each');
+    console.log(youtubeData);
+    console.log(youtubeData.title);
+    console.log(youtubeData[index].item.snippet.title);
+    youtubeHTML=(indexNum + " " + youtubeHTML);
+    console.log(youtubeHTML);
+    youtubeHTML += "<div class='youtubeitem'><div class='headerinfo'><div class='js-title'><a href='${youtubeData[i].snippet.title}'>" + youtubeData.item.snippet.title + 
+              "</a></div></div><div class='resultbody'><div class='js-desc'>" + youtubeData.items.snippet.description + "</div></div><div class='myVideo' id='${i}'>" + 
+              "<iframe class='resp-iframe' data-videoIndex='${i}' src='https://www.youtube.com/embed/${youtubeData[i].id.videoId}?controls=1'></iframe></div></div>"
+  });
+  console.log('should show youtube item');
+  $('.youtubeitem').show();
+}
+
 //Render News detail
 function renderNewsData(newsData) {
-  //console.log(newsData.length);
-  //console.log(newsData.articles.length);
   var indexNum = 0;
+  var newsHTML="hello";
+  console.log(newsHTML);
   $.each(newsData, function(index, item) {
+    console.log(newsData.articles[indexNum].title);
+      //$(`.js-news`).append(`
+    newsHTML += "<div class='newsitem'><div class='headerinfo'><div class='js-title'>" + newsData.articles[indexNum].title + "</div></div><div class='resultbody'><div class='js-author'><span class='js-authorname'>Author:  </span>" + 
+    newsData.articles[indexNum].author + "</div><div class='js-subtitle'>" + newsData.articles[indexNum].description} + "</div><div class='read'><a href='" + newsData.articles[indexNum].url + "'>Click here to read the article </a></div></div></div>";
+    console.log(newsHTML);
     indexNum +=1;
-      $(`.js-news`).append(`
-        <div class='newsitem'>
-         <div class="headerinfo">
-            <div class="js-title">${newsData.articles.title} </div>
-          </div>
-          <div class="resultbody">
-            <div class="js-author"><span class="js-authorname">Author:  </span>${newsData.articles.author} </div>
-            <div class="js-subtitle">${newsData.articles.description} </div>
-            <div class="read"><a href="${newsData.articles.url} ">Click here to read the article </a></div>
-          </div>
-        </div>
-       `
-      );
-    });
-    $('.col-6').show();
+    //$('.col-4').show();
+});
 }
   
 
 
 //Calls to the APIs
 
-//call to News for articles
-function getNewsAPIData(userSelectedSearchItem) {
+//AJAX call to Google Books for Selected Book
+function getSelectedGoogleBookAPIData(book) {
   const params = {
-    q: `${userSelectedSearchItem}`,
-    apiKey: `430d190071894a52b7716e87bf74ced3`,
-    articleList:`articles`,
-    pagesize: 5,
-    language: `en`,
-    }
-  $.getJSON(newsURL, params, function(data){
-    renderNewsHeader();
-    renderNewsData(data.items);
-    newsNextPage = data.nextPage;
-    //console.log("news next page is " + newsNextPage);
-    //$('.col-6').show();
-   
-  });  
+    volumeId: `"${book}"`,
+    projection: `full`,
+  }
+  var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
+  $.getJSON(singleBookURL, function(selectedBookData){
+    console.log("selected book google data: " );
+    console.log(selectedBookData);
+    userSelectedAuthor = selectedBookData.volumeInfo.authors;
+    console.log(userSelectedAuthor);
+    renderSelectedBookHeader();
+    renderSelectedBookData(selectedBookData);
+    nextPageToken = selectedBookData.nextPageToken;
+    $('.col-4').show();
+   //nextPageToken = data.nextPageToken;
+  });
+  renderYoutubeHeader();
+  renderNewsHeader();
+  renderWikiHeader();
 }
 
 
+
 //call to Youtube for videos
-function getYouTubeAPIData(userSelectedSearchItem) {
-  const params = {
-    q: `${userSelectedSearchItem} in:name`,
+function getYouTubeAPIData(userSelectedSearchTerm) {
+  console.log('inside get you TUBE');
+  const youtubeParams = {
+    q: `${userSelectedSearchTerm} in:name`,
     key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
     part: 'snippet',
     maxResults: 2,
     videoID:'id'
   }
-  $.getJSON(youtubeURL, params, function(data){
-    renderYoutubeHeader();
+  $.getJSON(youtubeURL, youtubeParams, function(data){
+    console.log('aferJSON');
+    console.log(data);
     renderYoutubeData(data);
+    console.log('you tube data after api call');
+    console.log(data);
     nextPageToken = data.nextPageToken;
-    $('.col-6').show();
+    $('.col-4').show();
   }); 
 }
 
+//AJAX call to News for articles
+function getNewsAPIData(userSelectedSearchTerm) {
+  const params = {
+    q: `${userSelectedSearchTerm}`,
+    apiKey: `430d190071894a52b7716e87bf74ced3`,
+    articleList:`articles`,
+    pagesize: 5,
+    language: `en`,
+    }
+    console.log('before news json');
+  $.getJSON(newsURL, params, function(data){
+    console.log('newsdata below');
+    console.log(data);
+    renderNewsHeader();
+    renderNewsData(data);
+    newsNextPage = data.nextPage;
+    //console.log("news next page is " + newsNextPage);
+    //$('.col-4').show();
+   
+  });  
+}
+
+//AJAX call to Wikipedia API
+function getWikiAuthorData(userSelectedSearchTerm) {
+  const wikiParams = {
+    titles: `${userSelectedSearchTerm}`,
+    origin: '*',
+    action: 'query',
+    format: 'json',
+    prop: 'extracts|pageimages',
+    indexpageids: 1,
+    redirects: 1, 
+    exchars: 1200,
+    // explaintext: 1,
+    exsectionformat: 'plain',
+    piprop: 'name|thumbnail|original',
+    pithumbsize: 250
+  };
+  
+  $.getJSON(wikiURL, wikiParams, function(data) {
+    /*if (data.query.pageids[0] === "-1") {
+      wikiParams.titles = searchWord.replace(/\b\w/g, function(l) { return l.toUpperCase() });
+      $.getJSON(url, wikiParams, function(data) {
+        if (data.query.pageids[0] === "-1") {
+          wikiParams.titles = searchWord.toUpperCase();
+          $.getJSON(url, wikiParams, function(data) {
+            showWiki(data.query);
+          });
+        } else { showWiki(data.query); }
+      });
+    } else { */
+      console.log("this is wiki data");
+      console.log(data.query);
+      //showWiki(data.query); /*}*/
+  });
+}
+/*
+//Display Wikipedia data
+function showWiki(results) {
+  var pageId = results.pageids[0];
+  var searchword = results.pages[pageId].title.toLowerCase();
+  var pattern = new RegExp(searchword, 'i');
+  if (results.pages[pageId].extract) var info = results.pages[pageId].extract.replace(pattern, '<b>' + searchword + '</b>').replace('<span id="References">References</span>', '<p></p>').replace(new RegExp('<p><br /></p>', 'g'), '').replace('External links', 'Click more below for links to:');
+  var thumbnail = results.pages[pageId].thumbnail;
+  var original = results.pages[pageId].original;
+  var pageimage = results.pages[pageId].pageimage;
+  var html = "";
+  //Error msg for no Wiki page
+  if (!results.pages[pageId].extract || results.pages[pageId].extract.length < 100) {
+    html = '<div class="center"><dt class="wiki_color">Sorry, no Wiki page was found.</dt><hr><dt class="wiki_color"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Try these tips:</dt><dd class="tips">1. Check your spelling by clicking the search term you typed above. If you see any red underlines, right-click to see suggestions for corrected spelling.<br />2. Check for correct spacing and punctuations, especially if your search term is a phrase or title consiting multiple words.</dd><dt class="wiki_color"><a href="https://www.google.com/search?q=' + $('#searchfield').val() + '" target="_blank">Browse Google&rsquo;s search results</a></dt></div>';
+    $('.wiki').html(html);
+  } else {
+    $('.results.wiki').empty();
+    //If thumbnail is unavailable
+    if (thumbnail === undefined || thumbnail === null) {
+      //Check if extract from is cut off
+      if (info.length < 1000) {
+        info = info.substring(0, info.length-3)
+        html += info;
+        $('.wiki').append(html);
+      //If it is cut, get rid off abbreviated ending
+      } else {
+        info = info.substring(0, info.length-7)
+        for (var i = 1; i < 6; i++) {
+          if (info.charAt(info.length-i) === '<') {
+            info = info.substring(0, info.length-i)
+          }
+        }
+        html += info + '...</p>';
+        $('.wiki').append(html);
+      }
+    //If thumbnail is available
+    } else {
+      //Same as above, check if extract is cut off or not
+      if (info.length < 1000) {
+        info = info.substring(0, info.length-3)
+        html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
+        thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info;
+        $('.wiki').append(html);
+      } else {
+        info = info.substring(0, info.length-7)
+        for (var i = 1; i < 6; i++) {
+          if (info.charAt(info.length-i) === '<') {
+            info = info.substring(0, info.length-i)
+          }
+        }
+        html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
+        thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;'+ pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) +'</span></div></a>' + info + '...</p>';
+        $('.wiki').append(html);
+      }
+    }
+    $('.wiki').append('<hr>');
+    $('.wiki').append('<p class="ext_link"><a href="//en.wikipedia.org/wiki/' + results.pages[pageId].title + 
+      '" data-lity><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>');
+  }
+*/
 
 
 //first call to Google Books
-function getGoogleBooksAPIData(userSelectedSearchItem) {
+function getGoogleBooksAPIData(userSelectedSearchTerm) {
   const params = {
-    q: `"${userSelectedSearchItem}"`,
+    q: `"${userSelectedSearchTerm}"`,
     key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
   }
   $.getJSON(googleBooksURL, params, function(data){
@@ -166,7 +385,7 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
             <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
           </div>
           <div class="resultbody">
-            <div class="js-textsnippet">${data.items[i].searchInfo.textSnippet}</div>
+           <!-- <div class="js-textsnippet">TEXT SNIPPET GOES HERE</div> -->
           </div>
           <div class="otherdata">
             <div class="js-itemid" data-bookId="${data.items[i].id}">${data.items[i].id}</div> 
@@ -178,94 +397,16 @@ function getGoogleBooksAPIData(userSelectedSearchItem) {
         );
     };
   });
+  
 } 
 
 
-//render HTML for the selected book
-function getSelectedGoogleBookAPIData(book) {
 
-  const params = {
-    volumeId: `"${book}"`,
-    projection: `full`,
-  }
-  var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
-
-  $.getJSON(singleBookURL, function(selectedBookResult){
-    //console.log("selected book google data: " );
-    //console.log(selectedBookResult);
-  
-   //nextPageToken = data.nextPageToken;
-      $('.overviewitem').remove();
-      $('.booklisttitle').remove();
-      $(`.js-Overview`).append(`
-          <div class="boxtitle booklisttitle" >
-            <span class="title_style">
-              <i class="fas fa-bird"></i>
-              Overview of the book you selected
-            </span>
-          </div>
-          <div class='overviewitem'>
-            <div class="headerinfo">
-              <div class="js-thumbnail"><img src='${selectedBookResult.volumeInfo.imageLinks.thumbnail}'></img></div>
-              <div class="js-title">${selectedBookResult.volumeInfo.title}</div>
-              <div class="js-author">${selectedBookResult.volumeInfo.authors}</div>
-              <div class="js-publisher">Publisher:  ${selectedBookResult.volumeInfo.publisher}  Published: ${selectedBookResult.volumeInfo.publishedDate}</div>
-            </div>
-            <div class="resultbody">
-               <div class="js-description">Publisher:  ${selectedBookResult.volumeInfo.description}</div>
-               <div class="js-average-rating">Average Rating of ${selectedBookResult.volumeInfo.averageRating} out of ${selectedBookResult.volumeInfo.ratingsCount} ratings.</div>
-               <div class="pageCount">${selectedBookResult.volumeInfo.pageCount} page(s)</div>
-            </div>
-            <div class="otherdata">
-                <!--<div class="saleprice">Price:  $${selectedBookResult.saleInfo.retailPrice.amount}</div> -->
-                <div class="linktobuy"><a href="${selectedBookResult.saleInfo.buyLink}">Click to purchase from Google Play</a></div>
-            </div>
-          </div>
-          `
-        ); 
-
-        $('.otherdata').remove();
-        var forSale=`${selectedBookResult.saleInfo.saleability}`;
-        var isElectronic = `${selectedBookResult.saleInfo.isEbook}`;
-        if (isElectronic === `true`) {
-        
-            if (forSale == 'FREE') {
-              $(`.js-purchase`).append(`
-                    <div class='otherdata'>
-                        <div class="js-salePrice">The price is 0!  Yeah!</div>
-                        <div class="js-linkToBuy"><a href=${selectedBookResult.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                    </div>
-                    `
-              ); 
-            } else if (forSale === 'FOR_SALE') {
-              $(`.js-purchase`).append(`
-                <div class='otherdata'>
-                    <div class="js-salePrice">The price is: ${selectedBookResult.saleInfo.retailPrice.amount}</div>
-                    <div class="js-linkToBuy"><a href=${selectedBookResult.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                </div>
-                `
-              ); 
-            } else {
-              `<div class='otherdata'>
-                        <div class="js-linkToBuy">There is some other status that I haven't considered.</div>
-                    </div>`
-            }
-        } else {
-          $(`.js-purchase`).append(`
-          <div class='otherdata'>
-              <H3><div class="notForSale">This book is not for sale through Google Play.</div></h3>
-          </div>
-          `
-          );
-        };
-        $('.col-12').show();
-    });
-}
 
 /*
-function getNewsDataNextPage(userSelectedSearchItem) {
+function getNewsDataNextPage(userSelectedSearchTerm) {
   const params = {
-    q: `${userSelectedSearchItem}`,
+    q: `${userSelectedSearchTerm}`,
     apiKey: `430d190071894a52b7716e87bf74ced3`,
     articleList:`articles`,
     pagesize: 5,
@@ -319,6 +460,21 @@ function watchSubmit() {
     $('html, body').animate({ scrollTop: $('header').offset().top});
     $('input#js-searchfield').focus();
   });
+ //listener for youtube data
+  $('.js-youtube').on('click', '.slidedown', (function(e){
+    e.preventDefault();
+    getYouTubeAPIData(userSelectedSearchTerm);
+  }));
+//listener for news data
+  $('.js-news').on('click', '.slidedown', (function(e){
+    e.preventDefault();
+    getNewsAPIData(userSelectedSearchTerm);
+  }));
+//listener for wiki data
+  $('.js-wiki').on('click', '.slidedown', (function(e){
+    e.preventDefault();
+    getWikiAPIData(userSelectedSearchTerm);
+  }));
 
   $('#js-inputform').submit(function(e){
     e.preventDefault();
@@ -330,7 +486,7 @@ function watchSubmit() {
     getGoogleBooksAPIData(userSelectedSearchTerm);
     $('html, body').animate({ scrollTop: $('main').offset().top - 20});  
     $('.results').empty();
-    $('.col-6').hide();
+    $('.col-4').hide();
     $('.overviewitem').show();
     
   });
@@ -341,17 +497,18 @@ function listenForBookSelection() {
   $('.js-Overview').on('click', '.overviewitem', (function(e) {
     e.preventDefault();
     selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
-    console.log("selected book id is " + selectedBookId);
+    //console.log("selected book id is " + selectedBookId);
     getSelectedGoogleBookAPIData(selectedBookId);
-    getNewsAPIData(userSelectedSearchTerm);
-    getYouTubeAPIData(userSelectedSearchTerm)
+    //console.log('got google data');
+    
   }));
 }
 
+
 //get next set of youtube data
-function listenforNextYoutube() {
+function listenForNextYoutube() {
   $('.js-youtube').on('click','.nextYoutube', (function(event){
-    console.log('nextYoutube');
+    //console.log('nextYoutube');
     event.preventDefault();
     getYoutubeDataNextPage(userSelectedSearchTerm);
   }));
@@ -371,5 +528,6 @@ function listenforNextNews() {
 
 watchSubmit();
 listenForBookSelection();
-listenforNextYoutube();
+
+//listenforNextYoutube();
 //listenforNextNews();
