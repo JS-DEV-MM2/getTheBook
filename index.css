@@ -323,15 +323,15 @@ main:hover .fa-angle-double-down {
   animation-iteration-count: infinite;
 }
 
-.nextYoutube,.nextNews,.nextWiki{
+.nextYoutube, .nextNews, .nextWiki{
   display:none;
 }
-
+/*
 .nextYoutube, .nextNews {
   float:right;
   color: #0B4863;
 }
-
+*/
 .myVideo {
     position: relative;
     overflow: hidden;

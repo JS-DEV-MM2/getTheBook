@@ -55,7 +55,6 @@ function renderNewsHeader() {
           <i class="fas fa-star"></i>
             Articles (news) API
           </span>
-          <span class="nextNews">More results</span>
       </div>
       `
     );
@@ -81,8 +80,8 @@ function renderWikiHeader() {
 
 //Render Single Book details
 function renderSelectedBookData(selectedBookData) {
-  //console.log('inside render selected book data');
-  //console.log(selectedBookData);
+  ////console.log('inside render selected book data');
+  ////console.log(selectedBookData);
 $('.overviewitem').remove();
       $('.booklisttitle').remove();
       $(`.js-Overview`).append(`
@@ -94,7 +93,7 @@ $('.overviewitem').remove();
               <div class="js-publisher">Publisher:  ${selectedBookData.volumeInfo.publisher}  Published: ${selectedBookData.volumeInfo.publishedDate}</div>
             </div>
             <div class="resultbody">
-               <!--<div class="js-description">Publisher:  ${selectedBookData.volumeInfo.description}</div> -->
+               <div class="js-description">Publisher:  ${selectedBookData.volumeInfo.description}</div>
                <div class="js-average-rating">Average Rating of ${selectedBookData.volumeInfo.averageRating} out of ${selectedBookData.volumeInfo.ratingsCount} ratings.</div>
                <div class="pageCount">${selectedBookData.volumeInfo.pageCount} page(s)</div>
             </div>
@@ -144,46 +143,56 @@ $('.overviewitem').remove();
 }
 
 
-//Render Youtube detail
+//Display Youtube detail
 function renderYoutubeData(youtubeData) {
-  //console.log('mad it to render youtube')
-  //console.log(youtubeData);
-    $('.youtubeitem').remove();
-    var indexNum = 0;
-    var youtubeHTML="hello";
-     //$(`.js-youtube`).append(`
-    //console.log('youtube html' + youtubeHTML);
+  var i = 0;
+  var youtubeHTML="";
+  ////console.log(youtubeData);
+  ////console.log(youtubeData.items[0].snippet.title);
   $.each(youtubeData, function(index, item) {
-    indexNum +=1;
-    console.log('inside each');
-    console.log(youtubeData);
-    console.log(youtubeData.title);
-    console.log(youtubeData[index].item.snippet.title);
-    youtubeHTML=(indexNum + " " + youtubeHTML);
-    console.log(youtubeHTML);
-    youtubeHTML += "<div class='youtubeitem'><div class='headerinfo'><div class='js-title'><a href='${youtubeData[i].snippet.title}'>" + youtubeData.item.snippet.title + 
-              "</a></div></div><div class='resultbody'><div class='js-desc'>" + youtubeData.items.snippet.description + "</div></div><div class='myVideo' id='${i}'>" + 
-              "<iframe class='resp-iframe' data-videoIndex='${i}' src='https://www.youtube.com/embed/${youtubeData[i].id.videoId}?controls=1'></iframe></div></div>"
+    //??CANNOT CHANGE HARDCODED INDEX NUMBER TO A VARIABLE
+    youtubeHTML += "<div class='youtubeitem'><div class='headerinfo'><div class='js-title'><a href='" + youtubeData.items[0].snippet.title +  "'>" + youtubeData.items[0].snippet.title + 
+              "</a></div></div><div class='resultbody'><div class='js-desc'>" + youtubeData.items[0].snippet.description + "</div></div><div class='myVideo' id='" + 0 + "'>" + 
+              "<iframe class='resp-iframe' data-videoIndex='" + 0 + "' src='https://www.youtube.com/embed/" + youtubeData.items[0].id.videoId + "?controls=1'></iframe></div></div>";
+    i +=1;
+    ////console.log(youtubeHTML);
   });
-  console.log('should show youtube item');
-  $('.youtubeitem').show();
+  
+  $('.js-youtube').append(youtubeHTML);
+  $('.sdyoutube').append('<span id="nextYoutube">More results</span>');
 }
 
-//Render News detail
+
+//Display News detail
 function renderNewsData(newsData) {
   var indexNum = 0;
-  var newsHTML="hello";
-  console.log(newsHTML);
+  var newsHTML="";
+  //console.log(newsHTML);
   $.each(newsData, function(index, item) {
-    console.log(newsData.articles[indexNum].title);
-      //$(`.js-news`).append(`
+    ////console.log(newsData.articles[indexNum].title);
     newsHTML += "<div class='newsitem'><div class='headerinfo'><div class='js-title'>" + newsData.articles[indexNum].title + "</div></div><div class='resultbody'><div class='js-author'><span class='js-authorname'>Author:  </span>" + 
-    newsData.articles[indexNum].author + "</div><div class='js-subtitle'>" + newsData.articles[indexNum].description} + "</div><div class='read'><a href='" + newsData.articles[indexNum].url + "'>Click here to read the article </a></div></div></div>";
-    console.log(newsHTML);
+    newsData.articles[indexNum].author + "</div><div class='js-subtitle'>" + newsData.articles[indexNum].description + "</div><div class='read'><a href='" + newsData.articles[indexNum].url + "'>Click here to read the article </a></div></div></div>";
+    ////console.log(newsHTML);
     indexNum +=1;
-    //$('.col-4').show();
-});
+  });
+  $(`.js-news`).append(newsHTML);
+  $('.sdnews').append('<span id="nextNews">More results</span>');
 }
+
+//Display Wikipedia author data
+function renderWikiData(authorData) {
+  var pageId = authorData.pageids[0];
+  //console.log(pageId);
+  var wikiHTML="";
+  wikiHTML += "<div class='wikiitem'><div class='headerinfo'><img class='js-wikithumb' src='" + authorData.pages[pageId].thumbnail.source + "' height='" + authorData.pages[pageId].thumbnail.height + "' width='" + authorData.pages[pageId].thumbnail.width + "'></img><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
+"<div class='js-subtitle'>" + authorData.pages[pageId].extract + "</div></div>";
+  //console.log(wikiHTML);
+  $(`.js-wiki`).append(wikiHTML);
+  $('.js-wiki').append('<hr>');
+  $('.js-wiki').append('<p class="wikilink"><a href="//en.wikipedia.org/wiki/' + authorData.pages[pageId].title + 
+      '" data-lity><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>');
+
+  }
   
 
 
@@ -197,10 +206,10 @@ function getSelectedGoogleBookAPIData(book) {
   }
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
   $.getJSON(singleBookURL, function(selectedBookData){
-    console.log("selected book google data: " );
-    console.log(selectedBookData);
+    //console.log("selected book google data: " );
+    //console.log(selectedBookData);
     userSelectedAuthor = selectedBookData.volumeInfo.authors;
-    console.log(userSelectedAuthor);
+    //console.log(userSelectedAuthor);
     renderSelectedBookHeader();
     renderSelectedBookData(selectedBookData);
     nextPageToken = selectedBookData.nextPageToken;
@@ -216,7 +225,7 @@ function getSelectedGoogleBookAPIData(book) {
 
 //call to Youtube for videos
 function getYouTubeAPIData(userSelectedSearchTerm) {
-  console.log('inside get you TUBE');
+  //console.log('inside get you TUBE');
   const youtubeParams = {
     q: `${userSelectedSearchTerm} in:name`,
     key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
@@ -225,13 +234,13 @@ function getYouTubeAPIData(userSelectedSearchTerm) {
     videoID:'id'
   }
   $.getJSON(youtubeURL, youtubeParams, function(data){
-    console.log('aferJSON');
-    console.log(data);
+    //console.log('aferJSON');
+    //console.log(data);
     renderYoutubeData(data);
-    console.log('you tube data after api call');
-    console.log(data);
+    //console.log('you tube data after api call');
+    //console.log(data);
     nextPageToken = data.nextPageToken;
-    $('.col-4').show();
+    //$('.col-4').show();
   }); 
 }
 
@@ -244,23 +253,20 @@ function getNewsAPIData(userSelectedSearchTerm) {
     pagesize: 5,
     language: `en`,
     }
-    console.log('before news json');
   $.getJSON(newsURL, params, function(data){
-    console.log('newsdata below');
-    console.log(data);
-    renderNewsHeader();
     renderNewsData(data);
+    document.getElementById("nextNews").style.display = "block";
     newsNextPage = data.nextPage;
-    //console.log("news next page is " + newsNextPage);
+    ////console.log("news next page is " + newsNextPage);
     //$('.col-4').show();
    
   });  
 }
 
 //AJAX call to Wikipedia API
-function getWikiAuthorData(userSelectedSearchTerm) {
+function getWikiAPIData() {
   const wikiParams = {
-    titles: `${userSelectedSearchTerm}`,
+    titles: `${userSelectedAuthor}`,
     origin: '*',
     action: 'query',
     format: 'json',
@@ -275,83 +281,12 @@ function getWikiAuthorData(userSelectedSearchTerm) {
   };
   
   $.getJSON(wikiURL, wikiParams, function(data) {
-    /*if (data.query.pageids[0] === "-1") {
-      wikiParams.titles = searchWord.replace(/\b\w/g, function(l) { return l.toUpperCase() });
-      $.getJSON(url, wikiParams, function(data) {
-        if (data.query.pageids[0] === "-1") {
-          wikiParams.titles = searchWord.toUpperCase();
-          $.getJSON(url, wikiParams, function(data) {
-            showWiki(data.query);
-          });
-        } else { showWiki(data.query); }
-      });
-    } else { */
-      console.log("this is wiki data");
-      console.log(data.query);
+      //console.log(data.query);
+      renderWikiData(data.query)
+      
       //showWiki(data.query); /*}*/
   });
 }
-/*
-//Display Wikipedia data
-function showWiki(results) {
-  var pageId = results.pageids[0];
-  var searchword = results.pages[pageId].title.toLowerCase();
-  var pattern = new RegExp(searchword, 'i');
-  if (results.pages[pageId].extract) var info = results.pages[pageId].extract.replace(pattern, '<b>' + searchword + '</b>').replace('<span id="References">References</span>', '<p></p>').replace(new RegExp('<p><br /></p>', 'g'), '').replace('External links', 'Click more below for links to:');
-  var thumbnail = results.pages[pageId].thumbnail;
-  var original = results.pages[pageId].original;
-  var pageimage = results.pages[pageId].pageimage;
-  var html = "";
-  //Error msg for no Wiki page
-  if (!results.pages[pageId].extract || results.pages[pageId].extract.length < 100) {
-    html = '<div class="center"><dt class="wiki_color">Sorry, no Wiki page was found.</dt><hr><dt class="wiki_color"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Try these tips:</dt><dd class="tips">1. Check your spelling by clicking the search term you typed above. If you see any red underlines, right-click to see suggestions for corrected spelling.<br />2. Check for correct spacing and punctuations, especially if your search term is a phrase or title consiting multiple words.</dd><dt class="wiki_color"><a href="https://www.google.com/search?q=' + $('#searchfield').val() + '" target="_blank">Browse Google&rsquo;s search results</a></dt></div>';
-    $('.wiki').html(html);
-  } else {
-    $('.results.wiki').empty();
-    //If thumbnail is unavailable
-    if (thumbnail === undefined || thumbnail === null) {
-      //Check if extract from is cut off
-      if (info.length < 1000) {
-        info = info.substring(0, info.length-3)
-        html += info;
-        $('.wiki').append(html);
-      //If it is cut, get rid off abbreviated ending
-      } else {
-        info = info.substring(0, info.length-7)
-        for (var i = 1; i < 6; i++) {
-          if (info.charAt(info.length-i) === '<') {
-            info = info.substring(0, info.length-i)
-          }
-        }
-        html += info + '...</p>';
-        $('.wiki').append(html);
-      }
-    //If thumbnail is available
-    } else {
-      //Same as above, check if extract is cut off or not
-      if (info.length < 1000) {
-        info = info.substring(0, info.length-3)
-        html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
-        thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info;
-        $('.wiki').append(html);
-      } else {
-        info = info.substring(0, info.length-7)
-        for (var i = 1; i < 6; i++) {
-          if (info.charAt(info.length-i) === '<') {
-            info = info.substring(0, info.length-i)
-          }
-        }
-        html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
-        thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;'+ pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) +'</span></div></a>' + info + '...</p>';
-        $('.wiki').append(html);
-      }
-    }
-    $('.wiki').append('<hr>');
-    $('.wiki').append('<p class="ext_link"><a href="//en.wikipedia.org/wiki/' + results.pages[pageId].title + 
-      '" data-lity><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>');
-  }
-*/
-
 
 //first call to Google Books
 function getGoogleBooksAPIData(userSelectedSearchTerm) {
@@ -360,8 +295,8 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
     key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
   }
   $.getJSON(googleBooksURL, params, function(data){
-    //console.log("google data: " );
-    //console.log(data.items);
+    ////console.log("google data: " );
+    ////console.log(data.items);
     $('.overviewitem').remove();
     var dataId="";
     $(`.js-Overview`).append(`
@@ -374,7 +309,6 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
       `
     ); 
    
-
     for (var i=0;i < data.items.length; i++) {
       $(`.js-Overview`).append(`
         <div class='overviewitem'>
@@ -403,7 +337,7 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
 
 
 
-/*
+
 function getNewsDataNextPage(userSelectedSearchTerm) {
   const params = {
     q: `${userSelectedSearchTerm}`,
@@ -416,11 +350,11 @@ function getNewsDataNextPage(userSelectedSearchTerm) {
   $.getJSON(newsURL, params, function(data){
     renderNewsData(data.items);
     newsNextPage = data.nextPage;
-     console.log("news next page is " + newsNextPage);
+     //console.log("news next page is " + newsNextPage);
    
   });  
 }
-*/
+
 function getYoutubeDataNextPage(userSelectedSearchTerm){
   const params = {
     q: `${userSelectedSearchTerm} in:name`,
@@ -432,7 +366,7 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
   }
   $.getJSON(youtubeURL, params, function(data){
     renderYoutubeData(data.items);
-    //console.log(data.items);
+    ////console.log(data.items);
     nextPageToken = data.nextPageToken;
   });
 }
@@ -491,43 +425,32 @@ function watchSubmit() {
     
   });
 
+//get next set of you tube videos
+  $('.js-youtube').on('click','.nextYoutube', (function(event){
+    ////console.log('nextYoutube');
+    event.preventDefault();
+    getYoutubeDataNextPage(userSelectedSearchTerm);
+  }));
+
+//get next set of news articles
+  $('.js-news').on('click','.nextNews', (function(event){
+    event.preventDefault();
+    getNewsDataNextPage(userSelectedSearchTerm);
+  }));
 }
 
 function listenForBookSelection() {
   $('.js-Overview').on('click', '.overviewitem', (function(e) {
     e.preventDefault();
     selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
-    //console.log("selected book id is " + selectedBookId);
+    ////console.log("selected book id is " + selectedBookId);
     getSelectedGoogleBookAPIData(selectedBookId);
-    //console.log('got google data');
+    ////console.log('got google data');
     
   }));
 }
 
 
-//get next set of youtube data
-function listenForNextYoutube() {
-  $('.js-youtube').on('click','.nextYoutube', (function(event){
-    //console.log('nextYoutube');
-    event.preventDefault();
-    getYoutubeDataNextPage(userSelectedSearchTerm);
-  }));
-}
-/*
-//get next set of news articles
-function listenforNextNews() {
-  $('.js-news').on('click','.nextNews', (function(event){
-    console.log('nextNews');
-    event.preventDefault();
-    getNewsDataNextPage(userSelectedSearchTerm);
-  }));
-}
-*/
-
-
 
 watchSubmit();
 listenForBookSelection();
-
-//listenforNextYoutube();
-//listenforNextNews();
