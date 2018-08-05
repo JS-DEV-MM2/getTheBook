@@ -14,132 +14,119 @@ const youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
 const wikiURL = 'https://en.wikipedia.org/w/api.php';
 
 //***Render Headers
+//Render list of books based on selecction
+function renderListOfBooksHeader() {
+  console.log('made it to renderListofbooksheader');
+  $('.content').remove();
+  var listofbooksHeader="";
+  listofbooksHeader = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle'><span class='title_style'><i class='fas fa-bird'></i>Select one of the following books to get more information</span></div></div>";
+  $('.row:nth-of-type(2)').append("<div class='content'>");
+  $('.content').append(listofbooksHeader);
+  $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
+}
 
 // Render Single Book header
 function renderSelectedBookHeader() {
-  $(`.js-Overview`).append(`
-      <div class="boxtitle booklisttitle" >
-        <span class="title_style">
-          <i class="fas fa-bird"></i>
-          Overview of the book you selected
-        </span>
-      </div>
-      `
-  );
+  console.log('fired renderSelectedBookHeader');
+  var selectedbookHeaderHtml = "";
+  $('.content').remove();
+  selectedbookHeaderHtml = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle' ><span class='title_style'><i class='fas fa-bird'></i>Overview of the book you selected</span></div>";
+  $('.row:nth-of-type(2)').append("<div class='content'>");
+  $('.content').append(selectedbookHeaderHtml);
+  $('.content').append("<div class='missy'>missymissy</div>");
+  renderYoutubeHeader();
+
 }
+
 //Render Youtube header
 function renderYoutubeHeader() {
-  $(`.js-youtube`).append(`
-      <div class="boxtitle youtubetitle">
-        <span class="title_style">
-        <div class="slidedown sdyoutube">
-            <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-        </div>
-            <i class="fas fa-handshake" ></i>
-            Youtube Videos: YouTube
-              </span>
-          <span class="nextYoutube">More results</span>
-      </div>
-  `
-);
-}
+  console.log('fired renderYoutubeHeader');
+  $('.content').append("<div class='missy'>missymissy</div>");
+  //$('.boxshadow').append("<div class='col-4'><div class='js-youtube'>");
+ // $('.col-12').append("<div class='missy'>missymissy</div>");
+  //var youtubeHeaderHtml = "";
+  //youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><span class='title_style'><div class='slidedown sdyoutube'><i class='fas fa-angle-double-down' aria-hidden='true' ></i></div><i class='fas fa-handshake'></i>Youtube Videos: YouTube</span><span class='nextYoutube'>More results</span></div></div></div>";
+  //$('.js-youtube').append(youtubeHeaderHtml);
+ // $('.boxshadow').append("</div></div>");
 
+}
+/*
 //Render News header
 function renderNewsHeader() {
-  $(`.js-news`).append(`
-      <div class="boxtitle newstitle">
-        <span class="title_style">
-         <div class="slidedown sdnews">
-           <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-         </div>
-          <i class="fas fa-star"></i>
-            Articles (news) API
-          </span>
-      </div>
-      `
-    );
+  console.log('fired renderNewsHeader');
+  var newsHeaderHtml = "";
+  newsHeaderHtml = "<div class='boxtitle newstitle'><span class='title_style'><div class='slidedown sdyoutube'><i class='fas fa-angle-double-down' aria-hidden='true' ></i></div><i class='fas fa-star'></i>News Articles</span><span class='nextNews'>More results</span></div>";
+  $(`.js-news`).append(newsHeaderHtml);
 }
-
+//Render Wiki header
 function renderWikiHeader() {
-  $(`.js-wiki`).append(`
-      <div class="boxtitle wikititle">
-        <span class="title_style">
-        <div class="slidedown sdwiki">
-          <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-        </div>
-          <i class="fas fa-feather-alt"></i>
-            Author Info
-          </span>
-          <!--<span class="nextWiki">More results</span>-->
-      </div>
-      `
-    );
+  console.log('fired renderWikiHeader');
+  var newsWikiHtml = "";
+  wikiHeaderHtml = "<div class='boxtitle newstitle'><span class='title_style'><div class='slidedown sdyoutube'><i class='fas fa-angle-double-down' aria-hidden='true' ></i></div><i class='fas fa-certificate'></i>Wiki</span><span class='nextWiki'>More</span></div>";
+  $(`.js-wiki`).append(newsWikiHtml);
 }
 
+*/
 //***Render Details
+
+//Render List of books details
+function renderListOfBooks(listofbooksData) {
+  var i = 0;
+  $(`.boxshadow`).append("<div class='listofbookstable'>");
+  var listofbooksHTML="";
+  console.log(listofbooksData);
+  $.each(listofbooksData, function(index, item) {
+  listofbooksHTML += "<div class='book'><div class='bookthumbtable-cell'><img class='listofbooksthumb' src='" + listofbooksData[i].volumeInfo.imageLinks.thumbnail +
+                      "'></img></div><div class='listofbookstable-cell'><div class='headerinfo'><div class='js-author'>" + listofbooksData[i].volumeInfo.authors + ", </div> <div class='js-title'>" +  
+                      listofbooksData[i].volumeInfo.title + "</div></div><div class='resultbody'><div class='js-publisher'> Publisher:" +  listofbooksData[i].volumeInfo.publisher + 
+                      "</div><div class='js-categories'> Genres: " +  listofbooksData[i].volumeInfo.categories + "</div><div class='js-average-rating'>Average Rating of " + listofbooksData[i].volumeInfo.averageRating +
+                      " out of " + listofbooksData[i].volumeInfo.ratingsCount + " ratings.</div> </div><div class='otherdata'><div class='js-textsnippet'>" + listofbooksData[i].searchInfo.textSnippet +
+                      "</div></div><div class='js-itemid' data-bookId='" + listofbooksData[i].id + "'>" + listofbooksData[i].id + "</div></div></div>";
+ 
+   
+    i +=1;
+  });
+  listofbooksHTML+="</div>";
+
+  $(`.listofbookstable`).append(listofbooksHTML);
+  $(`.boxshadow`).append("</div>");
+  $('.col-12').append("</div");
+
+  
+}
 
 //Render Single Book details
 function renderSelectedBookData(selectedBookData) {
-  ////console.log('inside render selected book data');
-  ////console.log(selectedBookData);
-$('.overviewitem').remove();
-      $('.booklisttitle').remove();
-      $(`.js-Overview`).append(`
-          <div class='overviewitem'>
-            <div class="headerinfo">
-              <div class="js-thumbnail">image goes here</div>
-              <div class="js-title">${selectedBookData.volumeInfo.title}</div>
-              <div class="js-author">${selectedBookData.volumeInfo.authors}</div>
-              <div class="js-publisher">Publisher:  ${selectedBookData.volumeInfo.publisher}  Published: ${selectedBookData.volumeInfo.publishedDate}</div>
-            </div>
-            <div class="resultbody">
-               <div class="js-description">Publisher:  ${selectedBookData.volumeInfo.description}</div>
-               <div class="js-average-rating">Average Rating of ${selectedBookData.volumeInfo.averageRating} out of ${selectedBookData.volumeInfo.ratingsCount} ratings.</div>
-               <div class="pageCount">${selectedBookData.volumeInfo.pageCount} page(s)</div>
-            </div>
-            <div class="otherdata">
-                <!--<div class="saleprice">Price:  $${selectedBookData.saleInfo.retailPrice.amount}</div> -->
-                <div class="linktobuy"><a href="${selectedBookData.saleInfo.buyLink}">Click to purchase from Google Play</a></div>
-            </div>
-          </div>
-          `
-        ); 
+  var overviewHtml = "";
+  var pricinginfoHtml = "";
+  overviewHtml = "<div class='overviewitem'><div class='headerinfo'><div class='js-thumbnail'>image goes here</div><div class='js-title'>" + selectedBookData.volumeInfo.title + "</div><div class='js-author'>" + selectedBookData.volumeInfo.authors + 
+  "</div><div class='js-publisher'>Publisher:  $" + selectedBookData.volumeInfo.publisher + " Published: " + selectedBookData.volumeInfo.publishedDate + 
+  "</div></div><div class='resultbody'><div class='js-description'>" + selectedBookData.volumeInfo.description + "</div>" + 
+  "<div class='js-average-rating'>Average Rating of " + selectedBookData.volumeInfo.averageRating + " out of " + selectedBookData.volumeInfo.ratingsCount + " ratings.</div><div class='pageCount'> " + selectedBookData.volumeInfo.pageCount + 
+  " page(s)</div></div><div class='otherdata'><div class='saleprice'>Price:  GET PRICE</div><div class='linktobuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a></div></div></div>";
 
-        $('.otherdata').remove();
-        var forSale=`${selectedBookData.saleInfo.saleability}`;
-        var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
-        if (isElectronic === `true`) {
-            if (forSale == 'FREE') {
-              $(`.js-purchase`).append(`
-                    <div class='otherdata'>
-                        <div class="js-salePrice">The price is 0!  Yeah!</div>
-                        <div class="js-linkToBuy"><a href=${selectedBookData.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                    </div>
-                    `
-              ); 
-            } else if (forSale === 'FOR_SALE') {
-              $(`.js-purchase`).append(`
-                <div class='otherdata'>
-                    <div class="js-salePrice">The price is: ${selectedBookData.saleInfo.retailPrice.amount}</div>
-                    <div class="js-linkToBuy"><a href=${selectedBookData.saleInfo.buyLink}>Click to purchase from Google Play</a></div>
-                </div>
-                `
-              ); 
-            } else {
-              `<div class='otherdata'>
-                        <div class="js-linkToBuy">There is some other status that I haven't considered.</div>
-                    </div>`
-            }
-        } else {
-          $(`.js-purchase`).append(`
-          <div class='otherdata'>
-              <H3><div class="notForSale">This book is not for sale through Google Play.</div></h3>
-          </div>
-          `
-          );
-        };
-        $('.col-12').show();
+  var forSale=`${selectedBookData.saleInfo.saleability}`;
+  var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
+  if (isElectronic === `true`) {
+      if (forSale == 'FREE') {
+        pricinginfoHtml = "<div class='otherdata'><div class='js-salePrice'>The price is 0!  Yeah!</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a></div></div>";
+      } else if (forSale === 'FOR_SALE') {
+        pricinginfoHtml = "<div class='otherdata'><div class='js-salePrice'>The price is: " + selectedBookData.saleInfo.retailPrice.amount + "</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a></div></div>";
+      } else {
+        pricinginfoHtml = "<div class='otherdata'><div class='js-linkToBuy'>There is some other status that I haven't considered.</div></div>";
+      }
+  } else {
+    pricinginfoHtml = "<div class='otherdata'><H3><div class='notForSale'>This book is not for sale through Google Play.</div></h3></div>";
+  };
 
+  overviewHtml += pricinginfoHtml;
+  $('.boxshadow').append(overviewHtml);
+  $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
+}
+
+function renderClosingDivs() {
+  console.log("fired renderClosingDivs");
+  $('.boxshadow').append("</div></div>");
 }
 
 
@@ -162,7 +149,7 @@ function renderYoutubeData(youtubeData) {
   $('.sdyoutube').append('<span id="nextYoutube">More results</span>');
 }
 
-
+/*
 //Display News detail
 function renderNewsData(newsData) {
   var indexNum = 0;
@@ -194,9 +181,25 @@ function renderWikiData(authorData) {
 
   }
   
-
+*/
 
 //Calls to the APIs
+
+//AJAX call for list of Google Books
+function getGoogleBooksAPIData(userSelectedSearchTerm) {
+  const params = {
+    q: `"${userSelectedSearchTerm}"`,
+    key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
+  }
+  $.getJSON(googleBooksURL, params, function(data){
+    console.log(data.items);
+    var dataId="";
+    
+    renderListOfBooksHeader();
+    renderListOfBooks(data.items);
+    
+  });
+} 
 
 //AJAX call to Google Books for Selected Book
 function getSelectedGoogleBookAPIData(book) {
@@ -206,19 +209,18 @@ function getSelectedGoogleBookAPIData(book) {
   }
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
   $.getJSON(singleBookURL, function(selectedBookData){
-    //console.log("selected book google data: " );
-    //console.log(selectedBookData);
     userSelectedAuthor = selectedBookData.volumeInfo.authors;
-    //console.log(userSelectedAuthor);
     renderSelectedBookHeader();
     renderSelectedBookData(selectedBookData);
     nextPageToken = selectedBookData.nextPageToken;
-    $('.col-4').show();
-   //nextPageToken = data.nextPageToken;
+    renderYoutubeHeader();
+    //$('.col-4').show();
   });
-  renderYoutubeHeader();
-  renderNewsHeader();
+  
+  
+  /*renderNewsHeader();
   renderWikiHeader();
+  renderClosingDivs();*/
 }
 
 
@@ -286,51 +288,6 @@ function getWikiAPIData() {
   });
 }
 
-//first call to Google Books
-function getGoogleBooksAPIData(userSelectedSearchTerm) {
-  const params = {
-    q: `"${userSelectedSearchTerm}"`,
-    key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
-  }
-  $.getJSON(googleBooksURL, params, function(data){
-    ////console.log("google data: " );
-    console.log(data.items);
-    $('.overviewitem').remove();
-    var dataId="";
-    $(`.js-Overview`).append(`
-      <h3 class="boxtitle booklisttitle" >
-        <span class="title_style">
-          <i class="fas fa-bird"></i>
-          Select one of the following books to get more information
-        </span>
-      </h3>
-      `
-    ); 
-   
-    for (var i=0;i < data.items.length; i++) {
-      $(`.js-Overview`).append(`
-        <div class='listofbooks'>
-          <div class="js-bookthumb">
-            <img src='${data.items[i].volumeInfo.imageLinks.thumbnail}'></img>
-          </div>
-          <div class='otherinfo'>
-            <div class="js-author">${data.items[i].volumeInfo.authors}, </div>  
-            <div class="js-title">${data.items[i].volumeInfo.title}</div>
-            <div class="js-publisher"> Publisher: ${data.items[i].volumeInfo.publisher}</div>
-            <div class="js-categories"> Genres:  ${data.items[i].volumeInfo.categories}</div>
-            <div class="js-average-rating">Average Rating of ${data.items[i].volumeInfo.averageRating} out of ${data.items[i].volumeInfo.ratingsCount} ratings.</div> s
-            <div class="js-textsnippet">${data.items[i].searchInfo.textSnippet}</div>
-          </div>
-          <div class="js-itemid" data-bookId="${data.items[i].id}">${data.items[i].id}</div> 
-        </div>
-        `
-        );
-    };
-  });
-  
-} 
-
-
 
 
 
@@ -367,8 +324,6 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
   });
 }
 
-
-
 /* Event listeners */
 
 function watchSubmit() {
@@ -378,7 +333,25 @@ function watchSubmit() {
     $("input#js-searchfield").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
   }, 3000);
 
- //user clicks to look at example
+  //listener for input from user; on submit or click, bring up list of associated books
+  $('#js-inputform').submit(function(e){
+    e.preventDefault();
+    const queryTarget = $(e.currentTarget).find('#js-searchfield');
+    userSelectedSearchTerm  = queryTarget.val();
+    getGoogleBooksAPIData(userSelectedSearchTerm);
+
+  });
+
+  //listener for book selection; on click, get information on selected book
+  $(document).on('click', '.book', (function(e) {
+    console.log('book has been clicked');
+    e.preventDefault();
+    selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
+    console.log(selectedBookId);
+    getSelectedGoogleBookAPIData(selectedBookId);
+  }));
+
+  //user clicks to look at example
   $('.example_search').click(function(e) {
     e.preventDefault();
     $('html, body').animate({ scrollTop: $('main').offset().top - 20});    
@@ -390,36 +363,24 @@ function watchSubmit() {
     $('html, body').animate({ scrollTop: $('header').offset().top});
     $('input#js-searchfield').focus();
   });
+
  //listener for youtube data
   $('.js-youtube').on('click', '.slidedown', (function(e){
     e.preventDefault();
     getYouTubeAPIData(userSelectedSearchTerm);
   }));
+
 //listener for news data
   $('.js-news').on('click', '.slidedown', (function(e){
     e.preventDefault();
     getNewsAPIData(userSelectedSearchTerm);
   }));
+
 //listener for wiki data
   $('.js-wiki').on('click', '.slidedown', (function(e){
     e.preventDefault();
     getWikiAPIData(userSelectedSearchTerm);
   }));
-
-  $('#js-inputform').submit(function(e){
-    e.preventDefault();
-    //$('.content').hide();
-    
-    const queryTarget = $(e.currentTarget).find('#js-searchfield');
- 
-    userSelectedSearchTerm  = queryTarget.val();
-    getGoogleBooksAPIData(userSelectedSearchTerm);
-    $('html, body').animate({ scrollTop: $('main').offset().top - 20});  
-    $('.results').empty();
-    $('.col-4').hide();
-    $('.overviewitem').show();
-    
-  });
 
 //get next set of you tube videos
   $('.js-youtube').on('click','.nextYoutube', (function(event){
@@ -435,18 +396,4 @@ function watchSubmit() {
   }));
 }
 
-function listenForBookSelection() {
-  $('.js-Overview').on('click', '.overviewitem', (function(e) {
-    e.preventDefault();
-    selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
-    ////console.log("selected book id is " + selectedBookId);
-    getSelectedGoogleBookAPIData(selectedBookId);
-    ////console.log('got google data');
-    
-  }));
-}
-
-
-
 watchSubmit();
-listenForBookSelection();

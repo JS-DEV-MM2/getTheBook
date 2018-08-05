@@ -35,7 +35,8 @@
 
 .col-3, .col-4, .col-6, .col-9, .col-12 {
     float: left;
-    margin-bottom: 5%;
+    /*margin-bottom: 5%;*/
+    margin-bottom: 1%;
 
 /* Gutters:
 *  Each column is padded by half-a-gutter on each side,

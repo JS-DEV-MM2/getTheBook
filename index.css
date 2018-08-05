@@ -10,10 +10,10 @@ form {
   margin-right:auto;
   max-width: 100%;
   padding:0;
-  
-
 }
-
+.missy {
+  color:black;
+}
 header {
   background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(images/bg1.jpg);
   background-size: cover;
@@ -237,9 +237,10 @@ input {
 .boxshadow {
   box-shadow: 1px 1px 5px #777777; 
   background-color:white;
-  padding-bottom: 3%;
-
+  overflow:auto;
+  padding-bottom:1%;
 }
+
 
 .overviewdetail {
   float: left;
@@ -249,15 +250,23 @@ input {
   box-shadow: 1px 1px 5px #777777;
   border-width: 2px;
   background-color: #BEB968;
-  padding-top:3%;
-  padding-bottom: 3%;
-  margin-bottom:2%;
+  padding:2%;
+  margin:1%;
 }
 
 .slidedown {
   float:left;
 }
 
+
+/*
+.listing_container img{ 
+  display: inline-block; 
+  vertical-align: middle;
+  font: 16px/1 Arial sans-serif; 
+  max-height:100%; 
+  max-width:100%;}
+*/
 @keyframes slidedown {
   0% {
     left: 0;
@@ -266,7 +275,7 @@ input {
   
   100% {
     left: 0;
-    top: 25px;
+    top: 10px;
   }
 }
 
@@ -278,7 +287,7 @@ input {
   
   100% {
     left: 0;
-    top: 25px;
+    top: 10px;
   }
 } 
 
@@ -290,7 +299,7 @@ input {
   
   100% {
     left: 0;
-    top: 25px;
+    top: 10px;
   }
 } 
 
@@ -302,7 +311,7 @@ input {
   
   100% {
     left: 0;
-    top: 25px;
+    top: 10px;
   }
 }
 
@@ -357,8 +366,8 @@ main:hover .fa-angle-double-down {
 }
 
 .results {
-  margin: 0 5%;
-  padding-top:3%;
+  margin: 0 2%;
+  padding-top:2%;
 }
 
 .dataitem, .newsitem, .youtubeitem, .overviewitem {
@@ -368,12 +377,12 @@ main:hover .fa-angle-double-down {
 }
 
 .listofbooks {
+  height:250px;
   float:left;
   overflow:auto;
-  border-bottom:1px inset #0B4863;
-  padding-bottom: 8px;
-  padding:8px;
-  margin-top:13px;
+  border:1px inset #0B4863;
+  padding:3px;
+
 }
 
 .otherinfo {
@@ -381,6 +390,7 @@ main:hover .fa-angle-double-down {
   padding: 10px 3px 10px 10px;
   color:  #a54132;
   font-size:12px;
+  
 }
 
 .dataitem:hover, .newsitem:hover, .youtubeitem:hover, .nextYoutube:hover {
@@ -390,33 +400,63 @@ main:hover .fa-angle-double-down {
 .headerinfo {
   font-size: 14px;
   text-align: left;
-  float:left;
   padding: 0 0 10px 0;
   color:  #a54132;
   overflow:auto;
 }
-.js-bookthumb {
+
+.listofbookstable {
+  display:table;
+  width:100%;
+  text-align:left;
+  margin:.5%;
+}
+
+.book {
   float:left;
+  width:50%;
+  padding:3px;
+  height:216px;
+}
+
+.book:hover {
+  cursor:pointer;
+  background-color:lightgray;
+}
+
+.bookthumbtable-cell {
+  display:table-cell;
+  width:33.33%;
+  vertical-align:middle;
+}
+
+.listofbookstable-cell {
+  display:table-cell;
+  width:66.66%;
+  vertical-align:middle;
+  padding-left:3px;
+
+}
+
+.listofbooksthumb {
+  display:inline-block;
+  vertical-align:middle;
 }
 
 .resultbody {
   font-size: 12px;
+  padding-bottom:3px;
 }
 
 .otherdata {
-  margin-bottom: 10px;
-  margin-top:5px;
-  margin-left:20px;
   font-size:12px;
 }
 .js-title {
   float:left;
-  padding:3px;
 }
+
 .js-author {
-  margin-bottom: 5px;
-  float:left;
-  padding:3px;
+  float:left; 
 }
 
 .js-authorname {
@@ -426,6 +466,8 @@ main:hover .fa-angle-double-down {
 .js-desc {
   margin-bottom: 10px;
 }
+
+
 
 .newsearchrow {
   vertical-align:middle;
@@ -477,10 +519,6 @@ footer {
 }
 #builtby:hover {
   color:  #F1C0B1;
-}
-  
-.resultbody {
-  font-size: 14px;
 }
 
 .purchasedata {
@@ -572,10 +610,12 @@ input {
 .headerinfo {
   font-size: 14px;
   text-align: left;
+  padding-bottom:3px;
 }
 
 .resultbody {
   font-size: 12px;
+  padding-bottom:2px;
 }
 
 .purchasedata {
