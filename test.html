@@ -1,35 +1,42 @@
-<div class='book'>
-    <div class='bookthumbtable-cell'>
-        <img class='listofbooksthumb' src='thumbnail'></img>
-    </div>
-    <div class='listofbookstable-cell'>
-        <div class='headerinfo'>
-            <div class='js-author'>
-                author
-            </div> 
+<div class='overviewitem'>
+    <div class='headerinfo'>
+        <div class='bookthumbtable-cell'>
+            <img src=  selectedBookData.volumeInfo.imageLinks.thumbnail   class='js-thumbnail'>
+        </div>
+        <div class='listofbookstable-cell>
             <div class='js-title'>
-                title
+                  selectedBookData.volumeInfo.title  
             </div>
-        </div>
-        <div class='resultbody'>
-            <div class='js-publisher'> 
-                Publisher
+            <div class='js-author'>
+                selectedBookData.volumeInfo.authors
             </div>
-            <div class='js-categories'> 
-                Genres: 
+            <div class='js-publisher'>
+                Publisher:  $  selectedBookData.volumeInfo.publisher   Published:   selectedBookData.volumeInfo.publishedDate  
             </div>
-            <div class='js-average-rating'>
-                Average Rating ofratings.
-            </div>
-        </div>
-        <div class='otherdata'>
-            <div class='js-textsnippet'>
-                text
-            </div>
-        </div>
-        <div class='js-itemid' data-bookId='" + listofbooksData[i].id + "'>
-            ID
         </div>
     </div>
 </div>
-
+<div class='resultbody'>
+    <div class='js-description'>
+        selectedBookData.volumeInfo.description
+    </div>
+    <div class='js-average-rating'>
+        Average Rating of   selectedBookData.volumeInfo.averageRating   out of   selectedBookData.volumeInfo.ratingsCount   ratings.
+    </div>
+    <div class='pageCount'>
+        selectedBookData.volumeInfo.pageCount  page(s)
+    </div>
+</div>
+<div class='otherdata'>
+    <div class='saleprice'>
+        Price:  GET PRICE
+    </div>
+    <div class='linktobuy'>
+        <a href=  selectedBookData.saleInfo.buyLink  >
+            Click to purchase from Google Play
+        </a>
+    </div>
+</div>
+</div>
+</div>
+      

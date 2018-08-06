@@ -65,15 +65,18 @@ i {
 }
 
 .fas {
-  font-size: 25px !important;
-  *position: relative;
-  padding-top:10px;
+  font-size: 25px;
+  height: 20px;
+  width:20px;
+  margin-right:10px;
+  position: relative;
   padding-right:3px;
   padding-left:4px;
+  text-align:left;
   
 }
 
-.fa-angle-double-down, .fa-angle-double-up, .fa-angle-double-right {
+.fa-angle-double-down, .fa-angle-double-up {
   color:  #0B4863;
   -webkit-transition-property: color;
      -moz-transition-property: color;
@@ -87,16 +90,10 @@ i {
      -moz-transition-timing-function: linear;
        -o-transition-timing-function: linear;
           transition-timing-function: linear;
-height: 20px;
-position: absolute;
-width:20px;
-  /*animation-name: blinker;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;*/
+
 }
 
-.fa-angle-double-down:hover, .fa-angle-double-up:hover, .fa-angle-double-right:hover {
+.fa-angle-double-down:hover {
   color: #9BAA37;
 }
 
@@ -110,8 +107,10 @@ width:20px;
 
 .fa-kiwi-bird:before {
   content: "\f535";
+  height:20px;
+  width:20px;
+  padding-right:3px;
 }
-
 
 input {
   display:inline-block;
@@ -154,7 +153,13 @@ input {
   background: none;
   width: 50%;
 }
-
+.sdexample {
+  /*border:1px solid blue;*/
+  height:100%;
+  text-align:left;
+  animation-name: slidedown;
+  animation-duration: 4s;
+}
 
 /* Main rules */
 
@@ -241,6 +246,10 @@ input {
   padding-bottom:1%;
 }
 
+.overviewitem {
+  padding-left:3px;
+  padding-right:3px;
+}
 
 .overviewdetail {
   float: left;
@@ -250,88 +259,58 @@ input {
   box-shadow: 1px 1px 5px #777777;
   border-width: 2px;
   background-color: #BEB968;
-  padding:2%;
+  padding:3px;
   margin:1%;
 }
 
-.slidedown {
-  float:left;
-}
-
-
-/*
-.listing_container img{ 
-  display: inline-block; 
-  vertical-align: middle;
-  font: 16px/1 Arial sans-serif; 
-  max-height:100%; 
-  max-width:100%;}
-*/
-@keyframes slidedown {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  
-  100% {
-    left: 0;
-    top: 10px;
-  }
-}
-
-@-moz-keyframes slidedown {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  
-  100% {
-    left: 0;
-    top: 10px;
-  }
-} 
-
-@-o-keyframes slidedown {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  
-  100% {
-    left: 0;
-    top: 10px;
-  }
-} 
-
-@-webkit-keyframes slidedown {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  
-  100% {
-    left: 0;
-    top: 10px;
-  }
-}
-
 .title_style {
+/*border:1px solid green;*/
+  display:table;
   text-decoration: none;
-  padding: 3px 20px 3px 0px;
+  /*padding: 5px;*/
   display: block;
   text-align:right;
   color:white;
-  height:30px;
   position:relative;
-}  
+  height: 80px;
+} 
 
-main:hover .fa-angle-double-down {
+.title_style:hover {
+  cursor:pointer;
+}
+
+.slidedown {
+  /*border:1px solid blue;*/
+  float:left;
+  display:table-cell;
+  width:15%;
+  height:100%;
+  text-align:left;
   animation-name: slidedown;
+  animation-duration: 4s;
+}
+
+.othertitle {
+  /*border:1px solid red;*/
+  display:table-cell;
+  width:300px;
+  height:100%;
+}
+
+@keyframes colorchange {
+    0%   {color:#9BAA37}
+    50%  {color: #0B4863;}
+    100% {color:#BEB968}
+}
+
+
+
+ .fa-angle-double-down, .fa-angle-double-up {
+  animation-name: colorchange;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
-
 .nextYoutube, .nextNews, .nextWiki{
   display:none;
 }
@@ -370,7 +349,7 @@ main:hover .fa-angle-double-down {
   padding-top:2%;
 }
 
-.dataitem, .newsitem, .youtubeitem, .overviewitem {
+.dataitem, .newsitem, .youtubeitem {
   border-bottom:1px inset #0B4863;
   padding-bottom: 8px;
   padding:8px;
@@ -394,7 +373,7 @@ main:hover .fa-angle-double-down {
 }
 
 .dataitem:hover, .newsitem:hover, .youtubeitem:hover, .nextYoutube:hover {
-  background-color:rgba(213, 102, 75, 0.2);
+  background-color:lightgray;
 }
 
 .headerinfo {
@@ -404,6 +383,7 @@ main:hover .fa-angle-double-down {
   color:  #a54132;
   overflow:auto;
 }
+
 
 .listofbookstable {
   display:table;
@@ -435,12 +415,35 @@ main:hover .fa-angle-double-down {
   width:66.66%;
   vertical-align:middle;
   padding-left:3px;
-
 }
-
 .listofbooksthumb {
   display:inline-block;
   vertical-align:middle;
+}
+.indbookthumbtable-cell {
+/* border:1px solid blue;*/
+  display:table-cell;
+  vertical-align:top;
+  width:15%;
+ 
+}
+.indbooktable-cell {
+  /* border:1px solid green;*/
+  display:table-cell;
+  vertical-align:top;
+  width:85%;
+  
+}
+.indbookheaderinfo {
+  display:inline-block;
+  font-size: 14px;
+  text-align: left;
+  padding: 0 0 10px 10px;
+  color:  #a54132;
+}
+.indbookbodyinfo {
+  float:left;
+  padding:5px 10px 5px 12px;
 }
 
 .resultbody {
@@ -453,21 +456,48 @@ main:hover .fa-angle-double-down {
 }
 .js-title {
   float:left;
+  font-size:14px;
+  font-weight:bold;
+  padding:0 3px 5px 0;
+  width:100%;
+  text-align:left;
 }
 
 .js-author {
   float:left; 
+  padding:0 0 5px 0;
 }
 
 .js-authorname {
   font-weight: bold;
 }
 
+.js-publisher {
+  padding:0 3px 5px 0;
+}
+
+.js-description {
+  font-size: 12px;
+  color:  #0B4863;
+}
 .js-desc {
   margin-bottom: 10px;
 }
 
+.wikiimg {
+  width:100%;
+  height:100%;
+}
 
+.wikiimg img {
+  margin: 0 auto;
+  display: block;
+
+}
+
+.pagecount {
+  padding-bottom:3px;
+}
 
 .newsearchrow {
   vertical-align:middle;
@@ -613,6 +643,10 @@ input {
   padding-bottom:3px;
 }
 
+.book {
+  float:left;
+  width:100%;
+}
 .resultbody {
   font-size: 12px;
   padding-bottom:2px;
@@ -644,5 +678,5 @@ input {
 #itc_icon {
   float:none;
 }
-*/
+
 }
