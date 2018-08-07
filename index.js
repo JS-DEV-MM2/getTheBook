@@ -68,27 +68,49 @@ function renderWikiHeader() {
 
 //Render List of books details
 function renderListOfBooks(listofbooksData) {
-  var i = 0;
-  $(`.boxshadow`).append("<div class='listofbookstable'>");
-  var listofbooksHTML="";
+  console.log('fired renderListOfBooks');
+  console.log(listofbooksData.length);
   console.log(listofbooksData);
-  $.each(listofbooksData, function(index, item) {
-  listofbooksHTML += "<div class='book'><div class='bookthumbtable-cell'><img class='listofbooksthumb' src='" + listofbooksData[i].volumeInfo.imageLinks.thumbnail +
-                      "'></img></div><div class='listofbookstable-cell'><div class='headerinfo'><div class='js-author'>" + listofbooksData[i].volumeInfo.authors + ", </div> <div class='js-title'>" +  
-                      listofbooksData[i].volumeInfo.title + "</div></div><div class='resultbody'><div class='js-publisher'> Publisher:" +  listofbooksData[i].volumeInfo.publisher + 
-                      "</div><div class='js-categories'> Genres: " +  listofbooksData[i].volumeInfo.categories + "</div><div class='js-average-rating'>Average Rating of " + listofbooksData[i].volumeInfo.averageRating +
-                      " out of " + listofbooksData[i].volumeInfo.ratingsCount + " ratings.</div> </div><div class='otherdata'><div class='js-textsnippet'>" + listofbooksData[i].searchInfo.textSnippet +
-                      "</div></div><div class='js-itemid' data-bookId='" + listofbooksData[i].id + "'>" + listofbooksData[i].id + "</div></div></div>";
- 
-   
-    i +=1;
-  });
-  listofbooksHTML+="</div>";
+  var txtSnippet = "";
+  var pub = "";
+
+  var listofbooksHTML="";
+  $(`.boxshadow`).append("<div class='listofbookstable'>");
+
+  //Error msg for no search results: book list
+  if (listofbooksData.length === 0) {
+    listofbooksHTML += '<div class="center"><div class="errormessage">Sorry, no books on the selected topic were found on Google Books.</div></div>';
+  } else {
+    var i = 0;
+    $.each(listofbooksData, function(index, item) {
+    //if there is no publisher available
+    if (typeof(listofbooksData[i].volumeInfo.publisher) =='undefined' || listofbooksData[i].volumeInfo.publisher === null) {
+      pub = 'No publisher is listed.';
+    } else {
+      pub = listofbooksData[i].volumeInfo.publisher;
+    };
+      //if there is no snippet available
+    if (typeof(listofbooksData[i].searchInfo) =='undefined' || listofbooksData[i].searchInfo.textSnippet === null) {
+      txtSnippet = 'There is no summary for this book';
+    } else {
+      txtSnippet = listofbooksData[i].searchInfo.textSnippet;
+    };
+    listofbooksHTML += "<div class='book'><div class='bookthumbtable-cell'><img class='listofbooksthumb' src='" + listofbooksData[i].volumeInfo.imageLinks.thumbnail +
+                        "'></img></div><div class='listofbookstable-cell'><div class='headerinfo'><div class='js-author'>" + listofbooksData[i].volumeInfo.authors + ", </div> <div class='js-title'>" +  
+                        listofbooksData[i].volumeInfo.title + "</div></div><div class='resultbody'><div class='js-publisher'> Publisher:" +  pub + 
+                        "</div><div class='js-categories'> Genres: " +  listofbooksData[i].volumeInfo.categories + "</div><div class='js-average-rating'>Average Rating of " + listofbooksData[i].volumeInfo.averageRating +
+                        " out of " + listofbooksData[i].volumeInfo.ratingsCount + " ratings.</div> </div><div class='otherdata'><div class='js-textsnippet'>" + txtSnippet +
+                        "</div></div><div class='js-itemid' data-bookId='" + listofbooksData[i].id + "'>" + listofbooksData[i].id + "</div></div></div>";
+  
+    
+      i +=1;
+    });
+    listofbooksHTML+="</div>";
+  };
 
   $(`.listofbookstable`).append(listofbooksHTML);
   $(`.boxshadow`).append("</div>");
-  $('.col-12').append("</div");
-
+  $('.col-12').append("</div")
   
 }
 
@@ -136,34 +158,15 @@ function renderClosingDivs() {
 
 //Display Youtube detail
 function renderYoutubeData(youtubeData) {
-  //var i = 0;
+  console.log('fired renderYoutubeData');
   var youtubeHTML="";
   $('.youtubeitem').remove();
-   //console.log(youtubeData);
-  //console.log(youtubeData.items[0].snippet.title);
   $.each(youtubeData.items, function(i, item) {
-    //console.log(index);
-    //??CANNOT CHANGE HARDCODED INDEX NUMBER TO A VARIABLE
     youtubeHTML += "<div class='youtubeitem'><div class='headerinfo'><div class='js-title'>" + youtubeData.items[i].snippet.title + 
               "</div></div><div class='resultbody'><div class='js-desc'>" + youtubeData.items[i].snippet.description + "</div></div><div class='myVideo' id='" + i + "'>" + 
               "<iframe class='resp-iframe' data-videoIndex='" + 0 + "' src='https://www.youtube.com/embed/" + youtubeData.items[i].id.videoId + "?controls=1'></iframe></div></div>";
-    //i +=1;
-    ////console.log(youtubeHTML);
   });
-  
   $('.js-youtube').append(youtubeHTML);
-  //$(span#youtubearrow).attr('src', )
-
-  /*$("input#js-searchfield").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
-  $("#infoToggler").click(function() {
-    $(this).find('img').toggle();
-});​
-
-<div id="infoToggler"><img src="http://tympanus.net/PausePlay/images/play.png" width="60px" height="60px"/>
-<img src="http://maraa.in/wp-content/uploads/2011/09/pause-in-times-of-conflict.png" width="60px" height="60px" style="display:none"/>
-</div>*/
-
-  $('.nextYoutube').show();
 }
 
 
