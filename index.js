@@ -19,7 +19,7 @@ function renderListOfBooksHeader() {
   console.log('made it to renderListofbooksheader');
   $('.content').remove();
   var listofbooksHeader="";
-  listofbooksHeader = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle'><span class='title_style'><i class='fas fa-kiwi-bird'></i>Select one of the following books to get more information</span></div></div>";
+  listofbooksHeader = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle'><div class='title_style'><i class='fas fa-kiwi-bird'></i>Select one of the following books to get more information</div></div></div>";
   $('.row:nth-of-type(2)').append("<div class='content'>");
   $('.content').append(listofbooksHeader);
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
@@ -30,7 +30,7 @@ function renderSelectedBookHeader() {
   console.log('fired renderSelectedBookHeader');
   var selectedbookHeaderHtml = "";
   $('.content').remove();
-  selectedbookHeaderHtml = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle' ><span class='title_style'><i class='fas fa-kiwi-bird'></i>Overview of the book you selected</span></div>";
+  selectedbookHeaderHtml = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle' ><div class='title_style'><i class='fas fa-kiwi-bird'></i>Overview of the book you selected</div></div>";
   $('.row:nth-of-type(2)').append("<div class='content'>");
   $('.content').append(selectedbookHeaderHtml);
 
@@ -41,7 +41,7 @@ function renderYoutubeHeader() {
   console.log('fired renderYoutubeHeader');
   $('.boxshadow').append("<div class='col-4'><div class='js-youtube'></div></div>");
   var youtubeHeaderHtml = "";
-  youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><span class='title_style'><div class='slidedown sdyoutube'><span><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><span><i class='fas fa-handshake'></i>Youtube Videos</span><p><span class='nextYoutube'>More results</span></div>";
+  youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><div class='title_style'><div class='slidedown sdyoutube'><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-handshake'></i></div><div class='titleverbage'>Youtube Videos</div></div><p><div class='nextYoutube'>More results</div></div></div>";
   $('.js-youtube').append(youtubeHeaderHtml);
  // $('.boxshadow').append("</div></div>");
 
@@ -52,7 +52,7 @@ function renderNewsHeader() {
   console.log('fired renderNewsHeader');
   $('.boxshadow').append("<div class='col-4'><div class='js-news'></div></div>");
   var newsHeaderHtml = "";
-  newsHeaderHtml = "<div class='boxtitle newstitle'><span class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><span><i class='fas fa-star'></i>News Articles</span><p><span class='nextNews'>More results</span></div></div></div>";
+  newsHeaderHtml = "<div class='boxtitle newstitle'><div class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-star'></i></div><div class='titleverbage'>News Articles</div></div><p><div class='nextNews'>More results</div></div></div>";
   $(`.js-news`).append(newsHeaderHtml);
 }
 //Render Wiki header
@@ -60,7 +60,7 @@ function renderWikiHeader() {
   console.log('fired renderWikiHeader');
   $('.boxshadow').append("<div class='col-4'><div class='js-wiki'></div></div>");
   var newsWikiHtml = "";
-  wikiHeaderHtml = "<div class='boxtitle wikititle'><span class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><span><i class='fas fa-certificate'></i>Wiki</span><p><span class='nextWiki'>More</span></div></div></div>";
+  wikiHeaderHtml = "<div class='boxtitle wikititle'><div class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-certificate'></i></div><div class='titleverbage'>Wiki</div></div><p><div class='nextWiki'>More</div></div></div>";
   $(`.js-wiki`).append(wikiHeaderHtml);
 }
 
@@ -178,7 +178,7 @@ function renderNewsData(newsData) {
   $('.newsitem').remove();
   $.each(newsData, function(index, item) {
     ////console.log(newsData.articles[indexNum].title);
-    newsHTML += "<div class='newsitem'><div class='headerinfo'><div class='js-title'>" + newsData.articles[indexNum].title + "</div></div><div class='resultbody'><div class='js-author'><span class='js-authorname'>Author:  </span>" + 
+    newsHTML += "<div class='newsitem'><div class='headerinfo'><div class='js-title'>" + newsData.articles[indexNum].title + "</div></div><div class='resultbody'><div class='js-author'><div class='js-authorname'>Author:  </div>" + 
     newsData.articles[indexNum].author + "</div><div class='js-subtitle'>" + newsData.articles[indexNum].description + "</div><div class='read'><a href='" + newsData.articles[indexNum].url + "'>Click here to read the article </a></div></div></div>";
     ////console.log(newsHTML);
     indexNum +=1;
@@ -191,7 +191,16 @@ function renderNewsData(newsData) {
 //Display Wikipedia author data
 function renderWikiData(authorData) {
   console.log("renderWikiData fired");
+  console.log(authorData);
   var pageId = authorData.pageids[0];
+
+  var thumbSource = "";
+  console.log(typeof(authorData.pages[pageId].thumbnail.source));
+  if (typeof(authorData.pages[pageId].thumbnail.source) =='undefined' || authorData.pages[pageId].thumbnail.source === null) {
+    thumbSource = 'There is no thumnail for this book.';
+  } else {
+    thumbSource = authorData.pages[pageId].thumbnail.source;
+  };
   //console.log(pageId);
   var wikiHTML="";
   wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikiimg'><img class='js-wikithumb' src='" + authorData.pages[pageId].thumbnail.source + "' height='" + authorData.pages[pageId].thumbnail.height + "' width='" + authorData.pages[pageId].thumbnail.width + "'></img></div><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
@@ -337,12 +346,10 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
     videoID:'id',
     pageToken: state.youtubePageToken
   }
-  console.log("next page token is " + state.youtubePageToken);
   $.getJSON(youtubeURL, params, function(data){
     console.log(data)
 
     renderYoutubeData(data);
-    ////console.log(data.items);
     state.youtubePageToken = data.nextPageToken;
   });
 }
@@ -397,7 +404,6 @@ function watchSubmit() {
       $('#youtubeangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
     } else if($('#youtubeangledown').css('display')=='none') {
-      console.log('MADE IT PASSED THE ANGLE UP IS SHOWING');
       $('.youtubeitem').remove();
       $('.nextYoutube').css('display','none');
       $('#youtubeangleup').css('display','none');

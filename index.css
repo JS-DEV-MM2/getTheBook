@@ -293,8 +293,21 @@ input {
 .othertitle {
   /*border:1px solid red;*/
   display:table-cell;
-  width:300px;
-  height:100%;
+  float:right;
+}
+
+.appicons {
+  /*border:1px solid pink;*/
+  padding-right:5px;
+  width:40px;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.titleverbage {
+  /*border: 1px solid orange;*/
+  display:inline-block;
+  vertical-align:middle;
 }
 
 @keyframes colorchange {
@@ -314,12 +327,7 @@ input {
 .nextYoutube, .nextNews, .nextWiki{
   display:none;
 }
-/*
-.nextYoutube, .nextNews {
-  float:right;
-  color: #0B4863;
-}
-*/
+
 .myVideo {
     position: relative;
     overflow: hidden;
@@ -511,13 +519,6 @@ iframe {
   overflow:auto;
 }
 
-.searchagain, .companylogo {
-  text-align: center;
-  margin:auto;
-}
-
-
-
 .saleprice {
   font-weight:600;
 }
@@ -526,60 +527,61 @@ iframe {
 
 }
 
-
-/* Footer rules */
-footer {
-  text-shadow: 0 0 1px #555555;
-  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.5), rgba(213, 102, 75, 0.2) );
-  padding-top: 20px;
-  /*position: absolute;
-  bottom: 0;
-  height: 20px;
-  background: #f0f0f0;
-  width: 100%;*/
-
-}
-
-#builtby {
-  color:#a54132;
-  float:left;
-  text-align:right;
-  margin-top:10px;
-  margin-left:200px;
-}
-#builtby:hover {
-  color:  #F1C0B1;
-}
-
 .purchasedata {
   margin-bottom: 20px;
   margin-top:10px;
   margin-left:20px;
   font-size:14px;
 }
-/*
-.itc_logo {
-  float:left;
-}
-*/
-#itc_icon {
-  height: 40px;
+
+/* Footer rules */
+footer {
+  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.5), rgba(213, 102, 75, 0.2) );
+  padding-top: 20px;
+  bottom: 0;
+  width: 100%;
+
 }
 
-#newsearch {
-  float:left;
-}
 .footerbox {
+  /*border:1px solid green;*/
+  display:table;
   padding-bottom: 1px; 
   padding-top:3px;
-  height:45px;
+  height:50px;
   float:left;
   width:100%;
   transition: color 0.25s linear;
   position: relative;
 }
 
+.searchagain, .companylogo {
+  display:table-cell;
+  vertical-align: middle;
+  /*border: 1px solid yellow;*/
+}
 
+
+.companylogo {
+  float:right;
+}
+
+#searchdoubleup, #searchsearch, #searchwords, #cowords, #cologo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#builtby {
+  color:#a54132;
+}
+
+#builtby:hover {
+  color:  #F1C0B1;
+}
+
+#itc_icon {
+  height: 40px;
+}
 #footerdetail {
   position: absolute;
   bottom:0;
@@ -659,6 +661,16 @@ input {
   font-size:12px;
 }
 
+.searchagain, .companylogo {
+  display:inline-block;
+  text-align:center;
+  width:100%;
+}
+
+.companylogo {
+  float:none;
+}
+/*
 .footerbox {
   float:none;
 }
@@ -678,5 +690,5 @@ input {
 #itc_icon {
   float:none;
 }
-
+*/
 }
