@@ -275,9 +275,7 @@ input {
   height: 80px;
 } 
 
-.title_style:hover {
-  cursor:pointer;
-}
+
 
 .slidedown {
   /*border:1px solid blue;*/
@@ -288,6 +286,10 @@ input {
   text-align:left;
   animation-name: slidedown;
   animation-duration: 4s;
+}
+
+.slidedown:hover {
+  cursor:pointer;
 }
 
 .othertitle {
@@ -326,6 +328,11 @@ input {
 }
 .nextYoutube, .nextNews, .nextWiki{
   display:none;
+}
+
+.nextYoutube:hover, .nextNews:hover, .nextWiki:hover{
+  cursor:pointer;
+  color:#0B4863;
 }
 
 .myVideo {
@@ -636,7 +643,6 @@ input {
   padding: 5px;
   text-align:center;
   font-size:14px;
-
 } 
 
 .headerinfo {
