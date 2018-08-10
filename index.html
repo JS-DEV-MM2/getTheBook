@@ -2,43 +2,6 @@
 <html lang="en">
 
 <head>
-
- 
-    <!--<head>
-        <title>getTheBook</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Select a the best book for your bookclub.">
-        <meta property="og:title" content="getTheBook.co" />  
-        <meta property="og:image" content="/images/getTheBook_bkgrd.jpeg" />
-        <meta property="og:description" content="Select a the best book for your bookclub." />
-        <meta property="og:type" content="website"> 
-        <meta property="og:url" content="http://www.lookitup.co" 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="msapplication-config" content="/browserconfig.xml" 
-        <meta name="theme-color" content="#ffffff">
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="css/normalize.css">
-        <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="css/lity.min.css">
-        <link rel="stylesheet" type="text/css" href="css/grid.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Lato:100,300,400">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/manifest.json">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#999999">
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-        <script async src="js/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-        <script async src="https://static.addtoany.com/menu/page.js"></script>
-        <script async src="https://use.fontawesome.com/0f63d8ca7c.js"></script>
-        <script async src="js/lity.min.js"></script>
-        <script async src="js/app.js"></script>
-        <script async src="https://static.addtoany.com/menu/page.js"></script>
-      </head>
-
-
-    -->
   <meta charset="UTF-8">
   <title>getTheBook</title>
   <meta name="author" content="Missy Maloney">
@@ -61,16 +24,19 @@
   
   <!-- Stylesheets-->
   <link rel="stylesheet" href="index.css">
-  
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="responsive.css">
+
+  <!-- AddToAny Share buttons -->
+  <script async src="https://static.addtoany.com/menu/page.js"></script>
 </head>
 <body>
   <div id="wrapper">
 
   <header>
         <div class="row">
-          <div class="banner">
+          <div class="col-12">
+            <div class="tophalf">
               <h1 class="tagline">Select a the best book for your bookclub.</h1>
               <form id="js-inputform">
                 <h4 > Check by Author, Title or Subject</h4> 
@@ -78,209 +44,21 @@
                   <button class="getTheBookBtn" type="submit"><i class="fas fa-kiwi-bird"></i>
                       getTheBook</button>
               </form>
-                <a href = "#">
-                  <h4 class="example_search">Click here to take a look at an example <i class="sdexample fas fa-angle-double-down" aria-hidden="true"></i></h4>
-              </a>
+            </div>
+            <div class="definition">
+                  <div class="verbage">
+                      After being presented with a list of books based on your selection, choose one.  You will be shown information on the book, the price, and articles and videos on the book, author or topic.
+                  </div>
+            </div>
           </div>
         </div>
   </header>
 
   <main>
     <div class="row">
-      <div class="col-12">
-        <div class="definition">
-        <div class="logo">
-          <span class="getTheBookLogo"><i class="fas fa-kiwi-bird"></i>
-            getTheBook
-          </span>
-        </div>
-        <div class="verbage">
-            after being presented with a list of books based on your selection, choose one.  You will be shown information on the book, the price, and articles and videos on the book, author or topic.
-        </div>
-      </div>
-      </div>
     </div>  
 
     <div class="row">
-        <div class="content">
-      <div class="col-12">
-          <div class="boxshadow">
-            <div class="results js-Overview">
-                <div class="boxtitle booklisttitle" >
-                    <span class="title_style">
-                      <i class="fas fa-kiwi-bird"></i>
-                      Overview of the book you selected
-                    </span>
-                </div>
-                <div class="overviewitem">
-                  <div class="indbookheaderinfo">
-                    <div class="indbookthumbtable-cell">
-                      <img src="http://books.google.com/books/content?id=RC0iwqo53EgC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;imgtk=AFLRE70qWfidufjVFiBJOveuyNmxBVeV4gk2UwY30J8oS_0X43s-dC_izW78ANWdjHxHQ-5V0yTTK684yf2JEzid1-d0ai6ekBHrPJy4jna5Gp3WOCctK0d22e2IPJFST9eGmddLIn7Y&amp;source=gbs_api" class="js-thumbnail">
-                    </div>
-                    <div class="indbooktable-cell">
-                      <div class="indbookbodyinfo">
-                        <div class="js-title">The Lost City of Z</div>
-                        <div class="js-author" style="float: initial;">by  David Grann</div>
-                        <div class="js-publisher" style="float: initial;">Publisher:  Knopf Doubleday Publishing Group Publish Date: 2009-02-24</div>
-                        <div class="js-average-rating">Average Rating of 3.5 out of 46 ratings.</div>
-                        <div class="pagecount">352 page(s)</div>
-                        <div class="js-description"><b>The&nbsp;#1 <i>New York Times</i>&nbsp;bestseller&nbsp; - now a major motion picture starring&nbsp;Charlie Hunnam,&nbsp;Tom Holland, Sienna Miller and&nbsp;Robert Pattinson.&nbsp;</b><br><br>In 1925, the legendary British explorer Percy Fawcett ventured into the Amazon jungle, in search of a fabled civilization. He never returned. Over the years countless perished trying to find evidence of his party and the place he called “The Lost City of Z.” In this masterpiece of narrative nonfiction, journalist David Grann interweaves the spellbinding stories of Fawcett’s quest for “Z” and his own journey into the deadly jungle, as he unravels the greatest exploration mystery of the twentieth century.</div>
-                        <div class='otherdata'><div class="salePrice">The price is $13.99</div><div class="linktobuy"><a href="">Click to purchase from Google Play</a></div></div>
-                     </div>
-                   </div>      
-                  </div>  
-                </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-4">
-          <div class="boxshadow">
-              <div class="results js-youtube">
-                  <div class="boxtitle youtubeTitle">
-                      <span class="title_style">
-                      <div class="slidedown sdYoutube">
-                        <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-                      </div>
-                        <i class="fas fa-handshake" ></i>
-                        Youtube Videos: YouTube
-                      </span>
-                    </div>
-                  <div class='youtubeItem'>
-                      <div class="headerinfo">
-                        <span class='js-title'>
-                            ‘Killers of the Flower Moon’ author David Grann answers your questions
-                        </span>
-                      </div>
-                      <div class="resultbody">
-                          <div class='js-desc'>
-                          As part of the NewsHour and New York Times book club, Now Read This, author David Grann answers your questions about 
-                          “Killers of the Flower Moon,” his ...
-                        </div>
-                      </div>
-                      <div class='myVideo' >
-                          <iframe class="resp-iframe" data-videoindex="0" src="https://www.youtube.com/embed/Wth_3SSW4ds?controls=1"></iframe>
-                      </div>
-                  </div>
-                  <div class='youtubeItem'>
-                        <div class="headerinfo">
-                          <div class='js-title'>
-                            The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie
-                          </div>
-                        </div>
-                        <div class="resultbody">
-                          <div class='js-desc'>
-                            Starring: Tom Holland, Charlie Hunnam, Sienna Miller The Lost City of Z Official Trailer - Teaser (2017) - Charlie Hunnam Movie Based on David Grann's ...
-                          </div>
-                        </div>
-                        <div class='myVideo'>
-                            <iframe class="resp-iframe" data-videoindex="1" src="https://www.youtube.com/embed/Xu4UAf8Vfnc?controls=1"></iframe>
-                        </div>
-                  </div>
-                  <div class='youtubeItem'>
-                      <div class="headerinfo">
-                        <div class='js-title'>
-                          The Lost City of Z trailer
-                        </div>
-                      </div>
-                      <div class='resultbody'>
-                        <div class='js-desc'>
-                          Based on David Grann's best-selling book of the same name, The Lost City of Z is the true-life drama which centers on British explorer Col. Percival Fawcett, who ...
-                        </div>
-                      </div>
-                      <div class='myVideo' >
-                          <iframe class="resp-iframe" data-videoindex="2" src="https://www.youtube.com/embed/ORqnetCVQYk?controls=1"></iframe>
-                      </div>
-                  </div>   
-              </div>
-           </div>
-      </div>
-      <div class="col-4">
-            <div class="boxshadow">
-                <div class="results js-news">
-                    <div class="boxtitle newstitle">
-                        <span class="title_style">
-                            <div class="slidedown sdNews">
-                            <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-                            </div>
-                            <i class="fas fa-star"></i>
-                          Articles (news) API
-                        </span>
-                      </div>
-                    <div class='newsItem'>
-                      <div class="headerinfo">
-                        <div class="js-title">Meet National Book Award Finalist David Grann 
-                        </div>
-                      </div>
-                      <div class="resultbody">
-                        <div class="js-author"><span class="js-authorname">Author:  </span>  Emily Temple </div>
-                        <div class="js-subtitle">The 2017 National Book Awards (also known as the Oscars of the 
-                        literary world), will be held on November 15th in New York City. In preparation for the 
-                        ceremony, and to celebrate all of the wonderful books and authors nominated for the awards 
-                        this year, Litera…</div>
-                        <p></p>
-                        <div class="read"><a href="">Click here to read the article </a></div>
-                      </div>
-                  </div>
-                  <div class='newsItem'>
-                      <div class="headerinfo">
-                        <div class="js-title">
-                          Here Are the Nominees for the 2017 National Book Award
-                        </div>
-                      </div>
-                      <div class="resultbody">
-                        <div class="js-author"><span class="js-authorname">Author:  </span>Sarah Begley</div>
-                        <div class="js-subtitle">Jesmyn Ward, Jennifer Egan and David Grann were among the nominees</div>
-                        <p></p>
-                        <div class="read"><a href="">Click here to read the article </a></div>
-                      </div>
-                    </div>
-                <div class='newsItem'>
-                    <div class="headerinfo">
-                      <div class="js-title">
-                        The Best Reviewed Books of 2017:History & Politics
-                      </div>
-                    </div>
-                    <div class="resultbody">
-                      <div class="js-author"><span class="js-authorname">Author:  </span>Book Marks</div>
-                      <div class="js-subtitle">History & Politics 1. Killers of the Flower Moon by David Grann 
-                      (18 Rave, 4 Positive, 1 Mixed) “…the strangest, most horrific story that Grann has told … 
-                      Grann folds it, neatly, into three hundred pages. But he also makes something much more out 
-                      of the materi…</div>
-                      <p></p>
-                      <div class="read"><a href="">Click here to read the article </a></div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-      </div>
-      <div class="col-4">
-            <div class="boxshadow">
-                <div class="results js-wiki">
-                    <div class="boxtitle wikiTitle">
-                        <span class="title_style">
-                            <div class="slidedown sdWiki">
-                            <i class="fas fa-angle-double-down" aria-hidden="true" ></i>
-                            </div>
-                          <i class="fas fa-feather-alt" ></i>
-                          Author Info: Wiki
-                        </span>
-                    </div>
-                    <div class="wikiitem">
-                      <div class="headerinfo"><div class="wikiimg"><img class="js-wikithumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/David_grann_2010.jpg/179px-David_grann_2010.jpg" height="250" width="179"></div><div class="js-title">David Grann</div></div><div class="resultbody"><div class="js-subtitle"><p class="mw-empty-elt">
-                      </p>
-                      <p><b>David Grann</b> (born March 10, 1967) is an American journalist, a staff writer for <i>The New Yorker</i> magazine, and a best-selling author.
-                      </p><p>His first book, <i>The Lost City of Z: A Tale of Deadly Obsession in the Amazon,</i> was published by Doubleday in February 2009. After its first week of publication, it debuted on the <i>New York Times</i> bestseller list at #4.</p><p>Grann's articles have been collected in several anthologies, including <i>What We Saw: The Events of September 11, 2001</i>, <i>The Best American Crime Writing</i> of 2004 and 2005, and <i>The Best American Sports Writing</i> of 2003 and 2006. He has written for <i>The New York Times Magazine</i>, <i>The Atlantic</i>, <i>The Washington Post,</i> <i>The Wall Street Journal</i>, and <i>The Weekly Standard</i>. According to a profile in <i>Slate</i>, Grann has a reputation as a "workhorse reporter", which has made him a popular journalist who "inspires a devotion in readers that can border on the obsessive."</p>
-                      
-                      
-                      <h2><span id="Early_Life">Early Life</span></h2>
-                      <p>David Grann was born on March 10, 1967 to Phyllis E. Grann and Victor Grann of Westport, Connecticut. Phyllis</p>...</div></div>
-                    </div>
-                    <p class="wikilink"><a href="//en.wikipedia.org/wiki/David Grann" data-lity=""><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
   </div>
   </main>
 
@@ -288,29 +66,46 @@
       <div class="row newsearchrow">
         <div class="col-12">
           <div class="footerbox">
-              <div class="searchagain">
-                <a id="newsearch" href="#js-inputform">
-                <div id='searchdoubleup'>
-                  <i class="fas fa-angle-double-up" aria-hidden="true" ></i>
+              <div class="boxshadow">
+                  <div class="topbox">
+                    <h2 class="footerboxtitle"><i class="fa fa-share-alt" aria-hidden="true"></i> SHARE</h2>
+                    <p class="share">Know someone who&rsquo;d find this useful?  Share it on your social media<i>!</i></p>
+                    <div class="sharebuttons a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="soc a2a_dd" href="https://www.addtoany.com/share"></a>
+                        <a class="soc a2a_button_email"></a>
+                        <a class="soc a2a_button_facebook"></a>
+                        <a class="soc a2a_button_twitter"></a>
+                        <a class="soc a2a_button_linkedin"></a>
+                    </div>
+                  </div>
+                  <div class="bottombox">
+                    <div class="searchagain">
+                      <a id="newsearch" href="#js-inputform">
+                        <div id='searchdoubleup'>
+                          <i class="fas fa-angle-double-up" aria-hidden="true" ></i>
+                        </div>
+                        <div id='searchsearch'>
+                          <i class="fas fa-search" aria-hidden="true"></i>
+                        </div>
+                        <div id='searchwords'>
+                          <span>Search Again?</span>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="companylogo">
+                      <a href="http://www.inspiredtechnologycoaching.com" target="_blank">
+                        <div id='cowords'>
+                          <span id="builtby">Built by </span>
+                        </div>
+                        <div id='cologo'>
+                          <img src="images/itc_icon.png" height="30px">
+                        </div>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div id='searchsearch'>
-                  <i class="fas fa-search" aria-hidden="true"></i>
-                </div>
-                <div id='searchwords'>
-                  <span>Search Again?</span>
-                </div>
-                </a>
               </div>
-              <div class="companylogo">
-                <a href="www.inspiredtechnologycoaching.com" target="_blank">
-                <div id='cowords'>
-                  <span id="builtby">Built by </span>
-                </div>
-                <div id='cologo'>
-                    <img src="images/itc_icon.png" height="40px">
-                </div>
-                </a>
-              </div>
+              
             </div>
         </div>
       </div>

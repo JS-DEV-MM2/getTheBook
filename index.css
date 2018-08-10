@@ -48,7 +48,6 @@ h3 {
 h4 {
   color: #0B4863;
   font-size:16px;
-  text-align:right;
 }
 
 a {
@@ -128,6 +127,11 @@ input {
   margin-top:150px;
 }
 
+.tophalf {
+  margin-top:50px;
+  text-align:right;
+}
+
 .tagline {
   margin-bottom: 10px;
   color: white;
@@ -173,11 +177,13 @@ input {
 }
 
 .definition {
- background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
+ /*background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );*/
+ background:#0B4863;
  overflow:auto;
- float:left;
+ float:right;
  position:relative;
- margin: 3px;
+ margin: 50px 0 50px 150px;
+ text-align:right;
 }
 
 #copyright {
@@ -229,8 +235,6 @@ input {
 }
 
 .verbage {
-  float:left;
-  width:75%;
   position:relative;
   padding-top: 10px;
   position:relative;
@@ -263,6 +267,22 @@ input {
   margin:0 0 10px 0;
 }
 
+.footerboxtitle {
+  box-shadow: 1px 1px 5px #777777;
+  border-width: 2px;
+  background-color: #BEB968;
+  padding:5px;
+  margin:0 0 10px 0;
+  height:25px;
+  display:table;
+  text-decoration: none;
+  text-align:right;
+  color:white;
+  position:relative;
+  font-size:14px;
+  width:100%;
+}
+
 .title_style {
 /*border:1px solid green;*/
   display:table;
@@ -286,6 +306,7 @@ input {
   text-align:left;
   animation-name: slidedown;
   animation-duration: 4s;
+  position:relative;
 }
 
 .slidedown:hover {
@@ -296,6 +317,9 @@ input {
   /*border:1px solid red;*/
   display:table-cell;
   float:right;
+  position:absolute;
+  top:0;
+  right:0;
 }
 
 .appicons {
@@ -450,6 +474,7 @@ input {
   display:table-cell;
   vertical-align:top;
   width:85%;
+  padding-left:10px;
   
 }
 .indbookheaderinfo {
@@ -467,6 +492,7 @@ input {
 .resultbody {
   font-size: 12px;
   padding-bottom:3px;
+  text-align:left;
 }
 
 .otherdata {
@@ -490,19 +516,22 @@ input {
   width: 100%;
 }
 
-.pubwords, .pubdata, .genwords, .gendata, .ratingwords, .ratingdata {
-  padding-right:5px;
-}
-
 .pubwords, .genwords, .ratingwords {
   float:left;
   font-weight:bold;
+  padding-right:5px;
+}
+
+.pubdata, .gendata, .ratingdata {
+  padding-right:5px;
+  text-align:left;
 }
 
 .js-description, .js-textsnippet {
   font-size: 12px;
   color:  #0B4863;
   margin-top:5px;
+  text-align:left;
 }
 .js-desc {
   margin-bottom: 10px;
@@ -580,13 +609,30 @@ footer {
   position: relative;
 }
 
-.searchagain, .companylogo {
-  display:table-cell;
-  vertical-align: middle;
-  /*border: 1px solid yellow;*/
+
+.share {
+  text-align:left;
+  font-size:14px;
 }
 
+.searchagain {
+  width:50%;
+  position:absolute;
+  font-size:14px;
+}
 
+.sharebuttons {
+  width:100%;
+  
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.topbox {
+  border-bottom: 1px solid #a54132;
+  margin-bottom: 8px;
+
+}
 .companylogo {
   float:right;
 }
@@ -598,6 +644,7 @@ footer {
 
 #builtby {
   color:#a54132;
+  font-size:14px;
 }
 
 #builtby:hover {
@@ -612,7 +659,7 @@ footer {
   bottom:0;
 }
 
-
+/* Media Queries */
 @media only screen and (min-height: 450px) {
 header {
     height: 100vh;
@@ -624,10 +671,13 @@ header {
     padding: 10px;
 }
 
+.tophalf {
+  margin-top:50px;
+  text-align:center;
+}
 h4 {
   color: white;
   font-size:14px;
-  text-align:center;
   font-weight:50;
 }
 
@@ -679,11 +729,27 @@ input {
 }
 
 .listofbookstable-cell {
-  width:80%;
+  width:100%;
+  text-align:center;
+  /*border: 1px solid orange;*/
 }
 
+.indbookthumbtable-cell {
+  /* border:1px solid blue;*/
+    vertical-align:top;
+    text-align:center;
+   
+  }
 .indbooktable-cell {
-  padding-left:8px;
+  width:100%;
+  /*border:1px solid red;*/
+  display:inline-block;
+  padding-left:0;
+}
+
+.slidedown {
+  width:100%;
+  float:none;
 }
 
 .resultbody {
@@ -702,9 +768,20 @@ input {
   display:inline-block;
   text-align:center;
   width:100%;
+  position:unset;
+}
+.definition {
+  text-align: center;
+  margin:50px 10px 50px 10px;
 }
 
+.searchagain {
+  padding-bottom:5px;
+  border-bottom:1px solid #a54132;
+  padding-bottom:5px;
+}
 .companylogo {
   float:none;
+  margin-top: 8px;
 }
 }

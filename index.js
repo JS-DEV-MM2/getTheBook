@@ -42,9 +42,9 @@ function renderSelectedBookHeader() {
 //Render Youtube header
 function renderYoutubeHeader() {
   //console.log('fired renderYoutubeHeader');
-  $('.boxshadow').append("<div class='col-4'><div class='js-youtube'></div></div>");
+  $('.boxshadow').first().append("<div class='col-4'><div class='js-youtube'></div></div>");
   var youtubeHeaderHtml = "";
-  youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><div class='title_style'><div class='slidedown sdyoutube'><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-handshake'></i></div><div class='titleverbage'><span class='titlewords'>Youtube Videos</span></div><p><div class='nextYoutube'>More results</div></div></div></div>";
+  youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><div class='title_style'><div class='slidedown sdyoutube'><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-handshake'></i></div><div class='titleverbage'><span class='titlewords'>Videos on Author or Title</span></div><p><div class='nextYoutube'>More results</div></div></div></div>";
   $('.js-youtube').append(youtubeHeaderHtml);
  // $('.boxshadow').append("</div></div>");
 
@@ -53,17 +53,17 @@ function renderYoutubeHeader() {
 //Render News header
 function renderNewsHeader() {
   //console.log('fired renderNewsHeader');
-  $('.boxshadow').append("<div class='col-4'><div class='js-news'></div></div>");
+  $('.boxshadow').first().append("<div class='col-4'><div class='js-news'></div></div>");
   var newsHeaderHtml = "";
-  newsHeaderHtml = "<div class='boxtitle newstitle'><div class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-star'></i></div><div class='titleverbage'><span class='titlewords'>News Articles</span></div><p><div class='nextNews'>More results</div></div></div></div>";
+  newsHeaderHtml = "<div class='boxtitle newstitle'><div class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-star'></i></div><div class='titleverbage'><span class='titlewords'>News on Author or Title</span></div><p><div class='nextNews'>More results</div></div></div></div>";
   $(`.js-news`).append(newsHeaderHtml);
 }
 //Render Wiki header
 function renderWikiHeader() {
   //console.log('fired renderWikiHeader');
-  $('.boxshadow').append("<div class='col-4'><div class='js-wiki'></div></div>");
+  $('.boxshadow').first().append("<div class='col-4'><div class='js-wiki'></div></div>");
   var newsWikiHtml = "";
-  wikiHeaderHtml = "<div class='boxtitle wikititle'><div class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-certificate'></i></div><div class='titleverbage'><span class='titlewords'>Wiki</span></div><p><div class='nextWiki'>More</div></div></div></div>";
+  wikiHeaderHtml = "<div class='boxtitle wikititle'><div class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-certificate'></i></div><div class='titleverbage'><span class='titlewords'>Wiki Details on Author</span></div><p><div class='nextWiki'>More</div></div></div></div>";
   $(`.js-wiki`).append(wikiHeaderHtml);
 }
 
@@ -77,7 +77,7 @@ function renderListOfBooks(listofbooksData) {
   var bookGenres = "";
   var aveRating = "";
   var listofbooksHTML="";
-  $(`.boxshadow`).append("<div class='listofbookstable'>");
+  $(`.boxshadow`).first().append("<div class='listofbookstable'>");
   
 
   //Error msg for no search results: book list
@@ -132,7 +132,7 @@ function renderListOfBooks(listofbooksData) {
   };
 
   $(`.listofbookstable`).append(listofbooksHTML);
-  $(`.boxshadow`).append("</div>");
+  $(`.boxshadow`).first().append("</div>");
   $('.col-12').append("</div")
   
 }
@@ -159,7 +159,7 @@ function renderSelectedBookData(selectedBookData) {
     if (forSale == 'FREE') {
       pricinginfoHtml = "The price is 0!  Yeah!</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a>";
     } else if (forSale === 'FOR_SALE') {
-      pricinginfoHtml = "The price is: " + selectedBookData.saleInfo.retailPrice.amount + "</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a>";
+      pricinginfoHtml = "The price is: " + selectedBookData.saleInfo.retailPrice.amount + "</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + " target='_blank'>Click to purchase from Google Play</a>";
     } else {
       pricinginfoHtml = "There is some other status that I haven't considered.";
     }
@@ -171,9 +171,7 @@ function renderSelectedBookData(selectedBookData) {
                  "<div class = 'resultbody'><div class='js-publisher'><div class='pubwords'>Publisher/Date:</div><div class='pubdata'>" + selectedBookData.volumeInfo.publisher + "  " + selectedBookData.volumeInfo.publishedDate + 
                  "</div></div><div class='js-average-rating'>" + selectedBookRatings + "</div><div class='pagecount'> " + selectedBookData.volumeInfo.pageCount + " page(s)</div><div class='js-salePrice'>" + pricinginfoHtml + "</div><div class='js-description'>" + selectedBookData.volumeInfo.description + "</div></div></div></div>" +  
                  "</div></div>";
-  
-
-  $('.boxshadow').append(overviewHtml);
+  $('.boxshadow').first().append(overviewHtml);
   $('.js-author').css('float', 'initial');
   $('.js-publisher').css('float', 'initial');
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
@@ -181,7 +179,7 @@ function renderSelectedBookData(selectedBookData) {
 
 function renderClosingDivs() {
   console.log("fired renderClosingDivs");
-  $('.boxshadow').append("</div></div>");
+  $('.boxshadow').first().append("</div></div>");
 }
 
 
@@ -208,7 +206,7 @@ function renderNewsData(newsData) {
   $('.newsitem').remove();
   $.each(newsData, function(index, item) {
     if (typeof(newsData.articles[indexNum].author) =='undefined' || newsData.articles[indexNum].author === null) {
-      authName = 'no author"s name is listed';
+      authName = 'no author\'s name is listed';
     } else {
       authName = newsData.articles[indexNum].author;
     };
@@ -231,18 +229,17 @@ function renderWikiData(authorData) {
   //console.log(typeof(authorData.pages[pageId].thumbnail.source));
 
   if (pageId =='-1' ) {
-    wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikimessage'>There is Wikipedia information on this author.</div></div>";
+    wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikimessage'>There is no Wikipedia information on this author.</div></div>";
   } else {
       if (typeof(authorData.pages[pageId].thumbnail) =='undefined' || authorData.pages[pageId].thumbnail === null) {
-        thumbSource = 'There is no thumnail for this book.';
+        thumbSource = 'There is no thumbnail for this book.';
       } else {
-        thumbSource = authorData.pages[pageId].thumbnail.source;
+        thumbSource = "<img src='" + authorData.pages[pageId].thumbnail.source + "'";
       };
       console.log(authorData.pages[pageId].title);
      
-      wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikiimg'><img class='js-wikithumb' src='" + thumbSource +  "'></img></div><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
-      "<div class='js-subtitle'>" + authorData.pages[pageId].extract + "</div></div><hr><p class='wikilink'><a href='//en.wikipedia.org/wiki/" + authorData.pages[pageId].title + 
-      " target='_blank' data-lity><i class='fa fa-external-link-square' aria-hidden='true'></i> &nbsp;More on Wikipedia</a></p>";
+      wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikiimg'>" + thumbSource +  "</div><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
+      "<div class='js-subtitle'>" + authorData.pages[pageId].extract + "</div></div><hr><p class='wikilink'><a href='http://en.wikipedia.org/wiki/" + authorData.pages[pageId].title + "' target='_blank' data-lity><i class='fab fa-wikipedia-w'></i></i> &nbsp;More on Wikipedia</a></p>";
   };
 
   $('.js-wiki').append(wikiHTML);
@@ -316,7 +313,7 @@ function getNewsAPIData(userSelectedSearchTerm) {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
     apiKey: `430d190071894a52b7716e87bf74ced3`,
     articleList:`articles`,
-    pagesize: 8,
+    pagesize: 10,
     language: `en`
     }
     console.log(params);
@@ -339,7 +336,7 @@ function getWikiAPIData() {
     prop: 'extracts|pageimages',
     indexpageids: 1,
     redirects: 1, 
-    exchars: 1200,
+    exchars: 1400,
     // explaintext: 1,
     exsectionformat: 'plain',
     piprop: 'name|thumbnail|original',
@@ -374,7 +371,7 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
     q: `"${selAuthor}" OR "${selBookTitle}"`,
     key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
     part: 'snippet',
-    maxResults: 2,
+    maxResults: 5,
     videoID:'id',
     pageToken: state.youtubePageToken
   }
