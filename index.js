@@ -7,7 +7,7 @@ var state = {
   youtubePageToken: "",
   selBookTitle: "",
   selAuthor:"",
-  bookImage: ""
+  
 
 };
 
@@ -77,6 +77,7 @@ function renderListOfBooks(listofbooksData) {
   var bookGenres = "";
   var aveRating = "";
   var listofbooksHTML="";
+  var bookImage= "";
   $(`.boxshadow`).first().append("<div class='listofbookstable'>");
   
 
@@ -144,8 +145,16 @@ function renderSelectedBookData(selectedBookData) {
   var selectedBookRatings = "";
   var overviewHtml = "";
   var pricinginfoHtml = "";
+  var bookImage = "";
   var forSale=`${selectedBookData.saleInfo.saleability}`;
   var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
+
+  //if there is no image available
+  if (typeof(selectedBookData.volumeInfo.imageLinks) =='undefined' || selectedBookData.volumeInfo.imageLinks === null) {
+    bookImage = 'images/noimageavailable.png';
+  } else {
+    bookImage = selectedBookData.volumeInfo.imageLinks.thumbnail;
+  };
 
   //if there are no ratings listed for the book
   if (typeof(selectedBookData.volumeInfo.averageRating) =='undefined' || selectedBookData.volumeInfo.averageRating === null) {
