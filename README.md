@@ -6,8 +6,8 @@
 3.  ##### Technologies Used
 
 #### Screenshots
-1.  ![Mobile Version Pic 1](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic1.png "Mobile Pic 1")
-2.  ![Mobile Version Pic 2](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic2.png "Mobile Pic 2")
+1.  ![Mobile Version Pic 1](images/getTheBookmobilepic1.png "Mobile Pic 1")
+2.  ![Mobile Version Pic 2](images/getTheBookmobilepic2.png "Mobile Pic 2")
 3.  ![Mobile Version Pic 3](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic3.png "Mobile Pic 3")
 4.  ![Mobile Version Pic 4](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic4.png "Mobile Pic 4")
 5.  ![Mobile Version Pic 5](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic5.png "Mobile Pic 5")
