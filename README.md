@@ -1,6 +1,6 @@
-### Get the Book
+## Get the Book
 
-## Table of Contents
+### Table of Contents
 
  -  [Screenshots](#screenshots)
  -  [Summary](#Summary)
