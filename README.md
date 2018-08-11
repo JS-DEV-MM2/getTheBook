@@ -1,10 +1,10 @@
 ## Get the Book
 
 #### Table of Contents
-##### Screenshots
-##### Summary
-##### Technologies Used
+1.  ##### Screenshots
+2.  ##### Summary
+3.  ##### Technologies Used
 
 #### Screenshots
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Mobile Version Pic1](https://github.com/MissyM2/thinkful-get-the-book/images/getTheBookmobilepic1.png "Mobile Pic 1")
 
