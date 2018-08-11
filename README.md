@@ -1,9 +1,11 @@
-## Get the Book
+### Get the Book
 
-#### Table of Contents
-1.  ##### Screenshots
-2.  ##### Summary
-3.  ##### Technologies Used
+## Table of Contents
+
+ - [Installation](#installation)
+ -  [Screenshots](#screenshots)
+ -  [Summary](#Summary)
+-   [Technologies Used](#technologies used)
 
 #### Screenshots
 1.  ![Mobile Version Pic 1](images/getTheBookmobilepic1.png "Mobile Pic 1")
