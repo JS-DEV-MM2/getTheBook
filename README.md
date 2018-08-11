@@ -2,10 +2,9 @@
 
 ## Table of Contents
 
- - [Installation](#installation)
  -  [Screenshots](#screenshots)
  -  [Summary](#Summary)
--   [Technologies Used](#technologies used)
+ -  [Technologies Used](#technologies-used)
 
 #### Screenshots
 1.  ![Mobile Version Pic 1](images/getTheBookmobilepic1.png "Mobile Pic 1")
@@ -24,3 +23,9 @@
 6.  ![Non-mobile Version Pic 6](images/getTheBooknonmobilepic6.png "Non-Mobile Pic 1")
 7.  ![Non-mobile Version Pic 7](images/getTheBooknonmobilepic7.png "Non-Mobile Pic 1")
 
+#### Summary
+
+
+#### Technologies Used
+HTML, CSS, Javascript,JQuery
+Data sources are APIs from News Youtube and Wikipedia
