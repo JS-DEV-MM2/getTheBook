@@ -9,7 +9,7 @@ form {
   margin-left:auto;
   margin-right:auto;
   max-width: 100%;
-  padding:0;
+  padding: none;
 }
 
 header {
@@ -147,7 +147,7 @@ input {
 input {
   border: none;
   border-bottom: 3px solid ghostwhite;
-  border-radius: 0px;
+  border-radius: none;
   padding: 8px 0;
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -165,29 +165,13 @@ input {
 
 /* Main rules */
 
-/* Definition and Example rules */
-.example {
-  padding: 25px;
-  background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );
-  text-shadow: none;
-  color: white;
-  float:left;
-}
-
 .definition {
- /*background: linear-gradient( to bottom, rgba(213, 102, 75, 0.35), rgba(213, 102, 75, 0.2) );*/
  background:#0B4863;
  overflow:auto;
  float:right;
  position:relative;
  margin: 50px 0 50px 150px;
  text-align:right;
-}
-
-#copyright {
-  float: right;
-  font-size: 18px;
-  color: #0B4863;
 }
 
 .logo {
@@ -281,8 +265,13 @@ input {
   width:100%;
 }
 
+.nextyt,
+.nextnews {
+  display:none;
+  font-size:12px;
+}
+
 .title-style {
-/*border:1px solid green;*/
   display:table;
   text-decoration: none;
   /*padding: 5px;*/
@@ -293,10 +282,7 @@ input {
   height: 80px;
 } 
 
-
-
 .slidedown {
-  /*border:1px solid blue;*/
   float:left;
   display:table-cell;
   width:15%;
@@ -312,7 +298,6 @@ input {
 }
 
 .othertitle {
-  /*border:1px solid red;*/
   display:table-cell;
   float:right;
   position:absolute;
@@ -321,7 +306,6 @@ input {
 }
 
 .appicons {
-  /*border:1px solid pink;*/
   padding-right:5px;
   width:40px;
   display:inline-block;
@@ -329,9 +313,9 @@ input {
 }
 
 .titleverbage {
- /* border: 1px solid orange;*/
   display:inline-block;
   vertical-align:middle;
+  font-size:14px;
 }
 
 @keyframes colorchange {
@@ -340,7 +324,7 @@ input {
     100% {color:#BEB968}
 }
 
-.js-saleprice, .js-linkToBuy {
+.saleprice, .linktobuy {
   color:#0B4863;
 }
 
@@ -350,11 +334,19 @@ input {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
-.nextYoutube, .nextNews, .nextWiki{
-  display:none;
+
+
+.back-to-list,
+.nextlist {
+  font-size:12px;
+  text-align:right;
 }
 
-.nextYoutube:hover, .nextNews:hover, .nextWiki:hover{
+.nextyt:hover, 
+.nextnews:hover, 
+.nextwiki:hover, 
+.back-to-list:hover,
+.nextlist:hover {
   cursor:pointer;
   color:#0B4863;
 }
@@ -376,10 +368,10 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  border: none;
 }
 
-.js-itemid {
+.itemid {
   display:none;
 }
 
@@ -461,14 +453,12 @@ input {
 
 }
 .indbookthumbtable-cell {
-/* border:1px solid blue;*/
   display:table-cell;
   vertical-align:top;
   width:15%;
  
 }
 .indbooktable-cell {
-  /* border:1px solid green;*/
   display:table-cell;
   vertical-align:top;
   width:85%;
@@ -482,6 +472,7 @@ input {
   padding: 0 0 10px 10px;
   color:  #a54132;
 }
+
 .indbookbodyinfo {
   float:left;
   padding:5px 10px 5px 12px;
@@ -496,7 +487,7 @@ input {
 .otherdata {
   font-size:12px;
 }
-.js-title {
+.title-style-1 {
   font-size:14px;
   font-weight:bold;
   padding:0 3px 5px 0;
@@ -504,12 +495,12 @@ input {
   text-align:center;
 }
 
-.js-authorname {
+.author-name-style {
   font-weight: bold;
   width:100%;
 }
 
-.js-publisher {
+.pub-style {
   padding:0 3px 5px 0;
   width: 100%;
 }
@@ -520,24 +511,27 @@ input {
   padding-right:5px;
 }
 
-.pubdata, .gendata, .ratingdata {
+.pubdata, 
+.gendata, 
+.ratingdata {
   padding-right:5px;
   text-align:left;
 }
 
-.js-description, .js-textsnippet {
+.desc-style {
   font-size: 12px;
   color:  #0B4863;
   margin-top:5px;
   text-align:left;
 }
-.js-desc {
+.ytdesc-style {
   margin-bottom: 10px;
 }
 
 .wikiimg {
   width:100%;
   height:100%;
+  margin-bottom:5px;
 }
 
 .wikiimg img {
@@ -574,9 +568,6 @@ iframe {
 
 .read:hover, .linktobuy:hover {
   color: #a54132;
-  
-
-
 }
 
 .purchasedata {
@@ -596,7 +587,6 @@ footer {
 }
 
 .footerbox {
-  /*border:1px solid green;*/
   display:table;
   padding-bottom: 1px; 
   padding-top:3px;
@@ -663,10 +653,28 @@ header {
     height: 100vh;
 }
 }
+
+@media only screen and (min-width: 800px) {}
+
+.headerinfo {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.youtubeitem {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+}
   
 @media only screen and (max-width: 767px) {
 header {
     padding: 10px;
+}
+
+
+.js-youtube {
+  width: 100%;
 }
 
 .tophalf {
@@ -692,7 +700,7 @@ input {
   width:auto;
   text-align:center;
   padding-top:12px;
-  padding-left:0;
+  padding-left:none;
 }
 
 .get-the-book-logo {
@@ -708,7 +716,7 @@ input {
 .title-style {
   padding: 5px;
   text-align:center;
-  font-size:14px;
+  font-size:12px;
 } 
 
 .headerinfo {
@@ -729,20 +737,17 @@ input {
 .listofbookstable-cell {
   width:100%;
   text-align:center;
-  /*border: 1px solid orange;*/
 }
 
 .indbookthumbtable-cell {
-  /* border:1px solid blue;*/
     vertical-align:top;
     text-align:center;
    
   }
 .indbooktable-cell {
   width:100%;
-  /*border:1px solid red;*/
   display:inline-block;
-  padding-left:0;
+  padding-left:none;
 }
 
 .slidedown {

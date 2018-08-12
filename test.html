@@ -1,26 +1,8 @@
-<div class='book'>
-    <div class='bookthumbtable-cell'>
-        <img class='listofbooksthumb' src=' + bookImage +'></img>
+'<div class="youtubeitem">
+    <div class="headerinfo">
+        <div class="js-title">' + youtubeData.items[i].snippet.title + '</div>
     </div>
-    <div class='listofbookstable-cell'>
-        <div class='headerinfo'>
-            <div class='js-authorname'> + listofbooksData[i].volumeInfo.authors +  </div> 
-            <div class='js-title'> +  listofbooksData[i].volumeInfo.title + </div>
-        </div>
-        <div class='resultbody'>
-            <div class='js-publisher'>
-                <div class='pubwords'> Publisher:</div>
-                <div class='pubdata'> + pub + </div>
-            </div>
-            <div class='js-categories'>
-                <div class='genwords'> Genres: </div>
-                <div class='gendata'> +  bookGenres + </div>
-            </div>
-            <div class='ratingwords'> + Average Rating: </div>
-            <div class='ratingdata'> + listofbooksData[i].volumeInfo.averageRating + </div>
-        </div>
-        <div class='js-textsnippet'> + txtSnippet +</div>
-       <div class='js-itemid' data-bookId=' + listofbooksData[i].id + '> + listofbooksData[i].id + </div>
-    </div>  
-</div>
-</div>;
+    <div class="resultbody">
+        <div class="js-desc">' + youtubeData.items[i].snippet.description + '</div>
+    </div>
+    <div class="myVideo" id="' + i + '>' + '<iframe class="resp-iframe" data-videoIndex="' + 0 + '" src="https://www.youtube.com/embed/' + youtubeData.items[i].id.videoId + '?controls=1"></iframe></div></div>';

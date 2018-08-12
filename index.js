@@ -3,12 +3,9 @@ var state = {
   userSelectedSearchTerm: '',
   userSelectedAuthor:'',
   selectedBookId:'',
+  googleStartIndex:0,
   newsNextPage:1,
   youtubePageToken: '',
-  //selBookTitle: '',
-  //selAuthor:'',
-  
-
 };
 
 const googleBooksURL = 'https://www.googleapis.com/books/v1/volumes';
@@ -21,7 +18,9 @@ const wikiURL = 'https://en.wikipedia.org/w/api.php';
 const showListH = function renderListOfBooksHeader() {
   $('.content').remove();
   let listofbooksHeader='';
-  listofbooksHeader = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle"><div class="title-style"><div class="slidedown"></div><div title="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Select one of the following books to get more information</span></div></div></div></div>';
+  listofbooksHeader = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle"><div class="title-style"><div class="slidedown"></div>' + 
+                      '<div title="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">' + 
+                      'Select one of the following books to get more information</span></div><p><div class="nextlist js-nextlist">More books</div></div></div></div>';
   $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(listofbooksHeader);
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
@@ -31,7 +30,9 @@ const showListH = function renderListOfBooksHeader() {
 const showBookH = function renderSelectedBookHeader() {
   let selectedbookHeaderHtml = '';
   $('.content').remove();
-  selectedbookHeaderHtml = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle" ><div class="title-style"><div class="slidedown"></div><div class="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Overview of the book you selected<span></div></div></div></div>';
+  selectedbookHeaderHtml = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle" ><div class="title-style"><div class="slidedown"></div>' + 
+                          '<div class="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">' + 
+                          'Overview of the book you selected<span></div><p><div class="back-to-list js-back-to-list">Back to List</div></div></div></div>';
   $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(selectedbookHeaderHtml);
 
@@ -41,7 +42,9 @@ const showBookH = function renderSelectedBookHeader() {
 const showYtH = function renderYoutubeHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-youtube"></div></div>');
   let youtubeHeaderHtml = '';
-  youtubeHeaderHtml = '<div class="boxtitle youtubetitle"><div class="title-style"><div class="slidedown sdyoutube"><i id="youtubeangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="youtubeangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-handshake"></i></div><div class="titleverbage"><span class="titlewords">Videos on Author or Title</span></div><p><div class="nextYoutube">More results</div></div></div></div>';
+  youtubeHeaderHtml = '<div class="boxtitle youtubetitle"><div class="title-style"><div class="slidedown sdyoutube"><i id="youtubeangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i>' + 
+                      '<i id="youtubeangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-handshake"></i>' + 
+                      '</div><div class="titleverbage"><span class="titlewords">Videos on Author or Title</span></div><p><div class="nextyt js-nextyt">More results</div></div></div></div>';
   $('.js-youtube').append(youtubeHeaderHtml);
 }
 
@@ -49,14 +52,18 @@ const showYtH = function renderYoutubeHeader() {
 const showNewsH = function renderNewsHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-news"></div></div>');
   let newsHeaderHtml = '';
-  newsHeaderHtml = '<div class="boxtitle newstitle"><div class="title-style"><div class="slidedown sdnews"><i id="newsangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="newsangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-star"></i></div><div class="titleverbage"><span class="titlewords">News on Author or Title</span></div><p><div class="nextNews">More results</div></div></div></div>';
+  newsHeaderHtml = '<div class="boxtitle newstitle"><div class="title-style"><div class="slidedown sdnews"><i id="newsangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i>' + 
+                  '<i id="newsangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-star"></i>' + 
+                  '</div><div class="titleverbage"><span class="titlewords">News on Author or Title</span></div><p><div class="nextnews js-nextnews">More results</div></div></div></div>';
   $('.js-news').append(newsHeaderHtml);
 }
 //Render Wiki header
 const showWikiH = function renderWikiHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-wiki"></div></div>');
   let newsWikiHtml = '';
-  wikiHeaderHtml = '<div class="boxtitle wikititle"><div class="title-style"><div class="slidedown sdwiki"><i id="wikiangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="wikiangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-certificate"></i></div><div class="titleverbage"><span class="titlewords">Wiki Details on Author</span></div><p><div class="nextWiki">More</div></div></div></div>';
+  wikiHeaderHtml = '<div class="boxtitle wikititle"><div class="title-style"><div class="slidedown sdwiki"><i id="wikiangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i>' + 
+                   '<i id="wikiangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-certificate"></i>' + 
+                   '</div><div class="titleverbage"><span class="titlewords">Wiki Details on Author</span></div></div></div></div>';
   $('.js-wiki').append(wikiHeaderHtml);
 }
 
@@ -116,11 +123,11 @@ const showList = function renderListOfBooks(listOfBooksData) {
           txtSnippet = listOfBooksData.items[i].searchInfo.textSnippet;
         };
         listOfBooksHtml += `<div class="book"><div class="bookthumbtable-cell"><img class="listofbooksthumb" src="${bookImage}"></img>` + 
-                            `</div><div class="listofbookstable-cell"><div class="headerinfo"><div class="js-authorname">${authName}</div>` +
-                            `<div class="js-title">${bookTitle}</div></div><div class="resultbody"><div class="js-publisher"><div class="pubwords"> Publisher:</div>` + 
+                            `</div><div class="listofbookstable-cell"><div class="headerinfo"><div class="author-name-style">${authName}</div>` +
+                            `<div class="title-style-1">${bookTitle}</div></div><div class="resultbody"><div class="pub-style"><div class="pubwords"> Publisher:</div>` + 
                             `<div class="pubdata">${pub}</div></div><div class="js-categories"><div class="genwords"> Genres: </div><div class="gendata">${bookGenres}</div>` + 
-                            `</div><div class="ratingwords">Average Rating: </div><div class="ratingdata">${aveRating}</div><div class="js-textsnippet">${txtSnippet}</div>` +
-                            `</div><div class="js-itemid" data-bookId="${dtaId}">${dtaId}</div></div></div></div>`;
+                            `</div><div class="ratingwords">Average Rating: </div><div class="ratingdata">${aveRating}</div><div class="desc-style">${txtSnippet}</div>` +
+                            `</div><div class="itemid js-itemid" data-bookId="${dtaId}">${dtaId}</div></div></div></div>`;
     });
     listOfBooksHtml+='</div>';
   };
@@ -163,9 +170,9 @@ const showBook = function renderSelectedBookData(selectedBookData) {
   //if the book is either FREE for not for sale
   if (isElectronic === 'true') {
     if (forSale == 'FREE') {
-      pricinginfoHtml = 'The price is 0!  Yeah!</div><div class="js-linkToBuy"><a href=' + selectedBookData.saleInfo.buyLink + '>Click to purchase from Google Play</a>';
+      pricinginfoHtml = 'The price is 0!  Yeah!</div><div class="linktobuy"><a href=' + selectedBookData.saleInfo.buyLink + '>Click to purchase from Google Play</a>';
     } else if (forSale === 'FOR_SALE') {
-      pricinginfoHtml = 'The price is: ' + selectedBookData.saleInfo.retailPrice.amount + '</div><div class="js-linkToBuy"><a href=' + selectedBookData.saleInfo.buyLink + ' target="_blank">Click to purchase from Google Play</a>';
+      pricinginfoHtml = 'The price is: ' + selectedBookData.saleInfo.retailPrice.amount + '</div><div class="linktobuy"><a href=' + selectedBookData.saleInfo.buyLink + ' target="_blank">Click to purchase from Google Play</a>';
     } else {
       pricinginfoHtml = 'There is some other status that I haven"t considered.';
     }
@@ -173,13 +180,13 @@ const showBook = function renderSelectedBookData(selectedBookData) {
   pricinginfoHtml = '<div class="notForSale">This book is not for sale through Google Play.</div>';
 };
   overviewHtml = `<div class="overviewitem"><div class="indbookheaderinfo"><div class="indbookthumbtable-cell"><img src='${bookImage}' class="js-thumbnail"></div>` +
-                 `<div class="indbooktable-cell"><div class="headerinfo"><div class="js-title">${selBookTitle}</div><div class="js-authorname">${selAuthor}</div></div>` + 
-                 `<div class = "resultbody"><div class="js-publisher"><div class="pubwords">Publisher/Date:</div><div class="pubdata">${selPublisher}  ${selPubDate}</div></div>` +
-                 `<div class="js-average-rating">${selectedBookRatings}</div><div class="pagecount">${pc} page(s)</div><div class="js-salePrice">${pricinginfoHtml}</div>` +
-                 `<div class="js-description">${selDesc}</div></div></div></div></div></div>`;
+                 `<div class="indbooktable-cell"><div class="headerinfo"><div class="title-style-1">${selBookTitle}</div><div class="author-name-style">${selAuthor}</div></div>` + 
+                 `<div class = "resultbody"><div class="pub-style"><div class="pubwords">Publisher/Date:</div><div class="pubdata">${selPublisher}  ${selPubDate}</div></div>` +
+                 `<div class="js-average-rating">${selectedBookRatings}</div><div class="pagecount">${pc} page(s)</div><div class="saleprice">${pricinginfoHtml}</div>` +
+                 `<div class="desc-style">${selDesc}</div></div></div></div></div></div>`;
   $('.boxshadow').first().append(overviewHtml);
   $('.js-author').css('float', 'initial');
-  $('.js-publisher').css('float', 'initial');
+  $('.pub-style').css('float', 'initial');
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
 }
 
@@ -194,13 +201,13 @@ const showYt = function renderYoutubeData(ytData) {
     ytTitle = ytData.items[i].snippet.title;
     ytDesc = ytData.items[i].snippet.description;
     ytVidId = ytData.items[i].id.videoId;
-    ytHtml += `<div class="youtubeitem"><div class="headerinfo"><div class="js-title">${ytTitle}</div>` +
-              `</div><div class="resultbody"><div class="js-desc">${ytDesc}</div></div><div class="myVideo" id="' + i + '">` +
+    ytHtml += `<div class="youtubeitem"><div class="headerinfo"><div class="title-style-1">${ytTitle}</div>` +
+              `</div><div class="resultbody"><div class="ytdesc-style">${ytDesc}</div></div><div class="myVideo" id="' + i + '">` +
               `<iframe class="resp-iframe" data-videoIndex="' + 0 + '" src="https://www.youtube.com/embed/${ytVidId}?controls=1">` +
               `</iframe></div></div>`;
   });
   $('.js-youtube').append(ytHtml);
-  $('.nextYoutube').show();
+  $('.js-nextyt').show();
 }
 
 //Display News detail
@@ -220,18 +227,18 @@ const showNews = function renderNewsData(newsData) {
     } else {
       authName = newsData.articles[i].author;
     };
-    newsHtml += `<div class="newsitem"><div class="headerinfo"><div class="js-title">${newsTitle}</div><div class="js-authorname">Author:  ${authName}</div></div>` +
+    newsHtml += `<div class="newsitem"><div class="headerinfo"><div class="title-style-1">${newsTitle}</div><div class="author-name-style">Author:  ${authName}</div></div>` +
                 `<div class="resultbody"><div class="js-subtitle">${newsDesc}</div><div class="read"><a href="${newsUrl}" target="_blank">Click here to read the article </a></div></div></div>`;
   });
   $('.js-news').append(newsHtml);
-  $('.nextNews').show();
+  $('.js-nextnews').show();
 }
 
 //Display Wikipedia author data
 const showWiki = function renderWikiData(authorData) {
   let pageId = authorData.pageids[0];
   let wikiThumb = authorData.pages[pageId].thumbnail;
-  let wikiSource = authorData.pages[pageId].thumbnail.source;
+  let wikiThumbSource = '';
   let wikiTitle = authorData.pages[pageId].title;
   let wikiExtract = authorData.pages[pageId].extract
   let wikiHtml='';
@@ -239,13 +246,15 @@ const showWiki = function renderWikiData(authorData) {
   if (pageId =='-1' ) {
     wikiHtml += '<div class="wikiitem"><div class="headerinfo"><div class="wikimessage">There is no Wikipedia information on this author.</div></div>';
   } else {
-      if (typeof(`${wikiThumb}`) =='undefined' || `${wikiThumb}` === null) {
-        thumbSource = 'There is no thumbnail for this book.';
-      } else {
-        thumbSource = `<img src="${wikiSource}"`;
-      };
-      wikiHtml += `<div class="wikiitem"><div class="headerinfo"><div class="wikiimg">${thumbSource}</div><div class="js-title">${wikiTitle}</div></div><div class="resultbody">` + 
-      `<div class="js-subtitle">${wikiExtract}</div></div><hr><p class="wikilink"><a href="http://en.wikipedia.org/wiki/${wikiTitle}" target="_blank" data-lity>` + 
+    console.log(authorData);
+    if (typeof(authorData.pages[pageId].thumbnail) =='undefined' || authorData.pages[pageId].thumbnail === null) {
+      wikiThumbSource = 'There is no image for this author';
+    } else {
+      wikiThumbSource = '<img src="' + authorData.pages[pageId].thumbnail.source + '"';
+    };
+
+      wikiHtml += `<div class="wikiitem"><div class="headerinfo"><div class="wikiimg">${wikiThumbSource}</div><div class="title-style-1">${wikiTitle}</div></div><div class="resultbody">` + 
+      `<div class="js-subtitle">${wikiExtract}</div></div><hr><p class="wikilink"><a href="http://en.wikipedia.org/wiki/${wikiTitle}" target="_blank">` + 
       `<i class="fab fa-wikipedia-w"></i></i> &nbsp;More on Wikipedia</a></p>`;
   };
 
@@ -265,9 +274,23 @@ const googleList = function getGoogleBooksAPIData(userSelectedSearchTerm) {
         let dataId='';
         showListH();
         showList(data);
-        
       });
 } 
+
+//AJAX call to Google Books for next set of data
+const listNext = function getGoogleBooksAPINextList(userSelectedSearchTerm) {
+  state.googleStartIndex += 10;
+  const params = {
+    q: `"${userSelectedSearchTerm}"`,
+        key: 'AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s',
+        startIndex: state.googleStartIndex,
+      }
+  $.getJSON(googleBooksURL, params, function(data){
+    console.log(state.googleStartIndex);
+    showListH();
+    showList(data);
+  });  
+}
 
 //AJAX call to Google Books for Selected Book
 const googleBook = function getSelectedGoogleBookAPIData(book) {
@@ -293,7 +316,7 @@ const getYt = function getYouTubeAPIData(userSelectedSearchTerm) {
         q: `"${selAuthor}" OR ${selBookTitle}"`,
         key: 'AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM',
         part: 'snippet',
-        maxResults: 5,
+        maxResults: 3,
         videoID:'id'
       }
       $.getJSON(youtubeURL, ytParams, function(data){
@@ -308,7 +331,7 @@ const getNews = function getNewsAPIData(userSelectedSearchTerm) {
         q: `"${selAuthor}" OR "${selBookTitle}"`,
         apiKey: '430d190071894a52b7716e87bf74ced3',
         articleList:'articles',
-        pagesize: 10,
+        pagesize: 5,
         language: 'en'
         }
       $.getJSON(newsURL, params, function(data){
@@ -326,18 +349,19 @@ const getWiki = function getWikiAPIData() {
         format: 'json',
         prop: 'extracts|pageimages',
         indexpageids: 1,
-        redirects: 1, 
-        exchars: 1400,
+        //redirects: 1, 
+        exchars: 1200,
         // explaintext: 1,
-        exsectionformat: 'plain',
+        //exsectionformat: 'plain',
         piprop: 'name|thumbnail|original',
         pithumbsize: 250
       };
       $.getJSON(wikiURL, wikiParams, function(data) {
+        console.log(data);
           showWiki(data.query)
       });
 }
-
+//AJAX call to Wiki for next set of data
 const newsNext = function getNewsDataNextPage(userSelectedSearchTerm) {
   const params = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
@@ -353,6 +377,7 @@ const newsNext = function getNewsDataNextPage(userSelectedSearchTerm) {
   });  
 }
 
+//AJAX call to Youtube for next set of data
 const ytNext = function getYoutubeDataNextPage(userSelectedSearchTerm){
   const params = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
@@ -386,12 +411,26 @@ function watchSubmit() {
     
   });
 
+  //get next set of books
+  $(document).on('click','.js-nextlist', (function(event){
+    event.preventDefault();
+    console.log('event listener is working');
+    listNext(userSelectedSearchTerm);
+  }));
+
   //listener for book selection; on click, get information on selected book
   $(document).on('click', '.book', (function(e) {
     e.preventDefault();
     selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
     googleBook(selectedBookId);
+    
   }));
+
+  //listener for back to list of books
+  $(document).on('click', '.back-to-list', function(e){
+    e.preventDefault();
+    googleList(userSelectedSearchTerm);
+  })
 
   //user clicks the footer to fire new search
   $('a#newsearch').click(function(e) {
@@ -412,7 +451,7 @@ function watchSubmit() {
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
     } else {
       $('.youtubeitem').remove();
-      $('.nextYoutube').css('display','none');
+      $('.js-nextyt').css('display','none');
       $('#youtubeangleup').css('display','none');
       $('#youtubeangledown').css('display','');
     };
@@ -429,7 +468,7 @@ function watchSubmit() {
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
     } else {
       $('.newsitem').remove();
-      $('.nextNews').css('display','none');
+      $('.js-nexnews').css('display','none');
       $('#newsangleup').css('display','none');
       $('#newsangledown').css('display','');
     };
@@ -445,20 +484,22 @@ function watchSubmit() {
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
     } else {
       $('.wikiitem').remove();
-      $('.nextWiki').css('display','none');
+      $('.js-nextwiki').css('display','none');
       $('#wikiangleup').css('display','none');
       $('#wikiangledown').css('display','');
     };
   }));
 
+
+
 //get next set of you tube videos
-  $(document).on('click','.nextYoutube', (function(event){
+  $(document).on('click','.js-nextyt', (function(event){
     event.preventDefault();
     ytNext(userSelectedSearchTerm);
   }));
 
 //get next set of news articles
-  $(document).on('click','.nextNews', (function(event){
+  $(document).on('click','.js-nextnews', (function(event){
     event.preventDefault();
     newsNext(userSelectedSearchTerm);
   }));
