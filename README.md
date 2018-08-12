@@ -3,7 +3,9 @@
 ### Table of Contents
 
  -  [Screenshots](#screenshots)
- -  [Summary](#Summary)
+   -  [Mobile Pics](#mobile-pics)
+   -  [Non-mobile Pics](#non-mobile-pics)
+ -  [Summary](#summary)
  -  [Technologies Used](#technologies-used)
 
 #### Screenshots
