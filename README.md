@@ -31,7 +31,9 @@
 
 7.  ![Mobile Version Pic 7](images/m7.jpg "Mobile Pic 7")
 
-##### Non-Mobile Pics  -  [Table of Contents](#table-of-contents)
+##### Non-Mobile Pics 
+ -  [Table of Contents](#table-of-contents)
+ 
 1.  ![Non-mobile Version Pic 1](images/nm1.jpg "Non-Mobile Pic 1")
 
 
@@ -55,7 +57,8 @@
 
 
 
-#### Summary    -  [Table of Contents](#table-of-contents)
+#### Summary 
+   -  [Table of Contents](#table-of-contents)
 
 getTheBook was developed in order to have multiple sources of data available to members of book clubs as they chose the next book or books to read for their group.  A user may type an author, title, topic or any other word into the search field they are presented with on linking to the app.  The user may click enter or the 'getTheBook' button.  
 
@@ -79,6 +82,8 @@ Finally, the footer of the app offers the opportunity for the user to share the 
 
 
 
-#### Technologies Used    -  [Table of Contents](#table-of-contents)
+#### Technologies Used 
+   -  [Table of Contents](#table-of-contents)
+   
 HTML, CSS, Javascript,JQuery
 Data sources are APIs from News Youtube and Wikipedia
