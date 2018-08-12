@@ -8,26 +8,52 @@
 
 #### Screenshots
 
-#####  Mobile Pics
+#####  Mobile Pics   -  [Table of Contents](#table-of-contents)
 1.  ![Mobile Version Pic 1](images/m1.jpg "Mobile Pic 1")
+
+
 2.  ![Mobile Version Pic 2](images/m2.jpg "Mobile Pic 2")
+
+
 3.  ![Mobile Version Pic 3](images/m3.jpg "Mobile Pic 3")
+
+
 4.  ![Mobile Version Pic 4](images/m4.jpg "Mobile Pic 4")
+
+
 5.  ![Mobile Version Pic 5](images/m5.jpg "Mobile Pic 5")
+
+
 6.  ![Mobile Version Pic 6](images/m6.jpg "Mobile Pic 6")
+
+
 7.  ![Mobile Version Pic 7](images/m7.jpg "Mobile Pic 7")
 
-##### Non-Mobile Pics
+##### Non-Mobile Pics  -  [Table of Contents](#table-of-contents)
 1.  ![Non-mobile Version Pic 1](images/nm1.jpg "Non-Mobile Pic 1")
+
+
 2.  ![Non-mobile Version Pic 2](images/nm2.jpg "Non-Mobile Pic 1")
+
+
 3.  ![Non-mobile Version Pic 3](images/nm3.jpg "Non-Mobile Pic 1")
+
+
 4.  ![Non-mobile Version Pic 4](images/nm4.jpg "Non-Mobile Pic 1")
+
+
 5.  ![Non-mobile Version Pic 5](images/nm5.jpg "Non-Mobile Pic 1")
+
+
 6.  ![Non-mobile Version Pic 6](images/nm6.jpg "Non-Mobile Pic 1")
 
+  -  [Table of Contents](#table-of-contents)
+  
+  
 
 
-#### Summary
+
+#### Summary    -  [Table of Contents](#table-of-contents)
 
 getTheBook was developed in order to have multiple sources of data available to members of book clubs as they chose the next book or books to read for their group.  A user may type an author, title, topic or any other word into the search field they are presented with on linking to the app.  The user may click enter or the 'getTheBook' button.  
 
@@ -45,8 +71,12 @@ There are three other options at the bottom of the 'Selected Book' screen that t
 
 Finally, the footer of the app offers the opportunity for the user to share the app by clicking on a button to share in their selected format.  The user may also go to Inspired Technology Coaching through that link.
 
+  -  [Table of Contents](#table-of-contents)
 
 
-#### Technologies Used
+
+
+
+#### Technologies Used    -  [Table of Contents](#table-of-contents)
 HTML, CSS, Javascript,JQuery
 Data sources are APIs from News Youtube and Wikipedia
