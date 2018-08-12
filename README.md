@@ -88,6 +88,19 @@ Finally, the footer of the app offers the opportunity for the user to share the 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Technologies Used 
    -  [Table of Contents](#table-of-contents)
    
