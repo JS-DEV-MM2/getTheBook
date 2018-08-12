@@ -1,12 +1,12 @@
 // Single state object
 var state = {
-  userSelectedSearchTerm: "",
-  userSelectedAuthor:"",
-  selectedBookId:"",
+  userSelectedSearchTerm: '',
+  userSelectedAuthor:'',
+  selectedBookId:'',
   newsNextPage:1,
-  youtubePageToken: "",
-  selBookTitle: "",
-  selAuthor:"",
+  youtubePageToken: '',
+  selBookTitle: '',
+  selAuthor:'',
   
 
 };
@@ -18,61 +18,62 @@ const wikiURL = 'https://en.wikipedia.org/w/api.php';
 
 //***Render Headers
 //Render list of books based on selecction
-function renderListOfBooksHeader() {
+const showListH = function renderListOfBooksHeader() {
   $('.content').remove();
-  var listofbooksHeader="";
-  listofbooksHeader = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle'><div class='title_style'><div class='slidedown'></div><div title='othertitle'><div class='appicons'><i class='fas fa-kiwi-bird'></i></div><div class='titleverbage'><span class='titlewords'>Select one of the following books to get more information</span></div></div></div></div>";
-  $('.row:nth-of-type(2)').append("<div class='content'>");
+  var listofbooksHeader='';
+  listofbooksHeader = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle"><div class="title_style"><div class="slidedown"></div><div title="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Select one of the following books to get more information</span></div></div></div></div>';
+  $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(listofbooksHeader);
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
 }
 
 // Render Single Book header
-function renderSelectedBookHeader() {
-  var selectedbookHeaderHtml = "";
+const showBookH = function renderSelectedBookHeader() {
+  var selectedbookHeaderHtml = '';
   $('.content').remove();
-  selectedbookHeaderHtml = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle' ><div class='title_style'><div class='slidedown'></div><div class='othertitle'><div class='appicons'><i class='fas fa-kiwi-bird'></i></div><div class='titleverbage'><span class='titlewords'>Overview of the book you selected<span></div></div></div></div>";
-  $('.row:nth-of-type(2)').append("<div class='content'>");
+  selectedbookHeaderHtml = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle" ><div class="title_style"><div class="slidedown"></div><div class="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Overview of the book you selected<span></div></div></div></div>';
+  $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(selectedbookHeaderHtml);
 
 }
 
 //Render Youtube header
-function renderYoutubeHeader() {
-  $('.boxshadow').first().append("<div class='col-4'><div class='js-youtube'></div></div>");
-  var youtubeHeaderHtml = "";
-  youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><div class='title_style'><div class='slidedown sdyoutube'><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-handshake'></i></div><div class='titleverbage'><span class='titlewords'>Videos on Author or Title</span></div><p><div class='nextYoutube'>More results</div></div></div></div>";
+const showYtH = function renderYoutubeHeader() {
+  $('.boxshadow').first().append('<div class="col-4"><div class="js-youtube"></div></div>');
+  var youtubeHeaderHtml = '';
+  youtubeHeaderHtml = '<div class="boxtitle youtubetitle"><div class="title_style"><div class="slidedown sdyoutube"><i id="youtubeangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="youtubeangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-handshake"></i></div><div class="titleverbage"><span class="titlewords">Videos on Author or Title</span></div><p><div class="nextYoutube">More results</div></div></div></div>';
   $('.js-youtube').append(youtubeHeaderHtml);
- // $('.boxshadow').append("</div></div>");
-
 }
 
 //Render News header
-function renderNewsHeader() {
-  $('.boxshadow').first().append("<div class='col-4'><div class='js-news'></div></div>");
-  var newsHeaderHtml = "";
-  newsHeaderHtml = "<div class='boxtitle newstitle'><div class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-star'></i></div><div class='titleverbage'><span class='titlewords'>News on Author or Title</span></div><p><div class='nextNews'>More results</div></div></div></div>";
-  $(`.js-news`).append(newsHeaderHtml);
+const showNewsH = function renderNewsHeader() {
+  $('.boxshadow').first().append('<div class="col-4"><div class="js-news"></div></div>');
+  var newsHeaderHtml = '';
+  newsHeaderHtml = '<div class="boxtitle newstitle"><div class="title_style"><div class="slidedown sdnews"><i id="newsangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="newsangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-star"></i></div><div class="titleverbage"><span class="titlewords">News on Author or Title</span></div><p><div class="nextNews">More results</div></div></div></div>';
+  $('.js-news').append(newsHeaderHtml);
 }
 //Render Wiki header
-function renderWikiHeader() {
-  $('.boxshadow').first().append("<div class='col-4'><div class='js-wiki'></div></div>");
-  var newsWikiHtml = "";
-  wikiHeaderHtml = "<div class='boxtitle wikititle'><div class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-certificate'></i></div><div class='titleverbage'><span class='titlewords'>Wiki Details on Author</span></div><p><div class='nextWiki'>More</div></div></div></div>";
-  $(`.js-wiki`).append(wikiHeaderHtml);
+const showWikiH = function renderWikiHeader() {
+  $('.boxshadow').first().append('<div class="col-4"><div class="js-wiki"></div></div>');
+  var newsWikiHtml = '';
+  wikiHeaderHtml = '<div class="boxtitle wikititle"><div class="title_style"><div class="slidedown sdwiki"><i id="wikiangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="wikiangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-certificate"></i></div><div class="titleverbage"><span class="titlewords">Wiki Details on Author</span></div><p><div class="nextWiki">More</div></div></div></div>';
+  $('.js-wiki').append(wikiHeaderHtml);
 }
 
 //***Render Details
 
 //Render List of books details
-function renderListOfBooks(listofbooksData) {
-  var txtSnippet = "";
-  var pub = "";
-  var bookGenres = "";
-  var aveRating = "";
-  var listofbooksHTML="";
-  var bookImage= "";
-  $(`.boxshadow`).first().append("<div class='listofbookstable'>");
+const showList = function renderListOfBooks(listofbooksData) {
+  var txtSnippet = '';
+  var pub = '';
+  var authName = '';
+  var bookTitle = '';
+  var bookGenres = '';
+  var aveRating = '';
+  var dtaId = '';
+  var listofbooksHTML='';
+  var bookImage= '';
+  $('.boxshadow').first().append('<div class="listofbookstable">');
   
 
   //Error msg for no search results: book list
@@ -81,6 +82,9 @@ function renderListOfBooks(listofbooksData) {
   } else {
     var i = 0;
     $.each(listofbooksData, function(index, item) {
+        authName = listofbooksData[i].volumeInfo.authors;
+        bookTitle = listofbooksData[i].volumeInfo.title;
+        dtaId = listofbooksData[i].id;
         //if there is no image available
         if (typeof(listofbooksData[i].volumeInfo.imageLinks) =='undefined' || listofbooksData[i].volumeInfo.imageLinks === null) {
           bookImage = 'images/noimageavailable.png';
@@ -94,7 +98,6 @@ function renderListOfBooks(listofbooksData) {
         } else {
           pub = listofbooksData[i].volumeInfo.publisher;
         };
-
         //no genres available
         if (typeof(listofbooksData[i].volumeInfo.categories) =='undefined' || listofbooksData[i].volumeInfo.categories === null) {
           bookGenres = 'No genres are listed.';
@@ -113,33 +116,35 @@ function renderListOfBooks(listofbooksData) {
         } else {
           txtSnippet = listofbooksData[i].searchInfo.textSnippet;
         };
-        listofbooksHTML += "<div class='book'><div class='bookthumbtable-cell'><img class='listofbooksthumb' src='" + bookImage +
-                            "'></img></div><div class='listofbookstable-cell'><div class='headerinfo'><div class='js-authorname'>" + listofbooksData[i].volumeInfo.authors + " </div> <div class='js-title'>" +  
-                            listofbooksData[i].volumeInfo.title + "</div></div><div class='resultbody'><div class='js-publisher'><div class='pubwords'> Publisher:</div><div class='pubdata'>" + pub + 
-                            "</div></div><div class='js-categories'><div class='genwords'> Genres: </div><div class='gendata'>" +  bookGenres + "</div></div><div class='ratingwords'>" + 
-                            "Average Rating: </div><div class='ratingdata'>" + listofbooksData[i].volumeInfo.averageRating + "</div><div class='js-textsnippet'>" + txtSnippet +
-                            "</div></div><div class='js-itemid' data-bookId='" + listofbooksData[i].id + "'>" + listofbooksData[i].id + "</div></div></div></div>";
-      
-        
+        listofbooksHTML += `<div class="book"><div class="bookthumbtable-cell"><img class="listofbooksthumb" src="${bookImage}"></img>` + 
+                            `</div><div class="listofbookstable-cell"><div class="headerinfo"><div class="js-authorname">${authName}</div>` +
+                            `<div class="js-title">${bookTitle}</div></div><div class="resultbody"><div class="js-publisher"><div class="pubwords"> Publisher:</div>` + 
+                            `<div class="pubdata">${pub}</div></div><div class="js-categories"><div class="genwords"> Genres: </div><div class="gendata">${bookGenres}</div>` + 
+                            `</div><div class="ratingwords">Average Rating: </div><div class="ratingdata">${aveRating}</div><div class="js-textsnippet">${txtSnippet}</div>` +
+                            `</div><div class="js-itemid" data-bookId="${dtaId}">${dtaId}</div></div></div></div>`;
           i +=1;
     });
-    listofbooksHTML+="</div>";
+    listofbooksHTML+='</div>';
   };
 
-  $(`.listofbookstable`).append(listofbooksHTML);
-  $(`.boxshadow`).first().append("</div>");
-  $('.col-12').append("</div")
+  $('.listofbookstable').append(listofbooksHTML);
+  $('.boxshadow').first().append('</div>');
+  $('.col-12').append('</div')
   
 }
 
 //Render Single Book details
-function renderSelectedBookData(selectedBookData) {
+const showBook = function renderSelectedBookData(selectedBookData) {
   selBookTitle = selectedBookData.volumeInfo.title;
   selAuthor=selectedBookData.volumeInfo.authors;
-  var selectedBookRatings = "";
-  var overviewHtml = "";
-  var pricinginfoHtml = "";
-  var bookImage = "";
+  var selectedBookRatings = '';
+  var selPublisher = selectedBookData.volumeInfo.publisher;
+  var selPubDate = selectedBookData.volumeInfo.publishedDate;
+  var selDesc = selectedBookData.volumeInfo.description;
+  var pc = selectedBookData.volumeInfo.pageCount;
+  var overviewHtml = '';
+  var pricinginfoHtml = '';
+  var bookImage = '';
   var forSale=`${selectedBookData.saleInfo.saleability}`;
   var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
 
@@ -154,208 +159,217 @@ function renderSelectedBookData(selectedBookData) {
   if (typeof(selectedBookData.volumeInfo.averageRating) =='undefined' || selectedBookData.volumeInfo.averageRating === null) {
     selectedBookRatings = 'There are no ratings for this book.';
   } else {
-    selectedBookRatings = "Average Rating of " + selectedBookData.volumeInfo.averageRating + " out of " + selectedBookData.volumeInfo.ratingsCount + " ratings.";
+    selectedBookRatings = 'Average Rating of ' + selectedBookData.volumeInfo.averageRating + ' out of ' + selectedBookData.volumeInfo.ratingsCount + ' ratings.';
   };
 
   //if the book is either FREE for not for sale
-  if (isElectronic === `true`) {
+  if (isElectronic === 'true') {
     if (forSale == 'FREE') {
-      pricinginfoHtml = "The price is 0!  Yeah!</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + ">Click to purchase from Google Play</a>";
+      pricinginfoHtml = 'The price is 0!  Yeah!</div><div class="js-linkToBuy"><a href=' + selectedBookData.saleInfo.buyLink + '>Click to purchase from Google Play</a>';
     } else if (forSale === 'FOR_SALE') {
-      pricinginfoHtml = "The price is: " + selectedBookData.saleInfo.retailPrice.amount + "</div><div class='js-linkToBuy'><a href=" + selectedBookData.saleInfo.buyLink + " target='_blank'>Click to purchase from Google Play</a>";
+      pricinginfoHtml = 'The price is: ' + selectedBookData.saleInfo.retailPrice.amount + '</div><div class="js-linkToBuy"><a href=' + selectedBookData.saleInfo.buyLink + ' target="_blank">Click to purchase from Google Play</a>';
     } else {
-      pricinginfoHtml = "There is some other status that I haven't considered.";
+      pricinginfoHtml = 'There is some other status that I haven"t considered.';
     }
 } else {
-  pricinginfoHtml = "<div class='notForSale'>This book is not for sale through Google Play.</div>";
+  pricinginfoHtml = '<div class="notForSale">This book is not for sale through Google Play.</div>';
 };
-  overviewHtml = "<div class='overviewitem'><div class='indbookheaderinfo'><div class='indbookthumbtable-cell'><img src=" + bookImage + " class='js-thumbnail'></div>" + 
-                 "<div class='indbooktable-cell'><div class='headerinfo'><div class='js-title'>" + selectedBookData.volumeInfo.title + "</div><div class='js-authorname'>" + selectedBookData.volumeInfo.authors + "</div></div>" + 
-                 "<div class = 'resultbody'><div class='js-publisher'><div class='pubwords'>Publisher/Date:</div><div class='pubdata'>" + selectedBookData.volumeInfo.publisher + "  " + selectedBookData.volumeInfo.publishedDate + 
-                 "</div></div><div class='js-average-rating'>" + selectedBookRatings + "</div><div class='pagecount'> " + selectedBookData.volumeInfo.pageCount + " page(s)</div><div class='js-salePrice'>" + pricinginfoHtml + "</div><div class='js-description'>" + selectedBookData.volumeInfo.description + "</div></div></div></div>" +  
-                 "</div></div>";
+  overviewHtml = `<div class="overviewitem"><div class="indbookheaderinfo"><div class="indbookthumbtable-cell"><img src='${bookImage}' class="js-thumbnail"></div>` +
+                 `<div class="indbooktable-cell"><div class="headerinfo"><div class="js-title">${selBookTitle}</div><div class="js-authorname">${selAuthor}</div></div>` + 
+                 `<div class = "resultbody"><div class="js-publisher"><div class="pubwords">Publisher/Date:</div><div class="pubdata">${selPublisher}  ${selPubDate}</div></div>` +
+                 `<div class="js-average-rating">${selectedBookRatings}</div><div class="pagecount">${pc} page(s)</div><div class="js-salePrice">${pricinginfoHtml}</div>` +
+                 `<div class="js-description">${selDesc}</div></div></div></div></div></div>`;
   $('.boxshadow').first().append(overviewHtml);
   $('.js-author').css('float', 'initial');
   $('.js-publisher').css('float', 'initial');
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
 }
 
-function renderClosingDivs() {
-  $('.boxshadow').first().append("</div></div>");
-}
-
-
 //Display Youtube detail
-function renderYoutubeData(youtubeData) {
-  var youtubeHTML="";
+const showYt = function renderYoutubeData(youtubeData) {
+  console.log('made it to render');
+  var ytTitle = '';
+  var ytDesc = '';
+  var ytVidId = '';
+  var ytHtml='';
   $('.youtubeitem').remove();
   $.each(youtubeData.items, function(i, item) {
-    youtubeHTML += "<div class='youtubeitem'><div class='headerinfo'><div class='js-title'>" + youtubeData.items[i].snippet.title + 
-              "</div></div><div class='resultbody'><div class='js-desc'>" + youtubeData.items[i].snippet.description + "</div></div><div class='myVideo' id='" + i + "'>" + 
-              "<iframe class='resp-iframe' data-videoIndex='" + 0 + "' src='https://www.youtube.com/embed/" + youtubeData.items[i].id.videoId + "?controls=1'></iframe></div></div>";
+    ytTitle = youtubeData.items[i].snippet.title;
+    ytDesc = youtubeData.items[i].snippet.description;
+    ytVidId = youtubeData.items[i].id.videoId;
+    ytHtml += `<div class="youtubeitem"><div class="headerinfo"><div class="js-title">${ytTitle}</div></div><div class="resultbody"><div class="js-desc">${ytDesc}</div></div>` +
+                   `<div class="myVideo" id="' + i + '"><iframe class="resp-iframe" data-videoIndex="' + 0 + '" src="https://www.youtube.com/embed/${ytVidId}?controls=1"></iframe></div></div>`;
   });
-  $('.js-youtube').append(youtubeHTML);
+  console.log(ytHtml);
+  $('.js-youtube').append(ytHtml);
   $('.nextYoutube').show();
 }
 
-
 //Display News detail
-function renderNewsData(newsData) {
+const showNews = function renderNewsData(newsData) {
   var indexNum = 0;
-  var newsHTML="";
-  var authName = "";
+  var newsHtml='';
+  var authName = '';
+  var newsTitle = '';
+  var newsDesc = '';
+  var newsUrl = '';
   $('.newsitem').remove();
   $.each(newsData, function(index, item) {
+    newsTitle = newsData.articles[indexNum].title;
+    newsDesc = newsData.articles[indexNum].description;
+    newsUrl = newsData.articles[indexNum].url;
     if (typeof(newsData.articles[indexNum].author) =='undefined' || newsData.articles[indexNum].author === null) {
-      authName = 'no author\'s name is listed';
+      authName = 'no author\"s name is listed';
     } else {
       authName = newsData.articles[indexNum].author;
     };
-    newsHTML += "<div class='newsitem'><div class='headerinfo'><div class='js-title'>" + newsData.articles[indexNum].title + "</div><div class='js-authorname'>Author:  " + 
-    authName + "</div></div><div class='resultbody'><div class='js-subtitle'>" + newsData.articles[indexNum].description + "</div><div class='read'><a href='" + newsData.articles[indexNum].url + "' target='_blank'>Click here to read the article </a></div></div></div>";
+    newsHtml += `<div class="newsitem"><div class="headerinfo"><div class="js-title">${newsTitle}</div><div class="js-authorname">Author:  ${authName}</div></div>` +
+                `<div class="resultbody"><div class="js-subtitle">${newsDesc}</div><div class="read"><a href="${newsUrl}" target="_blank">Click here to read the article </a></div></div></div>`;
     indexNum +=1;
   });
-  $(`.js-news`).append(newsHTML);
+  $('.js-news').append(newsHtml);
   $('.nextNews').show();
 }
 
 //Display Wikipedia author data
-function renderWikiData(authorData) {
+const showWiki = function renderWikiData(authorData) {
+  console.log(authorData);
   var pageId = authorData.pageids[0];
-  var wikiHTML="";
-
-  var thumbSource = "";
+  var wikiThumb = authorData.pages[pageId].thumbnail;
+  var wikiSource = authorData.pages[pageId].thumbnail.source;
+  var wikiTitle = authorData.pages[pageId].title;
+  var wikiExtract = authorData.pages[pageId].extract
+  var wikiHtml='';
+  var thumbSource = '';
   if (pageId =='-1' ) {
-    wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikimessage'>There is no Wikipedia information on this author.</div></div>";
+    wikiHtml += '<div class="wikiitem"><div class="headerinfo"><div class="wikimessage">There is no Wikipedia information on this author.</div></div>';
   } else {
-      if (typeof(authorData.pages[pageId].thumbnail) =='undefined' || authorData.pages[pageId].thumbnail === null) {
+      if (typeof(`${wikiThumb}`) =='undefined' || `${wikiThumb}` === null) {
         thumbSource = 'There is no thumbnail for this book.';
       } else {
-        thumbSource = "<img src='" + authorData.pages[pageId].thumbnail.source + "'";
+        thumbSource = `<img src="${wikiSource}"`;
       };
-      wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikiimg'>" + thumbSource +  "</div><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
-      "<div class='js-subtitle'>" + authorData.pages[pageId].extract + "</div></div><hr><p class='wikilink'><a href='http://en.wikipedia.org/wiki/" + authorData.pages[pageId].title + "' target='_blank' data-lity><i class='fab fa-wikipedia-w'></i></i> &nbsp;More on Wikipedia</a></p>";
+      wikiHtml += `<div class="wikiitem"><div class="headerinfo"><div class="wikiimg">${thumbSource}</div><div class="js-title">${wikiTitle}</div></div><div class="resultbody">` + 
+      `<div class="js-subtitle">${wikiExtract}</div></div><hr><p class="wikilink"><a href="http://en.wikipedia.org/wiki/${wikiTitle}" target="_blank" data-lity>` + 
+      `<i class="fab fa-wikipedia-w"></i></i> &nbsp;More on Wikipedia</a></p>`;
   };
 
-  $('.js-wiki').append(wikiHTML);
+  $('.js-wiki').append(wikiHtml);
   }
   
 
-
-//Calls to the APIs
+//*****Calls to the APIs
 
 //AJAX call for list of Google Books
-function getGoogleBooksAPIData(userSelectedSearchTerm) {
-  const params = {
-    q: `"${userSelectedSearchTerm}"`,
-    key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
-  }
-  $.getJSON(googleBooksURL, params, function(data){
-    var dataId="";
-    renderListOfBooksHeader();
-    renderListOfBooks(data.items);
-    
-  });
+const googleList = function getGoogleBooksAPIData(userSelectedSearchTerm) {
+      const params = {
+        q: `"${userSelectedSearchTerm}"`,
+        key: 'AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s',
+      }
+      $.getJSON(googleBooksURL, params, function(data){
+        var dataId='';
+        showListH();
+        showList(data.items);
+        
+      });
 } 
 
 //AJAX call to Google Books for Selected Book
-function getSelectedGoogleBookAPIData(book) {
-  const params = {
-    volumeId: `"${book}"`,
-    projection: `full`,
-  }
-  var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
-  $.getJSON(singleBookURL, function(selectedBookData){
-    userSelectedAuthor = selectedBookData.volumeInfo.authors;
-    renderSelectedBookHeader();
-    renderSelectedBookData(selectedBookData);
-    nextPageToken = selectedBookData.nextPageToken;
-    renderYoutubeHeader();
-    renderNewsHeader();
-    renderWikiHeader();
-  });
+const googleBook = function getSelectedGoogleBookAPIData(book) {
+      const params = {
+        volumeId: `"${book}"`,
+        projection: 'full',
+      }
+      var singleBookURL = googleBooksURL + '/' + book + '?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s';
+      $.getJSON(singleBookURL, function(selectedBookData){
+        userSelectedAuthor = selectedBookData.volumeInfo.authors;
+        showBookH();
+        showBook(selectedBookData);
+        nextPageToken = selectedBookData.nextPageToken;
+        showYtH();
+        showNewsH();
+        showWikiH();
+      });
 }
 
 //call to Youtube for videos
-function getYouTubeAPIData(userSelectedSearchTerm) {
-  const youtubeParams = {
-    q: `"${selAuthor}" OR "${selBookTitle}"`,
-    key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
-    part: 'snippet',
-    maxResults: 5,
-    videoID:'id'
-  }
-  $.getJSON(youtubeURL, youtubeParams, function(data){
-    renderYoutubeData(data);
-    state.youtubePageToken = data.nextPageToken;
-  }); 
+const getYt = function getYouTubeAPIData(userSelectedSearchTerm) {
+      console.log('fired getapidata');
+      const ytParams = {
+        q: `"${selAuthor}" OR ${selBookTitle}"`,
+        key: 'AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM',
+        part: 'snippet',
+        maxResults: 5,
+        videoID:'id'
+      }
+      $.getJSON(youtubeURL, ytParams, function(data){
+        showYt(data);
+        state.youtubePageToken = data.nextPageToken;
+      }); 
 }
 
 //AJAX call to News for articles
-function getNewsAPIData(userSelectedSearchTerm) {
-  const params = {
-    q: `"${selAuthor}" OR "${selBookTitle}"`,
-    apiKey: `430d190071894a52b7716e87bf74ced3`,
-    articleList:`articles`,
-    pagesize: 10,
-    language: `en`
-    }
-  $.getJSON(newsURL, params, function(data){
-    renderNewsData(data);
-    state.newsNextPage++;
-  });  
+const getNews = function getNewsAPIData(userSelectedSearchTerm) {
+      const params = {
+        q: `"${selAuthor}" OR "${selBookTitle}"`,
+        apiKey: '430d190071894a52b7716e87bf74ced3',
+        articleList:'articles',
+        pagesize: 10,
+        language: 'en'
+        }
+      $.getJSON(newsURL, params, function(data){
+        showNews(data);
+        state.newsNextPage++;
+      });  
 }
 
 //AJAX call to Wikipedia API
-function getWikiAPIData() {
-  const wikiParams = {
-    titles: `${selAuthor}`,
-    origin: '*',
-    action: 'query',
-    format: 'json',
-    prop: 'extracts|pageimages',
-    indexpageids: 1,
-    redirects: 1, 
-    exchars: 1400,
-    // explaintext: 1,
-    exsectionformat: 'plain',
-    piprop: 'name|thumbnail|original',
-    pithumbsize: 250
-  };
-  $.getJSON(wikiURL, wikiParams, function(data) {
-      renderWikiData(data.query)
-  });
+const getWiki = function getWikiAPIData() {
+      const wikiParams = {
+        titles: `${selAuthor}`,
+        origin: '*',
+        action: 'query',
+        format: 'json',
+        prop: 'extracts|pageimages',
+        indexpageids: 1,
+        redirects: 1, 
+        exchars: 1400,
+        // explaintext: 1,
+        exsectionformat: 'plain',
+        piprop: 'name|thumbnail|original',
+        pithumbsize: 250
+      };
+      $.getJSON(wikiURL, wikiParams, function(data) {
+          showWiki(data.query)
+      });
 }
 
-
-
-
-function getNewsDataNextPage(userSelectedSearchTerm) {
+const newsNext = function getNewsDataNextPage(userSelectedSearchTerm) {
   const params = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
-    apiKey: `430d190071894a52b7716e87bf74ced3`,
-    articleList:`articles`,
+    apiKey: '430d190071894a52b7716e87bf74ced3',
+    articleList:'articles',
     pagesize: 10,
-    language: `en`,
+    language: 'en',
     page: state.newsNextPage
     }
   $.getJSON(newsURL, params, function(data){
-    renderNewsData(data);
+    showNews(data);
     state.newsNextPage++;
   });  
 }
 
-function getYoutubeDataNextPage(userSelectedSearchTerm){
+const ytNext = function getYoutubeDataNextPage(userSelectedSearchTerm){
   const params = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
-    key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
+    key: 'AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM',
     part: 'snippet',
     maxResults: 5,
     videoID:'id',
     pageToken: state.youtubePageToken
   }
   $.getJSON(youtubeURL, params, function(data){
-    renderYoutubeData(data);
+    showYt(data);
     state.youtubePageToken = data.nextPageToken;
   });
 }
@@ -364,9 +378,9 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
 
 function watchSubmit() {
 //suggestions for submission text input
-  var searchEx = [ 'Want some suggestions?', 'David Grann', 'Jane Eyre', 'Radium Girls', 'William Shakespeare', 'Shakespeare', 'nanotechnology', 'sustainability', 'sensationalism', 'gentrification', 'socialization', 'benchmarking', 'brick and mortar', 'best practice', 'syllogism', 'paradigm shift', 'semantics', 'responsive web design' ];
+  var searchEx = [ 'Want some suggestions?', 'David Grann', 'Jane Eyre', 'Radium Girls', 'William Shakespeare', 'Shakespeare', 'Louisa May Alcott', 'Jack London', 'Harry Potter', 'J. K. Rowling', 'Margaret Atwood', 'Lord of the Flies', 'America"s Cup', 'The Poisonwood Bible' ];
   setInterval(function() {
-    $("input#js-searchfield").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
+    $('input#js-searchfield').attr('placeholder', searchEx[searchEx.push(searchEx.shift())-1]);
   }, 3000);
 
   //listener for input from user; on submit or click, bring up list of associated books
@@ -374,25 +388,21 @@ function watchSubmit() {
     e.preventDefault();
     const queryTarget = $(e.currentTarget).find('#js-searchfield');
     userSelectedSearchTerm  = queryTarget.val();
-    getGoogleBooksAPIData(userSelectedSearchTerm);
+    googleList(userSelectedSearchTerm);
+    
   });
 
   //listener for book selection; on click, get information on selected book
   $(document).on('click', '.book', (function(e) {
     e.preventDefault();
     selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
-    getSelectedGoogleBookAPIData(selectedBookId);
+    googleBook(selectedBookId);
   }));
 
-  //user clicks to look at example
-  $('.example_search').click(function(e) {
-    e.preventDefault();
-    $('html, body').animate({ scrollTop: $('main').offset().top - 20});    
-  });
-
+  //user clicks the footer to fire new search
   $('a#newsearch').click(function(e) {
     e.preventDefault();
-    document.getElementById("js-inputform");
+    document.getElementById('js-inputform');
     $('html, body').animate({ scrollTop: $('header').offset().top});
     $('input#js-searchfield').focus();
   });
@@ -400,9 +410,10 @@ function watchSubmit() {
  //listener for youtube data
   $(document).on('click', '.sdyoutube', (function(e){
     e.preventDefault();
+    console.log('yt listener fired');
     //if the down-angle icon is visible, then go get the data and display
     if ($('#youtubeangledown').css('display')=='inline-block') {
-      getYouTubeAPIData(userSelectedSearchTerm);
+      getYt(userSelectedSearchTerm);
       $('#youtubeangledown').css('display','none');
       $('#youtubeangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
@@ -419,7 +430,7 @@ function watchSubmit() {
     e.preventDefault();
     //if the down-angle icon is visible, then go get the data and display
     if ($('#newsangledown').css('display')=='inline-block') {
-      getNewsAPIData(userSelectedSearchTerm);
+      getNews(userSelectedSearchTerm);
       $('#newsangledown').css('display','none');
       $('#newsangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
@@ -435,7 +446,7 @@ function watchSubmit() {
   $(document).on('click', '.sdwiki', (function(e){
     e.preventDefault();
     if ($('#wikiangledown').css('display')=='inline-block') {
-      getWikiAPIData(userSelectedSearchTerm);
+      getWiki(userSelectedSearchTerm);
       $('#wikiangledown').css('display','none');
       $('#wikiangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
@@ -450,13 +461,13 @@ function watchSubmit() {
 //get next set of you tube videos
   $(document).on('click','.nextYoutube', (function(event){
     event.preventDefault();
-    getYoutubeDataNextPage(userSelectedSearchTerm);
+    ytNext(userSelectedSearchTerm);
   }));
 
 //get next set of news articles
   $(document).on('click','.nextNews', (function(event){
     event.preventDefault();
-    getNewsDataNextPage(userSelectedSearchTerm);
+    newsNext(userSelectedSearchTerm);
   }));
 
 }
