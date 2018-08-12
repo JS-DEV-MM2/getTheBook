@@ -5,8 +5,8 @@ var state = {
   selectedBookId:'',
   newsNextPage:1,
   youtubePageToken: '',
-  selBookTitle: '',
-  selAuthor:'',
+  //selBookTitle: '',
+  //selAuthor:'',
   
 
 };
@@ -20,8 +20,8 @@ const wikiURL = 'https://en.wikipedia.org/w/api.php';
 //Render list of books based on selecction
 const showListH = function renderListOfBooksHeader() {
   $('.content').remove();
-  var listofbooksHeader='';
-  listofbooksHeader = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle"><div class="title_style"><div class="slidedown"></div><div title="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Select one of the following books to get more information</span></div></div></div></div>';
+  let listofbooksHeader='';
+  listofbooksHeader = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle"><div class="title-style"><div class="slidedown"></div><div title="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Select one of the following books to get more information</span></div></div></div></div>';
   $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(listofbooksHeader);
   $('html, body').animate({ scrollTop: $('main').offset().top - 100}); 
@@ -29,9 +29,9 @@ const showListH = function renderListOfBooksHeader() {
 
 // Render Single Book header
 const showBookH = function renderSelectedBookHeader() {
-  var selectedbookHeaderHtml = '';
+  let selectedbookHeaderHtml = '';
   $('.content').remove();
-  selectedbookHeaderHtml = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle" ><div class="title_style"><div class="slidedown"></div><div class="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Overview of the book you selected<span></div></div></div></div>';
+  selectedbookHeaderHtml = '<div class="col-12"><div class="boxshadow"><div class="boxtitle booklisttitle" ><div class="title-style"><div class="slidedown"></div><div class="othertitle"><div class="appicons"><i class="fas fa-kiwi-bird"></i></div><div class="titleverbage"><span class="titlewords">Overview of the book you selected<span></div></div></div></div>';
   $('.row:nth-of-type(2)').append('<div class="content">');
   $('.content').append(selectedbookHeaderHtml);
 
@@ -40,94 +40,92 @@ const showBookH = function renderSelectedBookHeader() {
 //Render Youtube header
 const showYtH = function renderYoutubeHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-youtube"></div></div>');
-  var youtubeHeaderHtml = '';
-  youtubeHeaderHtml = '<div class="boxtitle youtubetitle"><div class="title_style"><div class="slidedown sdyoutube"><i id="youtubeangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="youtubeangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-handshake"></i></div><div class="titleverbage"><span class="titlewords">Videos on Author or Title</span></div><p><div class="nextYoutube">More results</div></div></div></div>';
+  let youtubeHeaderHtml = '';
+  youtubeHeaderHtml = '<div class="boxtitle youtubetitle"><div class="title-style"><div class="slidedown sdyoutube"><i id="youtubeangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="youtubeangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-handshake"></i></div><div class="titleverbage"><span class="titlewords">Videos on Author or Title</span></div><p><div class="nextYoutube">More results</div></div></div></div>';
   $('.js-youtube').append(youtubeHeaderHtml);
 }
 
 //Render News header
 const showNewsH = function renderNewsHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-news"></div></div>');
-  var newsHeaderHtml = '';
-  newsHeaderHtml = '<div class="boxtitle newstitle"><div class="title_style"><div class="slidedown sdnews"><i id="newsangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="newsangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-star"></i></div><div class="titleverbage"><span class="titlewords">News on Author or Title</span></div><p><div class="nextNews">More results</div></div></div></div>';
+  let newsHeaderHtml = '';
+  newsHeaderHtml = '<div class="boxtitle newstitle"><div class="title-style"><div class="slidedown sdnews"><i id="newsangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="newsangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-star"></i></div><div class="titleverbage"><span class="titlewords">News on Author or Title</span></div><p><div class="nextNews">More results</div></div></div></div>';
   $('.js-news').append(newsHeaderHtml);
 }
 //Render Wiki header
 const showWikiH = function renderWikiHeader() {
   $('.boxshadow').first().append('<div class="col-4"><div class="js-wiki"></div></div>');
-  var newsWikiHtml = '';
-  wikiHeaderHtml = '<div class="boxtitle wikititle"><div class="title_style"><div class="slidedown sdwiki"><i id="wikiangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="wikiangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-certificate"></i></div><div class="titleverbage"><span class="titlewords">Wiki Details on Author</span></div><p><div class="nextWiki">More</div></div></div></div>';
+  let newsWikiHtml = '';
+  wikiHeaderHtml = '<div class="boxtitle wikititle"><div class="title-style"><div class="slidedown sdwiki"><i id="wikiangledown" class="fas fa-angle-double-down" aria-hidden="true" ></i><i id="wikiangleup" class=" fas fa-angle-double-up" aria-hidden="true" style="display:none" ></i></div><div class="othertitle"><div class="appicons"><i class="fas fa-certificate"></i></div><div class="titleverbage"><span class="titlewords">Wiki Details on Author</span></div><p><div class="nextWiki">More</div></div></div></div>';
   $('.js-wiki').append(wikiHeaderHtml);
 }
 
 //***Render Details
 
 //Render List of books details
-const showList = function renderListOfBooks(listofbooksData) {
-  var txtSnippet = '';
-  var pub = '';
-  var authName = '';
-  var bookTitle = '';
-  var bookGenres = '';
-  var aveRating = '';
-  var dtaId = '';
-  var listofbooksHTML='';
-  var bookImage= '';
+const showList = function renderListOfBooks(listOfBooksData) {
+  let txtSnippet = '';
+  let pub = '';
+  let authName = '';
+  let bookTitle = '';
+  let bookGenres = '';
+  let aveRating = '';
+  let dtaId = '';
+  let listOfBooksHtml='';
+  let bookImage= '';
   $('.boxshadow').first().append('<div class="listofbookstable">');
   
 
   //Error msg for no search results: book list
-  if (listofbooksData.length === 0) {
-    listofbooksHTML += '<div class="center"><div class="errormessage">Sorry, no books on the selected topic were found on Google Books.</div></div>';
+  if (listOfBooksData.length === 0) {
+    listOfBooksHtml += '<div class="center"><div class="errormessage">Sorry, no books on the selected topic were found on Google Books.</div></div>';
   } else {
-    var i = 0;
-    $.each(listofbooksData, function(index, item) {
-        authName = listofbooksData[i].volumeInfo.authors;
-        bookTitle = listofbooksData[i].volumeInfo.title;
-        dtaId = listofbooksData[i].id;
+    $.each(listOfBooksData.items, function(i, item) {
+        authName = listOfBooksData.items[i].volumeInfo.authors;
+        bookTitle = listOfBooksData.items[i].volumeInfo.title;
+        dtaId = listOfBooksData.items[i].id;
         //if there is no image available
-        if (typeof(listofbooksData[i].volumeInfo.imageLinks) =='undefined' || listofbooksData[i].volumeInfo.imageLinks === null) {
+        if (typeof(listOfBooksData.items[i].volumeInfo.imageLinks) =='undefined' || listOfBooksData.items[i].volumeInfo.imageLinks === null) {
           bookImage = 'images/noimageavailable.png';
         } else {
-          bookImage = listofbooksData[i].volumeInfo.imageLinks.thumbnail;
+          bookImage = listOfBooksData.items[i].volumeInfo.imageLinks.thumbnail;
         };
 
         //if there is no publisher available
-        if (typeof(listofbooksData[i].volumeInfo.publisher) =='undefined' || listofbooksData[i].volumeInfo.publisher === null) {
+        if (typeof(listOfBooksData.items[i].volumeInfo.publisher) =='undefined' || listOfBooksData.items[i].volumeInfo.publisher === null) {
           pub = 'No publisher is listed.';
         } else {
-          pub = listofbooksData[i].volumeInfo.publisher;
+          pub = listOfBooksData.items[i].volumeInfo.publisher;
         };
         //no genres available
-        if (typeof(listofbooksData[i].volumeInfo.categories) =='undefined' || listofbooksData[i].volumeInfo.categories === null) {
+        if (typeof(listOfBooksData.items[i].volumeInfo.categories) =='undefined' || listOfBooksData.items[i].volumeInfo.categories === null) {
           bookGenres = 'No genres are listed.';
         } else {
-          bookGenres = listofbooksData[i].volumeInfo.categories;
+          bookGenres = listOfBooksData.items[i].volumeInfo.categories;
         };
 
-        if (typeof(listofbooksData[i].volumeInfo.averageRating) =='undefined' || listofbooksData[i].volumeInfo.averageRating === null) {
+        if (typeof(listOfBooksData.items[i].volumeInfo.averageRating) =='undefined' || listOfBooksData.items[i].volumeInfo.averageRating === null) {
           aveRating = 'No ratings are listed.';
         } else {
-          aveRating = listofbooksData[i].volumeInfo.averageRating;
+          aveRating = listOfBooksData.items[i].volumeInfo.averageRating;
         };
           //if there is no snippet available
-        if (typeof(listofbooksData[i].searchInfo) =='undefined' || listofbooksData[i].searchInfo.textSnippet === null) {
+        if (typeof(listOfBooksData.items[i].searchInfo) =='undefined' || listOfBooksData.items[i].searchInfo.textSnippet === null) {
           txtSnippet = 'There is no summary for this book';
         } else {
-          txtSnippet = listofbooksData[i].searchInfo.textSnippet;
+          txtSnippet = listOfBooksData.items[i].searchInfo.textSnippet;
         };
-        listofbooksHTML += `<div class="book"><div class="bookthumbtable-cell"><img class="listofbooksthumb" src="${bookImage}"></img>` + 
+        listOfBooksHtml += `<div class="book"><div class="bookthumbtable-cell"><img class="listofbooksthumb" src="${bookImage}"></img>` + 
                             `</div><div class="listofbookstable-cell"><div class="headerinfo"><div class="js-authorname">${authName}</div>` +
                             `<div class="js-title">${bookTitle}</div></div><div class="resultbody"><div class="js-publisher"><div class="pubwords"> Publisher:</div>` + 
                             `<div class="pubdata">${pub}</div></div><div class="js-categories"><div class="genwords"> Genres: </div><div class="gendata">${bookGenres}</div>` + 
                             `</div><div class="ratingwords">Average Rating: </div><div class="ratingdata">${aveRating}</div><div class="js-textsnippet">${txtSnippet}</div>` +
                             `</div><div class="js-itemid" data-bookId="${dtaId}">${dtaId}</div></div></div></div>`;
-          i +=1;
     });
-    listofbooksHTML+='</div>';
+    listOfBooksHtml+='</div>';
   };
 
-  $('.listofbookstable').append(listofbooksHTML);
+  $('.listofbookstable').append(listOfBooksHtml);
   $('.boxshadow').first().append('</div>');
   $('.col-12').append('</div')
   
@@ -137,16 +135,16 @@ const showList = function renderListOfBooks(listofbooksData) {
 const showBook = function renderSelectedBookData(selectedBookData) {
   selBookTitle = selectedBookData.volumeInfo.title;
   selAuthor=selectedBookData.volumeInfo.authors;
-  var selectedBookRatings = '';
-  var selPublisher = selectedBookData.volumeInfo.publisher;
-  var selPubDate = selectedBookData.volumeInfo.publishedDate;
-  var selDesc = selectedBookData.volumeInfo.description;
-  var pc = selectedBookData.volumeInfo.pageCount;
-  var overviewHtml = '';
-  var pricinginfoHtml = '';
-  var bookImage = '';
-  var forSale=`${selectedBookData.saleInfo.saleability}`;
-  var isElectronic = `${selectedBookData.saleInfo.isEbook}`;
+  let selectedBookRatings = '';
+  let selPublisher = selectedBookData.volumeInfo.publisher;
+  let selPubDate = selectedBookData.volumeInfo.publishedDate;
+  let selDesc = selectedBookData.volumeInfo.description;
+  let pc = selectedBookData.volumeInfo.pageCount;
+  let overviewHtml = '';
+  let pricinginfoHtml = '';
+  let bookImage = '';
+  let forSale=`${selectedBookData.saleInfo.saleability}`;
+  let isElectronic = `${selectedBookData.saleInfo.isEbook}`;
 
   //if there is no image available
   if (typeof(selectedBookData.volumeInfo.imageLinks) =='undefined' || selectedBookData.volumeInfo.imageLinks === null) {
@@ -186,46 +184,44 @@ const showBook = function renderSelectedBookData(selectedBookData) {
 }
 
 //Display Youtube detail
-const showYt = function renderYoutubeData(youtubeData) {
-  console.log('made it to render');
-  var ytTitle = '';
-  var ytDesc = '';
-  var ytVidId = '';
-  var ytHtml='';
+const showYt = function renderYoutubeData(ytData) {
+  let ytTitle = '';
+  let ytDesc = '';
+  let ytVidId = '';
+  let ytHtml='';
   $('.youtubeitem').remove();
-  $.each(youtubeData.items, function(i, item) {
-    ytTitle = youtubeData.items[i].snippet.title;
-    ytDesc = youtubeData.items[i].snippet.description;
-    ytVidId = youtubeData.items[i].id.videoId;
-    ytHtml += `<div class="youtubeitem"><div class="headerinfo"><div class="js-title">${ytTitle}</div></div><div class="resultbody"><div class="js-desc">${ytDesc}</div></div>` +
-                   `<div class="myVideo" id="' + i + '"><iframe class="resp-iframe" data-videoIndex="' + 0 + '" src="https://www.youtube.com/embed/${ytVidId}?controls=1"></iframe></div></div>`;
+  $.each(ytData.items, function(i, item) {
+    ytTitle = ytData.items[i].snippet.title;
+    ytDesc = ytData.items[i].snippet.description;
+    ytVidId = ytData.items[i].id.videoId;
+    ytHtml += `<div class="youtubeitem"><div class="headerinfo"><div class="js-title">${ytTitle}</div>` +
+              `</div><div class="resultbody"><div class="js-desc">${ytDesc}</div></div><div class="myVideo" id="' + i + '">` +
+              `<iframe class="resp-iframe" data-videoIndex="' + 0 + '" src="https://www.youtube.com/embed/${ytVidId}?controls=1">` +
+              `</iframe></div></div>`;
   });
-  console.log(ytHtml);
   $('.js-youtube').append(ytHtml);
   $('.nextYoutube').show();
 }
 
 //Display News detail
 const showNews = function renderNewsData(newsData) {
-  var indexNum = 0;
-  var newsHtml='';
-  var authName = '';
-  var newsTitle = '';
-  var newsDesc = '';
-  var newsUrl = '';
+  let newsHtml='';
+  let authName = '';
+  let newsTitle = '';
+  let newsDesc = '';
+  let newsUrl = '';
   $('.newsitem').remove();
-  $.each(newsData, function(index, item) {
-    newsTitle = newsData.articles[indexNum].title;
-    newsDesc = newsData.articles[indexNum].description;
-    newsUrl = newsData.articles[indexNum].url;
-    if (typeof(newsData.articles[indexNum].author) =='undefined' || newsData.articles[indexNum].author === null) {
+  $.each(newsData.articles, function(i, item) {
+    newsTitle = newsData.articles[i].title;
+    newsDesc = newsData.articles[i].description;
+    newsUrl = newsData.articles[i].url;
+    if (typeof(newsData.articles[i].author) =='undefined' || newsData.articles[i].author === null) {
       authName = 'no author\"s name is listed';
     } else {
-      authName = newsData.articles[indexNum].author;
+      authName = newsData.articles[i].author;
     };
     newsHtml += `<div class="newsitem"><div class="headerinfo"><div class="js-title">${newsTitle}</div><div class="js-authorname">Author:  ${authName}</div></div>` +
                 `<div class="resultbody"><div class="js-subtitle">${newsDesc}</div><div class="read"><a href="${newsUrl}" target="_blank">Click here to read the article </a></div></div></div>`;
-    indexNum +=1;
   });
   $('.js-news').append(newsHtml);
   $('.nextNews').show();
@@ -233,14 +229,13 @@ const showNews = function renderNewsData(newsData) {
 
 //Display Wikipedia author data
 const showWiki = function renderWikiData(authorData) {
-  console.log(authorData);
-  var pageId = authorData.pageids[0];
-  var wikiThumb = authorData.pages[pageId].thumbnail;
-  var wikiSource = authorData.pages[pageId].thumbnail.source;
-  var wikiTitle = authorData.pages[pageId].title;
-  var wikiExtract = authorData.pages[pageId].extract
-  var wikiHtml='';
-  var thumbSource = '';
+  let pageId = authorData.pageids[0];
+  let wikiThumb = authorData.pages[pageId].thumbnail;
+  let wikiSource = authorData.pages[pageId].thumbnail.source;
+  let wikiTitle = authorData.pages[pageId].title;
+  let wikiExtract = authorData.pages[pageId].extract
+  let wikiHtml='';
+  let thumbSource = '';
   if (pageId =='-1' ) {
     wikiHtml += '<div class="wikiitem"><div class="headerinfo"><div class="wikimessage">There is no Wikipedia information on this author.</div></div>';
   } else {
@@ -267,9 +262,9 @@ const googleList = function getGoogleBooksAPIData(userSelectedSearchTerm) {
         key: 'AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s',
       }
       $.getJSON(googleBooksURL, params, function(data){
-        var dataId='';
+        let dataId='';
         showListH();
-        showList(data.items);
+        showList(data);
         
       });
 } 
@@ -280,7 +275,7 @@ const googleBook = function getSelectedGoogleBookAPIData(book) {
         volumeId: `"${book}"`,
         projection: 'full',
       }
-      var singleBookURL = googleBooksURL + '/' + book + '?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s';
+      let singleBookURL = googleBooksURL + '/' + book + '?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s';
       $.getJSON(singleBookURL, function(selectedBookData){
         userSelectedAuthor = selectedBookData.volumeInfo.authors;
         showBookH();
@@ -294,7 +289,6 @@ const googleBook = function getSelectedGoogleBookAPIData(book) {
 
 //call to Youtube for videos
 const getYt = function getYouTubeAPIData(userSelectedSearchTerm) {
-      console.log('fired getapidata');
       const ytParams = {
         q: `"${selAuthor}" OR ${selBookTitle}"`,
         key: 'AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM',
@@ -378,7 +372,7 @@ const ytNext = function getYoutubeDataNextPage(userSelectedSearchTerm){
 
 function watchSubmit() {
 //suggestions for submission text input
-  var searchEx = [ 'Want some suggestions?', 'David Grann', 'Jane Eyre', 'Radium Girls', 'William Shakespeare', 'Shakespeare', 'Louisa May Alcott', 'Jack London', 'Harry Potter', 'J. K. Rowling', 'Margaret Atwood', 'Lord of the Flies', 'America"s Cup', 'The Poisonwood Bible' ];
+  let searchEx = [ 'Want some suggestions?', 'David Grann', 'Jane Eyre', 'Radium Girls', 'William Shakespeare', 'Shakespeare', 'Louisa May Alcott', 'Jack London', 'Harry Potter', 'J. K. Rowling', 'Margaret Atwood', 'Lord of the Flies', 'America"s Cup', 'The Poisonwood Bible' ];
   setInterval(function() {
     $('input#js-searchfield').attr('placeholder', searchEx[searchEx.push(searchEx.shift())-1]);
   }, 3000);
@@ -410,7 +404,6 @@ function watchSubmit() {
  //listener for youtube data
   $(document).on('click', '.sdyoutube', (function(e){
     e.preventDefault();
-    console.log('yt listener fired');
     //if the down-angle icon is visible, then go get the data and display
     if ($('#youtubeangledown').css('display')=='inline-block') {
       getYt(userSelectedSearchTerm);

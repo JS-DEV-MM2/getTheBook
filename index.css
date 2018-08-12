@@ -11,9 +11,7 @@ form {
   max-width: 100%;
   padding:0;
 }
-.missy {
-  color:black;
-}
+
 header {
   background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(images/bg1.jpg);
   background-size: cover;
@@ -26,7 +24,6 @@ header {
 
 body {
   margin: 0px auto;
-
   font-family: 'Lato', sans-serif;
   background-color:#F1C0B1;
   color: #0B4863; 
@@ -35,16 +32,13 @@ body {
 h1 {
   color: white;
 }
-/*
-h2 {
-  color:black;
-}
-*/
+
 h3 {
   color:#0B4863;;
   font-size:16px;
   text-align:left;
 }
+
 h4 {
   color: #0B4863;
   font-size:16px;
@@ -55,7 +49,10 @@ a {
   text-decoration: none;
 }
 
-a, button, .fas, .dataItem, .newsItem, .youtubeItem {
+a, 
+button, 
+.fas, 
+{
   cursor: pointer;
 }
 
@@ -75,7 +72,8 @@ i {
   
 }
 
-.fa-angle-double-down, .fa-angle-double-up {
+.fa-angle-double-down, 
+.fa-angle-double-up {
   color:  #0B4863;
   -webkit-transition-property: color;
      -moz-transition-property: color;
@@ -201,7 +199,7 @@ input {
   padding-bottom:5%;
 }
 
-.getTheBookBtn {
+.get-the-book-btn {
   border-style:outset;
   border: 3px solid  #9BAA37;
   background-color: #BEB968;
@@ -211,7 +209,7 @@ input {
   padding: 0px 25px 10px 25px;
 }
 
-.getTheBookBtn:hover{
+.get-the-book-btn:hover{
   border-style:outset;
   border: 3px solid  #BEB968;
   background-color: #9BAA37;
@@ -221,7 +219,7 @@ input {
   padding: 0px 25px 10px 25px;
 }
 
-.getTheBookLogo {
+.get-the-book-logo {
   border-style:outset;
   border: 3px solid  #9BAA37;
   background-color: #BEB968;
@@ -283,7 +281,7 @@ input {
   width:100%;
 }
 
-.title_style {
+.title-style {
 /*border:1px solid green;*/
   display:table;
   text-decoration: none;
@@ -697,7 +695,7 @@ input {
   padding-left:0;
 }
 
-.getTheBookLogo {
+.get-the-book-logo {
   padding: 13px 25px 10px 25px;
 }
 .verbage { 
@@ -707,7 +705,7 @@ input {
   font-size:12px;
 }
 
-.title_style {
+.title-style {
   padding: 5px;
   text-align:center;
   font-size:14px;
