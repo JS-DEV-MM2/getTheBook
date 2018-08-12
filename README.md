@@ -1,16 +1,20 @@
-## Get the Book
+# Get the Book
 
-### Table of Contents
+## Table of Contents
 
  -  [Screenshots](#screenshots)
    -  [Mobile Pics](#mobile-pics)
    -  [Non-mobile Pics](#non-mobile-pics)
  -  [Summary](#summary)
  -  [Technologies Used](#technologies-used)
+ 
+ 
+ 
 
-#### Screenshots
+### Screenshots
 
-#####  Mobile Pics   -  [Table of Contents](#table-of-contents)
+
+###  Mobile Pics   -  [Table of Contents](#table-of-contents)
 1.  ![Mobile Version Pic 1](images/m1.jpg "Mobile Pic 1")
 
 
@@ -31,7 +35,9 @@
 
 7.  ![Mobile Version Pic 7](images/m7.jpg "Mobile Pic 7")
 
-##### Non-Mobile Pics 
+
+
+### Non-Mobile Pics 
  -  [Table of Contents](#table-of-contents)
  
 1.  ![Non-mobile Version Pic 1](images/nm1.jpg "Non-Mobile Pic 1")
@@ -57,7 +63,7 @@
 
 
 
-#### Summary 
+### Summary 
    -  [Table of Contents](#table-of-contents)
 
 getTheBook was developed in order to have multiple sources of data available to members of book clubs as they chose the next book or books to read for their group.  A user may type an author, title, topic or any other word into the search field they are presented with on linking to the app.  The user may click enter or the 'getTheBook' button.  
