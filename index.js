@@ -19,7 +19,6 @@ const wikiURL = 'https://en.wikipedia.org/w/api.php';
 //***Render Headers
 //Render list of books based on selecction
 function renderListOfBooksHeader() {
-  //console.log('made it to renderListofbooksheader');
   $('.content').remove();
   var listofbooksHeader="";
   listofbooksHeader = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle'><div class='title_style'><div class='slidedown'></div><div title='othertitle'><div class='appicons'><i class='fas fa-kiwi-bird'></i></div><div class='titleverbage'><span class='titlewords'>Select one of the following books to get more information</span></div></div></div></div>";
@@ -30,7 +29,6 @@ function renderListOfBooksHeader() {
 
 // Render Single Book header
 function renderSelectedBookHeader() {
-  //console.log('fired renderSelectedBookHeader');
   var selectedbookHeaderHtml = "";
   $('.content').remove();
   selectedbookHeaderHtml = "<div class='col-12'><div class='boxshadow'><div class='boxtitle booklisttitle' ><div class='title_style'><div class='slidedown'></div><div class='othertitle'><div class='appicons'><i class='fas fa-kiwi-bird'></i></div><div class='titleverbage'><span class='titlewords'>Overview of the book you selected<span></div></div></div></div>";
@@ -41,7 +39,6 @@ function renderSelectedBookHeader() {
 
 //Render Youtube header
 function renderYoutubeHeader() {
-  //console.log('fired renderYoutubeHeader');
   $('.boxshadow').first().append("<div class='col-4'><div class='js-youtube'></div></div>");
   var youtubeHeaderHtml = "";
   youtubeHeaderHtml = "<div class='boxtitle youtubetitle'><div class='title_style'><div class='slidedown sdyoutube'><i id='youtubeangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='youtubeangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-handshake'></i></div><div class='titleverbage'><span class='titlewords'>Videos on Author or Title</span></div><p><div class='nextYoutube'>More results</div></div></div></div>";
@@ -52,7 +49,6 @@ function renderYoutubeHeader() {
 
 //Render News header
 function renderNewsHeader() {
-  //console.log('fired renderNewsHeader');
   $('.boxshadow').first().append("<div class='col-4'><div class='js-news'></div></div>");
   var newsHeaderHtml = "";
   newsHeaderHtml = "<div class='boxtitle newstitle'><div class='title_style'><div class='slidedown sdnews'><i id='newsangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='newsangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-star'></i></div><div class='titleverbage'><span class='titlewords'>News on Author or Title</span></div><p><div class='nextNews'>More results</div></div></div></div>";
@@ -60,7 +56,6 @@ function renderNewsHeader() {
 }
 //Render Wiki header
 function renderWikiHeader() {
-  //console.log('fired renderWikiHeader');
   $('.boxshadow').first().append("<div class='col-4'><div class='js-wiki'></div></div>");
   var newsWikiHtml = "";
   wikiHeaderHtml = "<div class='boxtitle wikititle'><div class='title_style'><div class='slidedown sdwiki'><i id='wikiangledown' class='fas fa-angle-double-down' aria-hidden='true' ></i><i id='wikiangleup' class=' fas fa-angle-double-up' aria-hidden='true' style='display:none' ></i></div><div class='othertitle'><div class='appicons'><i class='fas fa-certificate'></i></div><div class='titleverbage'><span class='titlewords'>Wiki Details on Author</span></div><p><div class='nextWiki'>More</div></div></div></div>";
@@ -71,7 +66,6 @@ function renderWikiHeader() {
 
 //Render List of books details
 function renderListOfBooks(listofbooksData) {
-  //console.log('fired renderListOfBooks');
   var txtSnippet = "";
   var pub = "";
   var bookGenres = "";
@@ -187,14 +181,12 @@ function renderSelectedBookData(selectedBookData) {
 }
 
 function renderClosingDivs() {
-  console.log("fired renderClosingDivs");
   $('.boxshadow').first().append("</div></div>");
 }
 
 
 //Display Youtube detail
 function renderYoutubeData(youtubeData) {
-  //console.log('fired renderYoutubeData');
   var youtubeHTML="";
   $('.youtubeitem').remove();
   $.each(youtubeData.items, function(i, item) {
@@ -229,14 +221,10 @@ function renderNewsData(newsData) {
 
 //Display Wikipedia author data
 function renderWikiData(authorData) {
-  //console.log("renderWikiData fired");
-  //console.log(authorData);
   var pageId = authorData.pageids[0];
   var wikiHTML="";
 
   var thumbSource = "";
-  //console.log(typeof(authorData.pages[pageId].thumbnail.source));
-
   if (pageId =='-1' ) {
     wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikimessage'>There is no Wikipedia information on this author.</div></div>";
   } else {
@@ -245,8 +233,6 @@ function renderWikiData(authorData) {
       } else {
         thumbSource = "<img src='" + authorData.pages[pageId].thumbnail.source + "'";
       };
-      console.log(authorData.pages[pageId].title);
-     
       wikiHTML += "<div class='wikiitem'><div class='headerinfo'><div class='wikiimg'>" + thumbSource +  "</div><div class='js-title'>" + authorData.pages[pageId].title + "</div></div><div class='resultbody'>" + 
       "<div class='js-subtitle'>" + authorData.pages[pageId].extract + "</div></div><hr><p class='wikilink'><a href='http://en.wikipedia.org/wiki/" + authorData.pages[pageId].title + "' target='_blank' data-lity><i class='fab fa-wikipedia-w'></i></i> &nbsp;More on Wikipedia</a></p>";
   };
@@ -260,13 +246,11 @@ function renderWikiData(authorData) {
 
 //AJAX call for list of Google Books
 function getGoogleBooksAPIData(userSelectedSearchTerm) {
-  console.log('fired getGoogleBooksAPIData');
   const params = {
     q: `"${userSelectedSearchTerm}"`,
     key: `AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`,
   }
   $.getJSON(googleBooksURL, params, function(data){
-    //console.log(data.items);
     var dataId="";
     renderListOfBooksHeader();
     renderListOfBooks(data.items);
@@ -276,20 +260,15 @@ function getGoogleBooksAPIData(userSelectedSearchTerm) {
 
 //AJAX call to Google Books for Selected Book
 function getSelectedGoogleBookAPIData(book) {
-  console.log('fired getSelectedGoogleBookAPIData');
   const params = {
     volumeId: `"${book}"`,
     projection: `full`,
   }
   var singleBookURL = googleBooksURL + `/` + book + `?key=AIzaSyBpAvj7qUWfzUvniX__WEqh8iN5AUphs6s`;
   $.getJSON(singleBookURL, function(selectedBookData){
-    //console.log("selected book data");
-    //console.log(selectedBookData);
     userSelectedAuthor = selectedBookData.volumeInfo.authors;
     renderSelectedBookHeader();
     renderSelectedBookData(selectedBookData);
-    //console.log('selected book data is ');
-    //console.log (selectedBookData);
     nextPageToken = selectedBookData.nextPageToken;
     renderYoutubeHeader();
     renderNewsHeader();
@@ -299,8 +278,6 @@ function getSelectedGoogleBookAPIData(book) {
 
 //call to Youtube for videos
 function getYouTubeAPIData(userSelectedSearchTerm) {
-  console.log('fired getYouTubeAPIData');
-
   const youtubeParams = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
     key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
@@ -309,8 +286,6 @@ function getYouTubeAPIData(userSelectedSearchTerm) {
     videoID:'id'
   }
   $.getJSON(youtubeURL, youtubeParams, function(data){
-    //console.log('youtube data');
-    //console.log(data);
     renderYoutubeData(data);
     state.youtubePageToken = data.nextPageToken;
   }); 
@@ -325,13 +300,9 @@ function getNewsAPIData(userSelectedSearchTerm) {
     pagesize: 10,
     language: `en`
     }
-    console.log(params);
   $.getJSON(newsURL, params, function(data){
     renderNewsData(data);
-    console.log(data);
-    //document.getElementById("nextNews").style.display = "block";
     state.newsNextPage++;
-    console.log('newsnextpage is ' + state.newsNextPage);
   });  
 }
 
@@ -375,7 +346,6 @@ function getNewsDataNextPage(userSelectedSearchTerm) {
 }
 
 function getYoutubeDataNextPage(userSelectedSearchTerm){
-  console.log('fired getYoutubeDataNextPage');
   const params = {
     q: `"${selAuthor}" OR "${selBookTitle}"`,
     key: `AIzaSyDoLr1m73oBf7SHHiLQMEXg_8nhHUBWLYM`,
@@ -385,8 +355,6 @@ function getYoutubeDataNextPage(userSelectedSearchTerm){
     pageToken: state.youtubePageToken
   }
   $.getJSON(youtubeURL, params, function(data){
-    //console.log(data)
-
     renderYoutubeData(data);
     state.youtubePageToken = data.nextPageToken;
   });
@@ -411,7 +379,6 @@ function watchSubmit() {
 
   //listener for book selection; on click, get information on selected book
   $(document).on('click', '.book', (function(e) {
-    console.log('fired listener for book selection')
     e.preventDefault();
     selectedBookId = $(e.currentTarget).find('.js-itemid').attr('data-bookId');
     getSelectedGoogleBookAPIData(selectedBookId);
@@ -433,21 +400,18 @@ function watchSubmit() {
  //listener for youtube data
   $(document).on('click', '.sdyoutube', (function(e){
     e.preventDefault();
-    console.log('fired youtube event listener');
     //if the down-angle icon is visible, then go get the data and display
     if ($('#youtubeangledown').css('display')=='inline-block') {
       getYouTubeAPIData(userSelectedSearchTerm);
       $('#youtubeangledown').css('display','none');
       $('#youtubeangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
-    } else if($('#youtubeangledown').css('display')=='none') {
+    } else {
       $('.youtubeitem').remove();
       $('.nextYoutube').css('display','none');
       $('#youtubeangleup').css('display','none');
       $('#youtubeangledown').css('display','');
-    } else {
-      console.log('ERROR_YOUTUBE ARROW CLICK');
-    }
+    };
   }));
 
 //listener for news data
@@ -459,13 +423,11 @@ function watchSubmit() {
       $('#newsangledown').css('display','none');
       $('#newsangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
-    } else if($('#newsangledown').css('display')=='none') {
+    } else {
       $('.newsitem').remove();
       $('.nextNews').css('display','none');
       $('#newsangleup').css('display','none');
       $('#newsangledown').css('display','');
-    } else {
-      console.log('ERROR_NEWS ARROW CLICK');
     };
   }));
 
@@ -477,27 +439,22 @@ function watchSubmit() {
       $('#wikiangledown').css('display','none');
       $('#wikiangleup').css('display','');
     // however, if the up-angle icon is visible, then remove all data and replace icon with the down-angle icon
-    } else if($('#wikiangledown').css('display')=='none') {
-      console.log('MADE IT PASSED THE ANGLE UP IS SHOWING');
+    } else {
       $('.wikiitem').remove();
       $('.nextWiki').css('display','none');
       $('#wikiangleup').css('display','none');
       $('#wikiangledown').css('display','');
-    } else {
-      console.log('ERROR_WIKI ARROW CLICK');
     };
   }));
 
 //get next set of you tube videos
   $(document).on('click','.nextYoutube', (function(event){
-    //console.log('fired next youtube event listener');
     event.preventDefault();
     getYoutubeDataNextPage(userSelectedSearchTerm);
   }));
 
 //get next set of news articles
   $(document).on('click','.nextNews', (function(event){
-    //console.log('fired next new article event listener');
     event.preventDefault();
     getNewsDataNextPage(userSelectedSearchTerm);
   }));
